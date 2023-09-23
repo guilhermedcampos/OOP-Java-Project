@@ -37,9 +37,8 @@ public class Application {
         Cell c1 = new Cell(1,3);
         Range r1 = new Range(b1,c1);
 
-
         _activeSpreadsheet.insertContent(r1,"oi");
-        System.out.println(_activeSpreadsheet.getCells());
+        System.out.println(_activeSpreadsheet.getCell(1,2).getContent());
         
 
     }

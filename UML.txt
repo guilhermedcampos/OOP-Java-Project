@@ -20,6 +20,8 @@
 | - cells: Cell[][]                |
 | - cutBuffer: CutBuffer           |
 +----------------------------------+
+| + getCells(range: Range): Cell[]  |
+| + getCell(row int, col: int): Cell  |
 | + viewRange(range: Range): void  |
 | + insertContent(range: Range, content: String): void |
 | + copyRange(range: Range): void  |

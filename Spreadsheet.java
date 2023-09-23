@@ -16,14 +16,18 @@ public class Spreadsheet {
 
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-            this._cells[row][col] = new Cell(row + 1, col + 1);
+                this._cells[row][col] = new Cell(row + 1, col + 1);
             }
         }
     }
     public Cell[][] getCells() {
         return this._cells;
     }
-    
+
+    public Cell getCell(int row, int col) {
+        return _cells[row-1][col-1];
+    }
+
     public void viewRange(Range range) {
         Cell startCell = range.getStart();
         Cell endCell = range.getEnd();
