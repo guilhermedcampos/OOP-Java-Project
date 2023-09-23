@@ -1,10 +1,11 @@
 public class cutBuffer {
     private String _cutBuffer;
 
-    private String obtemCutBuffer() {
+    public String getCutBuffer() {
         return _cutBuffer;
     }
 
-    
-
+    public void setCutBuffer(String buffer) {
+        _cutBuffer = buffer;
+    }    
 }

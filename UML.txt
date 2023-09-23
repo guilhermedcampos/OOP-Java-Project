@@ -1,0 +1,62 @@
++----------------------------------+
+|          Application             |
++----------------------------------+
+| - activeSheet: Spreadsheet       |
++----------------------------------+
+| + main(args: String[]): void     |    // doOpenMenuEdit; doOpenMenuSearch
+| + createNewSheet(rows, cols): void |  // doNew
+| + openFile(fileName: String): void |  // doOpen
+| + saveFile(): void               |    // doSave
+| + exit(): void                   |
++----------------------------------+
+                |
+                |
+                v
++----------------------------------+
+|         Spreadsheet              |
++----------------------------------+
+| - rows: int                      |
+| - cols: int                      |
+| - cells: Cell[][]                |
+| - cutBuffer: CutBuffer           |
++----------------------------------+
+| + viewRange(range: Range): void  |
+| + insertContent(range: Range, content: String): void |
+| + copyRange(range: Range): void  |
+| + deleteRange(range: Range): void |
+| + cutRange(range: Range): void   |
+| + pasteRange(range: Range): void |
+| + viewCutBuffer(): void          |
+| + searchByValue(value: String): Cell[]|
+| + searchByFunction(keyword: String): Cell[] |
+| + searchByReference(keyword: String): Cell[]|
++----------------------------------+
+                |
+                |
+                v
++----------------------------------+
+|              Range               |
++----------------------------------+
+| - _start: Cell                    |
+| - _end: Cell                      |
++----------------------------------+
+
++----------------------------------+
+|              Cell                |
++----------------------------------+
+| - _row: int                       |
+| - _column: int                       |
+| - _content: String                |
++----------------------------------+
+| + getValue(): String             |
+| + evaluate(): String             |
++----------------------------------+
+
++----------------------------------+
+|           CutBuffer              |
++----------------------------------+
+| - content: String                |
++----------------------------------+
+| + getCutBuffer(): String          |
+| + setCutBuffer(buffer: String): void |
++----------------------------------+
