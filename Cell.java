@@ -16,5 +16,5 @@ public class Cell {
         return this._content;
     }
 
-    public String evaluate
+
 }
