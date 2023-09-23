@@ -1,17 +1,17 @@
 public class Application {
-    private Spreadsheet[] _spreadsheets;
-    private int _numSheets = 0;
+    private static Spreadsheet[] _spreadsheets = new Spreadsheet[0];
+    private static int _numSheets = 0;
     private Spreadsheet _activeSpreadsheet;
 
-    public void createNewSheet(int rows, int cols) {
-        SpreadSheet newSheet = new SpreadSheet(rows, cols);
+    public static void createNewSheet(int rows, int cols) {
+        Spreadsheet newSheet = new Spreadsheet(rows, cols);
         addSpreadsheet(newSheet);
     }
 
-    private void addSpreadsheet(SpreadSheet spreadsheet) {
+    private static void addSpreadsheet(Spreadsheet spreadsheet) {
         if (_numSheets == _spreadsheets.length) {
             // If the array is full, create a new array with increased capacity
-            SpreadSheet[] newSpreadsheets = new SpreadSheet[_numSheets + 1];
+            Spreadsheet[] newSpreadsheets = new Spreadsheet[_numSheets + 1];
             System.arraycopy(_spreadsheets, 0, newSpreadsheets, 0, _numSheets);
             _spreadsheets = newSpreadsheets;
         }
@@ -19,4 +19,13 @@ public class Application {
         _spreadsheets[_numSheets++] = spreadsheet;
     }
     
+
+    public static void main(String[] args ) {
+        createNewSheet(5,5);
+        createNewSheet(5,5);
+        createNewSheet(5,5);
+        System.out.println(_numSheets);
+        System.out.println(_spreadsheets[2]);
+
+    }
 }
