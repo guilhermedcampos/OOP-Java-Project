@@ -64,6 +64,37 @@ public class Spreadsheet {
         }
     }
 
+    public String concat(Range range) {
+        Cell startCell = range.getStart();
+        Cell endCell = range.getEnd();
+        StringBuilder concatenated = new StringBuilder();
+
+        for (int row = startCell.getRow(); row <= endCell.getRow(); row++) {
+            for (int col = startCell.getColumn(); col <= endCell.getColumn(); col++) {
+                if (isValidCell(row, col)) {
+                    Cell cell = _cells[row - 1][col - 1];
+                    String cellContent = cell.getContent();
+                    
+                    // Check if the cell's content is a string and not empty
+                    if (cellContent != null && !cellContent.isEmpty()) {
+                        concatenated.append(cellContent);
+                    }
+                }
+            }
+        }
+
+        return concatenated.toString();
+    }
+
+
+    public void copy(Range range) {
+        Cell startCell = range.getStart();
+        Cell endCell = range.getEnd();
+        String copiedContent = concat(range); // Use the concat function to get the concatenated content
+
+        Application.setCutBuffer(copiedContent);
+    }
+
     public Cell[] searchContent(Range range, String content) {
         List<Cell> matchingCellsList = new ArrayList<>();
         Cell startCell = range.getStart();

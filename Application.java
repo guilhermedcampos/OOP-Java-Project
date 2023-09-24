@@ -2,6 +2,15 @@ public class Application {
     private static Spreadsheet[] _spreadsheets = new Spreadsheet[0];
     private static int _numSheets = 0;
     private static Spreadsheet _activeSpreadsheet;
+    private static String _cutBuffer;
+
+    public static String getCutBuffer() {
+        return _cutBuffer;
+    }
+
+    public static void setCutBuffer(String buffer) {
+        _cutBuffer = buffer;
+    }    
 
     public static void createNewSheet(int rows, int cols) {
         Spreadsheet newSheet = new Spreadsheet(rows, cols);
@@ -22,7 +31,6 @@ public class Application {
         _spreadsheets[_numSheets++] = spreadsheet;
     }
     
-
     public static void main(String[] args ) {
         createNewSheet(5,5);
         createNewSheet(5,5);
@@ -39,7 +47,7 @@ public class Application {
 
         _activeSpreadsheet.insertContent(r1,"oi");
         System.out.println(_activeSpreadsheet.getCell(1,2).getContent());
-        
-
+        _activeSpreadsheet.copy(r1);
+        System.out.println(Application.getCutBuffer());
     }
 }
