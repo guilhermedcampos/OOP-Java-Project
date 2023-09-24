@@ -49,5 +49,11 @@ public class Application {
         System.out.println(_activeSpreadsheet.getCell(1,2).getContent());
         _activeSpreadsheet.copy(r1);
         System.out.println(Application.getCutBuffer());
+
+
+        _activeSpreadsheet.insertContent(r1,"adeus");
+        _activeSpreadsheet.cut(r1);
+        System.out.println(_activeSpreadsheet.getCell(1,2).getContent());
+        System.out.println(Application.getCutBuffer());
     }
 }

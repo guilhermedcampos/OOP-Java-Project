@@ -95,7 +95,26 @@ public class Spreadsheet {
         Application.setCutBuffer(copiedContent);
     }
 
+    public void cut(Range range) {
+        Cell startCell = range.getStart();
+        Cell endCell = range.getEnd();
+        String cutContent = concat(range); // Use the concat method to get the concatenated content
+
+        // Clear the content of the cells within the range
+        for (int row = startCell.getRow(); row <= endCell.getRow(); row++) {
+            for (int col = startCell.getColumn(); col <= endCell.getColumn(); col++) {
+                if (isValidCell(row, col)) {
+                    Cell cell = _cells[row - 1][col - 1];
+                    cell.setContent(""); // Clear the cell content
+                }
+            }
+        }
+
+        Application.setCutBuffer(cutContent);
+    }
+
     public Cell[] searchContent(Range range, String content) {
+        // Searches for given content
         List<Cell> matchingCellsList = new ArrayList<>();
         Cell startCell = range.getStart();
         Cell endCell = range.getEnd();
