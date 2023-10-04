@@ -9,23 +9,27 @@ import xxl.core.exception.UnavailableFileException;
 import xxl.core.exception.UnrecognizedEntryException;
 
 // FIXME import classes
+import xxl.app.main.DoNew;
+import xxl.app.main.DoOpen;
+import xxl.app.main.DoSave;
 
 /**
  * Class representing a spreadsheet application.
  */
 public class Calculator {
   /** The current spreadsheet. */
-  private Spreadsheet _spreadsheet;
+  private Spreadsheet _currentSpreadsheet;
   
   // FIXME add more fields and methods if needed
-  
+  private User _currentUser;
+
   /**
    * Return the current spreadsheet.
    *
    * @returns the current spreadsheet of this application. This reference can be null.
    */
   public final Spreadsheet getSpreadsheet() {
-    return _spreadsheet;
+    return _currentSpreadsheet;
   }
 
   /**
