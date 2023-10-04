@@ -1,7 +1,8 @@
-public class Referencia extends Content {
+package xxl.core;
+public class Reference extends Content {
     private String name;
 
-    public Referencia(String name) {
+    public Reference(String name) {
         this.name = name;
     }
 

@@ -1,3 +1,4 @@
+package xxl.core;
 public class Range {
     private Cell _startCell;
     private Cell _endCell;

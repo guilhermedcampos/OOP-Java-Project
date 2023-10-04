@@ -1,3 +1,4 @@
+package xxl.core;
 public class StringLiteral extends Literal {
     private String value;
 

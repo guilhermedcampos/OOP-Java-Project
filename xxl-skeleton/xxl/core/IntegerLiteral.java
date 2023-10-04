@@ -1,3 +1,4 @@
+package xxl.core;
 public class IntegerLiteral extends Literal {
     private int value;
 
