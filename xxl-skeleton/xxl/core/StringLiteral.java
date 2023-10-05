@@ -1,4 +1,5 @@
 package xxl.core;
+
 public class StringLiteral extends Literal {
     private String value;
 
@@ -6,8 +7,12 @@ public class StringLiteral extends Literal {
         this.value = value;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     @Override
-    public void evaluate() {
-        // Implemente a lógica de avaliação para StringLiteral aqui
+    public Content evaluate() {
+        return this; // StringLiteral is already in its evaluated form
     }
 }
