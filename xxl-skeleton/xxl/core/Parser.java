@@ -116,11 +116,12 @@ class Parser {
     Content arg1 = parseArgumentExpression(argarguments[1]);
     
     return switch (functionName) {
-      case "ADD" -> new Add function with (arg0, arg1);
-      case "SUB" -> new Sub function with (arg0, arg1);
-      case "MUL" -> new Mul function with (arg0, arg1);
-      case "DIV" -> new Div function with (arg0, arg1);
+      case "ADD" -> new Addition(arg0, arg1);
+      case "SUB" -> new Subtraction(arg0, arg1);
+      case "MUL" -> new Multiplication(arg0, arg1);
+      case "DIV" -> new Division(arg0, arg1);
       default -> throw new UnrecognizedEntryException("Função inválida: " + functionName);
+    }
   }
 
   private Content parseArgumentExpression(String argExpression) throws UnrecognizedEntryException {
@@ -132,7 +133,7 @@ class Parser {
       return parseLiteral(argExpression);
   }
 
-  private Content parseIntervalFunction(String functionName, String rangeDescription)
+  private Content parseIntervalFunction(String functionName, String rangeDescription) {
     throws UnrecognizedEntryException /* , more exceptions ? */ {
     Range range = _spredsheet.buildRange(rangeDescription);
     return switch (functionName) {
