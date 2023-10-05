@@ -135,7 +135,7 @@ class Parser {
 
   private Content parseIntervalFunction(String functionName, String rangeDescription) {
     throws UnrecognizedEntryException /* , more exceptions ? */ {
-    Range range = _spredsheet.buildRange(rangeDescription);
+    Range range = Range.traverse(rangeDescription);
     return switch (functionName) {
       case "CONCAT" -> new Concat com range 
       case "COASLECE" -> new Coaslece com range;
@@ -144,7 +144,7 @@ class Parser {
       default -> dar erro com função inválida: functionName;
     };
   }
-
+  }
   /* Na classe Spreadsheet preciso de algo com a seguinte funcionalidade
   Range createRange(String range) throws ? {
     String[] rangeCoordinates;

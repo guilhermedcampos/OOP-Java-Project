@@ -3,6 +3,11 @@ public class Range {
     private Cell _startCell;
     private Cell _endCell;
 
+    public Range(Cell start, Cell end) {
+        this._startCell = start;
+        this._endCell = end;
+    }
+
     public Cell getStartCell() {
         return _startCell;
     }
@@ -10,6 +15,40 @@ public class Range {
     public Cell getEndCell() {
         return _endCell;
     }
+
+    public Cell[] traverse() {
+
+        String[] rangeCoordinates;
+        int firstRow, firstColumn, lastRow, lastColumn;
+        
+        if (range.indexOf(':') != -1) {
+            rangeCoordinates = range.split("[:;]");
+            firstRow = Integer.parseInt(rangeCoordinates[0]);
+            firstColumn = Integer.parseInt(rangeCoordinates[1]);
+            lastRow = Integer.parseInt(rangeCoordinates[2]);
+            lastColumn = Integer.parseInt(rangeCoordinates[3]);
+        } else {
+            rangeCoordinates = range.split(";");
+            firstRow = lastRow = Integer.parseInt(rangeCoordinates[0]);
+            firstColumn = lastColumn = Integer.parseInt(rangeCoordinates[1]);
+        }
+        Cell start = new Cell(firstRow,firstColumn);
+        Cell end = new Cell(lastColumn, lastColumn);
+
+        Range range = Range(start,end);
+        return range.traverse();
+    }
+
+
+    /* Na classe Spreadsheet preciso de algo com a seguinte funcionalidade
+  Range createRange(String range) throws ? {
+    
+
+    // check if coordinates are valid
+    // if yes
+    return new Range with firstRow, firstColumn, lastRow, lastColumn and spreadsheet;
+  }
+  */
 
     public Cell[] traverse() {
         int numRows, numCols;
