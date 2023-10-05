@@ -38,7 +38,7 @@ class Parser {
     int rows = -1;
     int columns = -1;
     
-    for (i = 0; i < 2; i++) {
+    for (int i = 0; i < 2; i++) {
       String[] dimension = reader.readLine().split("=");
       if (dimension[0].equals("linhas"))
         rows = Integer.parseInt(dimension[1]);
@@ -79,15 +79,17 @@ class Parser {
   }
 
   private Literal parseLiteral(String literalExpression) throws UnrecognizedEntryException {
-    if (literalExpression.charAt(0) == '\'')
-      return new literal String with literalExpression;
-    else {
-      try {
-        int val = Integer.parseInt(literalExpression);
-        return new literal Integer with val;
-      } catch (NumberFormatException nfe) {
-        throw new UnrecognizedEntryException("Número inválido: " + expression);
-      }
+    if (literalExpression.charAt(0) == '\'') {
+        // Remove the leading single quote (') to get the string value
+        String stringValue = literalExpression.substring(1);
+        return new StringLiteral(stringValue);
+    } else {
+        try {
+            int val = Integer.parseInt(literalExpression);
+            return new IntegerLiteral(val);
+        } catch (NumberFormatException nfe) {
+            throw new UnrecognizedEntryException("Número inválido: " + literalExpression);
+        }
     }
   }
 
