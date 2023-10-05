@@ -16,19 +16,18 @@ public class Range {
         return _endCell;
     }
 
-    public Cell[] traverse() {
-
+    public Cell[] traverse(String rangeDescription) {
         String[] rangeCoordinates;
         int firstRow, firstColumn, lastRow, lastColumn;
         
         if (range.indexOf(':') != -1) {
-            rangeCoordinates = range.split("[:;]");
+            rangeCoordinates = rangeDescription.split("[:;]");
             firstRow = Integer.parseInt(rangeCoordinates[0]);
             firstColumn = Integer.parseInt(rangeCoordinates[1]);
             lastRow = Integer.parseInt(rangeCoordinates[2]);
             lastColumn = Integer.parseInt(rangeCoordinates[3]);
         } else {
-            rangeCoordinates = range.split(";");
+            rangeCoordinates = rangeDescription.split(";");
             firstRow = lastRow = Integer.parseInt(rangeCoordinates[0]);
             firstColumn = lastColumn = Integer.parseInt(rangeCoordinates[1]);
         }
@@ -37,18 +36,7 @@ public class Range {
 
         Range range = Range(start,end);
         return range.traverse();
-    }
-
-
-    /* Na classe Spreadsheet preciso de algo com a seguinte funcionalidade
-  Range createRange(String range) throws ? {
-    
-
-    // check if coordinates are valid
-    // if yes
-    return new Range with firstRow, firstColumn, lastRow, lastColumn and spreadsheet;
-  }
-  */
+    }       // exceptions; verificar se coord sao validas, return spreadsheet(?)
 
     public Cell[] traverse() {
         int numRows, numCols;
@@ -83,7 +71,6 @@ public class Range {
                 currentIndex++;
             }
         }
-
         return result;
     }
 }
