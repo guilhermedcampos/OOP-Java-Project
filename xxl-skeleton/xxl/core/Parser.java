@@ -99,14 +99,14 @@ class Parser {
       return parseFunction(contentSpecification);
     // It is a reference
     String[] address = contentSpecificationaddress.split(";");
-    return new Referência at Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]);
+    return new Reference(Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]));
   }
 
   private Content parseFunction(String functionSpecification) throws UnrecognizedEntryException /more exceptions */ {
     String[] components = functionSpecification.split("[()]");
     if (components[1].contains(","))
       return parseBinaryFunction(components[0], components[1]);
-        
+        3
     return parseIntervalFunction(components[0], components[1]);
   }
 
@@ -120,8 +120,7 @@ class Parser {
       case "SUB" -> new Sub function with (arg0, arg1);
       case "MUL" -> new Mul function with (arg0, arg1);
       case "DIV" -> new Div function with (arg0, arg1);
-      default -> dar erro com função inválida: functionName ;
-    };
+      default -> throw new UnrecognizedEntryException("Função inválida: " + functionName);
   }
 
   private Content parseArgumentExpression(String argExpression) throws UnrecognizedEntryException {
