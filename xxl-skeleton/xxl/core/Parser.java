@@ -116,10 +116,10 @@ class Parser {
     Content arg1 = parseArgumentExpression(argarguments[1]);
     
     return switch (functionName) {
-      case "ADD" -> new Addition(arg0, arg1);
-      case "SUB" -> new Subtraction(arg0, arg1);
-      case "MUL" -> new Multiplication(arg0, arg1);
-      case "DIV" -> new Division(arg0, arg1);
+      case "ADD" -> new Add(arg0, arg1);
+      case "SUB" -> new Sub(arg0, arg1);
+      case "MUL" -> new Mul(arg0, arg1);
+      case "DIV" -> new Div(arg0, arg1);
       default -> throw new UnrecognizedEntryException("Função inválida: " + functionName);
     }
   }
@@ -127,7 +127,7 @@ class Parser {
   private Content parseArgumentExpression(String argExpression) throws UnrecognizedEntryException {
     if (argExpression.contains(";")  && argExpression.charAt(0) != '\'') {
       String[] address = argExpression.split(";");
-      return new referência at Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]);
+      return new Reference(Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]));
       // pode ser diferente do anterior em parseContentExpression
     } else
       return parseLiteral(argExpression);
