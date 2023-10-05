@@ -1,5 +1,5 @@
 package xxl.core;
-public class Range {
+public class Range {s
     private Cell _startCell;
     private Cell _endCell;
 
@@ -17,10 +17,11 @@ public class Range {
     }
 
     public Cell[] traverse(String rangeDescription) {
+        Spreadsheet spreadsheet = Calculator.getCurrentSpreadsheet();
         String[] rangeCoordinates;
         int firstRow, firstColumn, lastRow, lastColumn;
         
-        if (range.indexOf(':') != -1) {
+        if (rangeDescription.indexOf(':') != -1) {
             rangeCoordinates = rangeDescription.split("[:;]");
             firstRow = Integer.parseInt(rangeCoordinates[0]);
             firstColumn = Integer.parseInt(rangeCoordinates[1]);
@@ -31,12 +32,12 @@ public class Range {
             firstRow = lastRow = Integer.parseInt(rangeCoordinates[0]);
             firstColumn = lastColumn = Integer.parseInt(rangeCoordinates[1]);
         }
-        Cell start = new Cell(firstRow,firstColumn);
-        Cell end = new Cell(lastColumn, lastColumn);
+        Cell start = spreadsheet.getCell(firstRow, firstColumn);
+        Cell end = spreadsheet.getCell(lastRow, lastColumn);
 
-        Range range = Range(start,end);
+        Range range = new Range(start, end);
         return range.traverse();
-    }       // exceptions; verificar se coord sao validas, return spreadsheet(?)
+    }
 
     public Cell[] traverse() {
         int numRows, numCols;
@@ -60,17 +61,18 @@ public class Range {
             // Same row, iterate through columns
             int colStep = _startCell.getCol() <= _endCell.getCol() ? 1 : -1;
             for (int col = _startCell.getCol(); col != _endCell.getCol() + colStep; col += colStep) {
-                result[currentIndex] = new Cell(_startCell.getRow(), col);
+                result[currentIndex] = spreadsheet.getCell(_startCell.getRow(), col);
                 currentIndex++;
             }
         } else {
             // Same column, iterate through rows
             int rowStep = _startCell.getRow() <= _endCell.getRow() ? 1 : -1;
             for (int row = _startCell.getRow(); row != _endCell.getRow() + rowStep; row += rowStep) {
-                result[currentIndex] = new Cell(row, _startCell.getCol());
+                result[currentIndex] = spreadsheet.getCell(row, _startCell.getCol());
                 currentIndex++;
             }
         }
         return result;
     }
+
 }

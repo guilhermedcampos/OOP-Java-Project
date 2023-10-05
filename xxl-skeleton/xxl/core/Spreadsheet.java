@@ -13,10 +13,23 @@ import xxl.core.exception.UnrecognizedEntryException;
 public class Spreadsheet implements Serializable {
   @Serial
   private static final long serialVersionUID = 202308312359L;
+  private Cell[] _cells;
   
   // FIXME define attributes
   // FIXME define contructor(s)
   // FIXME define methods
+
+  public Spreadsheet getSpreadsheet() {
+    return this;
+  }
+
+  public getCell(int row, int col) {
+    for (Cell cell : _cells) {
+      if (cell.getRow() == row && cell.getCol() == col) {
+        return cell;
+      }
+    }
+  }
 
   public Content getContentAt(int row, int col) {
         // Check if the provided row and column are valid
