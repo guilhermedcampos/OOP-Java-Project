@@ -17,6 +17,22 @@ public class Spreadsheet implements Serializable {
   // FIXME define attributes
   // FIXME define contructor(s)
   // FIXME define methods
+
+  public Content getContentAt(int row, int col) {
+        // Check if the provided row and column are valid
+        if (isValidCell(row, col)) {
+            Cell cell = cells[row - 1][col - 1];
+            if (cell != null) {
+                return cell.getContent();
+            }
+        }
+        // Return null for empty or invalid cells
+        return null;
+    }
+
+    private boolean isValidCell(int row, int col) {
+        return row >= 1 && row <= numRows && col >= 1 && col <= numCols;
+    }
   
   /**
    * Insert specified content in specified address.

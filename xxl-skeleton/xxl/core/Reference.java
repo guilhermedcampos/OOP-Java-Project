@@ -1,36 +1,24 @@
 package xxl.core;
+
 public class Reference extends Content {
-    private String _name;
-    private int _row;
-    private int _col;
-
-
-
-    public Reference(String name) {
-        this._name = name;
-    }
+    private int row;
+    private int col;
 
     public Reference(int row, int col) {
-        this._row = row;
-        this._col = col;
-    }
-
-    public int getRow() {
-        return _row;
-    }
-
-    public int getCol() {
-        return _col;
-    }
-
-    public toString() {
-        return "="+_row+"="+_col;
+        this.row = row;
+        this.col = col;
     }
 
     @Override
-    public void evaluate() {
-        // Implemente a lógica de avaliação para Referencia aqui
+    public Content evaluate() {
+        // Implement logic to evaluate the reference here
+        // You should retrieve the content of the referenced cell and return it
+        // This is a simplified example; you may need to access the Spreadsheet
+        // and handle circular references in a real implementation.
+        return _spreadsheet.getContentAt(row, col).evaluate();
     }
+}
+
 
     
 }
