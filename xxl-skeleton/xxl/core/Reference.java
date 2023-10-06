@@ -10,7 +10,11 @@ public class Reference extends Content {
     }
 
     @Override
-    public Content evaluate() {
+    public Content getValue() {
+        return _spreadsheet.getContentAt(row, col).getValue();
+    }
+
+    public String evaluate() {
         return _spreadsheet.getContentAt(row, col).evaluate();
     }
 }

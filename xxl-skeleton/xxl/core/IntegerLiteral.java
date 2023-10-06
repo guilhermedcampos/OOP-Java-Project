@@ -10,4 +10,8 @@ public class IntegerLiteral extends Literal {
     public int getValue() {
         return value;
     }
+
+    public String evaluate(){
+        return "Integer";
+    }
 }
