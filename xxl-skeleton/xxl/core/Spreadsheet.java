@@ -19,6 +19,20 @@ public class Spreadsheet implements Serializable {
   // FIXME define contructor(s)
   // FIXME define methods
 
+  public Spreadsheet(int rows, int cols) {
+        if (rows <= 0 || cols <= 0) {
+            throw new IllegalArgumentException("Rows and columns must be greater than zero.");
+        }
+        
+        this._cells = new Cell[rows][cols];
+
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < cols; col++) {
+                this._cells[row][col] = new Cell(row + 1, col + 1);
+            }
+        }
+    }
+
   public Spreadsheet getSpreadsheet() {
     return this;
   }
