@@ -120,7 +120,7 @@ class Parser {
       case "MUL" -> new Mul(arg0, arg1);
       case "DIV" -> new Div(arg0, arg1);
       default -> throw new UnrecognizedEntryException("Função inválida: " + functionName);
-    }
+    };
   }
 
   private Content parseArgumentExpression(String argExpression) throws UnrecognizedEntryException {
@@ -132,7 +132,7 @@ class Parser {
       return parseLiteral(argExpression);
   }
 
-  private Content parseIntervalFunction(String functionName, String rangeDescription) {
+  private Content parseIntervalFunction(String functionName, String rangeDescription) 
     throws UnrecognizedEntryException /* , more exceptions ? */ {
     Range range = Range.traverse(rangeDescription);
     return switch (functionName) {
@@ -144,4 +144,4 @@ class Parser {
     };
   }
   }
-}
+
