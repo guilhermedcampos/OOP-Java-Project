@@ -1,18 +1,8 @@
 package xxl.core;
-
-public class IntegerLiteral extends Literal {
-    private int value;
-
-    public IntegerLiteral(int value) {
-        this.value = value;
-    }
-
-    public int getValue() {
-        return value;
-    }
+public abstract class Literal extends Content s{
 
     @Override
-    public Content evaluate() {
-        return this; // IntegerLiteral is already in its evaluated form
+    public abstract void evaluate() {
+        // Implemente a lógica de avaliação para IntegerLiteral aqui
     }
 }
