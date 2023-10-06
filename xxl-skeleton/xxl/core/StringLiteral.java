@@ -8,6 +8,6 @@ public class StringLiteral extends Literal {
     }
 
     public String getValue() {
-        return value;
+        return "String";
     }
 }
