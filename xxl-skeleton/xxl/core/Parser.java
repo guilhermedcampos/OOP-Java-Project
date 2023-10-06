@@ -94,7 +94,7 @@ class Parser {
   }
 
   // contentSpecification is what comes after '='
-  private Content parseContentExpression(String contentSpecification) throws UnrecognizedEntryException /more exceptions */ {
+  private Content parseContentExpression(String contentSpecification) throws UnrecognizedEntryException /*more exceptions */ {
     if (contentSpecification.contains("("))
       return parseFunction(contentSpecification);
     // It is a reference
@@ -102,18 +102,17 @@ class Parser {
     return new Reference(Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]));
   }
 
-  private Content parseFunction(String functionSpecification) throws UnrecognizedEntryException /more exceptions */ {
+  private Content parseFunction(String functionSpecification) throws UnrecognizedEntryException /*more exceptions */ {
     String[] components = functionSpecification.split("[()]");
     if (components[1].contains(","))
       return parseBinaryFunction(components[0], components[1]);
-        3
     return parseIntervalFunction(components[0], components[1]);
   }
 
   private Content parseBinaryFunction(String functionName, String args) throws UnrecognizedEntryException /* , more Exceptions */ {
     String[] arguments = args.split(",");
     Content arg0 = parseArgumentExpression(arguments[0]);
-    Content arg1 = parseArgumentExpression(argarguments[1]);
+    Content arg1 = parseArgumentExpression(arguments[1]);
     
     return switch (functionName) {
       case "ADD" -> new Add(arg0, arg1);
@@ -137,11 +136,11 @@ class Parser {
     throws UnrecognizedEntryException /* , more exceptions ? */ {
     Range range = Range.traverse(rangeDescription);
     return switch (functionName) {
-      case "CONCAT" -> new Concat com range 
-      case "COASLECE" -> new Coaslece com range;
-      case "PRODUCT" -> new Product com range;
-      case "AVERAGE" -> new Average com range;
-      default -> dar erro com função inválida: functionName;
+      case "CONCAT" -> new Concat(range);
+      case "COASLECE" -> new Coaslece(range);
+      case "PRODUCT" -> new Product(range);
+      case "AVERAGE" -> new Average(range);
+      default -> throw new UnrecognizedEntryException("Função inválida: " + functionName);
     };
   }
   }

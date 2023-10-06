@@ -13,7 +13,9 @@ import xxl.core.exception.UnrecognizedEntryException;
 public class Spreadsheet implements Serializable {
   @Serial
   private static final long serialVersionUID = 202308312359L;
-  private Cell[] _cells;
+  private Cell[][] _cells;
+  private int _numCols;
+  private int _numRows;
   
   // FIXME define attributes
   // FIXME define contructor(s)
@@ -23,7 +25,8 @@ public class Spreadsheet implements Serializable {
         if (rows <= 0 || cols <= 0) {
             throw new IllegalArgumentException("Rows and columns must be greater than zero.");
         }
-        
+        this._numRows = rows;
+        this._numCols = cols;
         this._cells = new Cell[rows][cols];
 
         for (int row = 0; row < rows; row++) {
@@ -37,12 +40,15 @@ public class Spreadsheet implements Serializable {
     return this;
   }
 
-  public getCell(int row, int col) {
-    for (Cell cell : _cells) {
-      if (cell.getRow() == row && cell.getCol() == col) {
-        return cell;
-      }
-    }
+  public Cell getCell(int row, int col) {
+    return _cells[row-1][col-1];
+  }
+  public int getCols() {
+    return _numCols;
+  }
+
+  public int getRows() {
+    return this._numRows;
   }
 
   public Content getContentAt(int row, int col) {
@@ -58,7 +64,7 @@ public class Spreadsheet implements Serializable {
     }
 
     private boolean isValidCell(int row, int col) {
-        return row >= 1 && row <= numRows && col >= 1 && col <= numCols;
+        return row >= 1 && row <= _numRows && col >= 1 && col <= _numCols;
     }
   
   /**
