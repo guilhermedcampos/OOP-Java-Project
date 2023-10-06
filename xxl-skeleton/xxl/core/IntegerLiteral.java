@@ -10,9 +10,4 @@ public class IntegerLiteral extends Literal {
     public int getValue() {
         return value;
     }
-
-    @Override
-    public Content evaluate() {
-        return this; // IntegerLiteral is already in its evaluated form
-    }
 }

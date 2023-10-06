@@ -10,9 +10,4 @@ public class StringLiteral extends Literal {
     public String getValue() {
         return value;
     }
-
-    @Override
-    public Content evaluate() {
-        return this; // StringLiteral is already in its evaluated form
-    }
 }

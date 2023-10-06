@@ -1,8 +1,8 @@
 package xxl.core;
-public abstract class Literal extends Content s{
+public class Literal extends Content {
 
     @Override
-    public abstract void evaluate() {
-        // Implemente a lógica de avaliação para IntegerLiteral aqui
+    public Content evaluate() {
+        return this;
     }
 }
