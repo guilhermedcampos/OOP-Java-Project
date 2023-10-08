@@ -1,3 +1,5 @@
+package xxl.core;
+
 public class CutBuffer { 
     private Cell[] _cells;
 

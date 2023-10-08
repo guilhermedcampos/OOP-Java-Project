@@ -1,3 +1,9 @@
 package xxl.core;
-public class Literal extends Content {
+import xxl.core.exception.EvaluationException;
+
+public abstract class Literal extends Content {
+
+    protected Literal value() {
+        return this;
+    }
 }

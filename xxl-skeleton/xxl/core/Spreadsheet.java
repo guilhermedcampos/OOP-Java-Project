@@ -6,6 +6,7 @@ import java.io.Serial;
 import java.io.Serializable;
 
 import xxl.core.exception.UnrecognizedEntryException;
+import xxl.core.exception.OutOfBoundsException;
 
 /**
  * Class representing a spreadsheet.
@@ -40,9 +41,13 @@ public class Spreadsheet implements Serializable {
     return this;
   }
 
-  public Cell getCell(int row, int col) {
-    return _cells[row-1][col-1];
+  public Cell getCell(int row, int col) throws OutOfBoundsException {
+      if (row < 1 || row > _numRows || col < 1 || col > _numCols) {
+          throw new OutOfBoundsException("Invalid cell coordinates: Row " + row + ", Column " + col);
+      }
+      return _cells[row - 1][col - 1];
   }
+
   public int getCols() {
     return _numCols;
   }
@@ -51,10 +56,22 @@ public class Spreadsheet implements Serializable {
     return this._numRows;
   }
 
+  /**
+   * Insert specified content in specified address.
+   *
+   * @param row the row of the cell to change 
+   * param column the column of the cell to change
+   * @param contentSpecification the specification in a Conent format of the content to put
+   *        in the specified cell.
+   */
+  public void insert(int row, int col, Content content) {
+    getCell(row,col).setContent(content);
+  }
+
   public Content getContentAt(int row, int col) {
         // Check if the provided row and column are valid
         if (isValidCell(row, col)) {
-            Cell cell = cells[row - 1][col - 1];
+            Cell cell = _cells[row - 1][col - 1];
             if (cell != null) {
                 return cell.getContent();
             }
@@ -66,16 +83,4 @@ public class Spreadsheet implements Serializable {
     private boolean isValidCell(int row, int col) {
         return row >= 1 && row <= _numRows && col >= 1 && col <= _numCols;
     }
-  
-  /**
-   * Insert specified content in specified address.
-   *
-   * @param row the row of the cell to change 
-   * param column the column of the cell to change
-   * @param contentSpecification the specification in a string format of the content to put
-   *        in the specified cell.
-   */
-  public void insertContent(int row, int column, String contentSpecification) throws UnrecognizedEntryException /* FIXME maybe add exceptions */ {
-    //FIXME implement method
-  }
 }

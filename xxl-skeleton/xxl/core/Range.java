@@ -1,78 +1,56 @@
 package xxl.core;
-public class Range {s
-    private Cell _startCell;
-    private Cell _endCell;
 
-    public Range(Cell start, Cell end) {
-        this._startCell = start;
-        this._endCell = end;
+import java.util.*;
+import xxl.core.exception.OutOfBoundsException;
+
+public class Range {
+    private int _startRow;
+    private int _endRow;
+    private int _startCol;
+    private int _endCol;
+
+    public Range(int startRow, int endRow, int startCol, int endCol) { // exception de range valida dentro spreadsheet, e 0
+        this._startRow = startRow;
+        this._endRow = endRow;
+        this._startCol = startCol;
+        this._endCol = endCol;
     }
 
-    public Cell getStartCell() {
-        return _startCell;
-    }
-
-    public Cell getEndCell() {
-        return _endCell;
-    }
-
-    public Cell[] traverse(String rangeDescription) {
-        Spreadsheet spreadsheet = Calculator.getCurrentSpreadsheet();
+    
+    public Range buildRange(String rangeDescription) {
+        Spreadsheet spreadsheet = Calculator.getSpreadsheet();
         String[] rangeCoordinates;
-        int firstRow, firstColumn, lastRow, lastColumn;
+        int startRow, startCol, endRow, endCol;
         
-        if (rangeDescription.indexOf(':') != -1) {
+        // caso a range tenha mais do que uma célula
+        if (rangeDescription.indexOf(':') != -1) { 
             rangeCoordinates = rangeDescription.split("[:;]");
-            firstRow = Integer.parseInt(rangeCoordinates[0]);
-            firstColumn = Integer.parseInt(rangeCoordinates[1]);
-            lastRow = Integer.parseInt(rangeCoordinates[2]);
-            lastColumn = Integer.parseInt(rangeCoordinates[3]);
+            startRow = Integer.parseInt(rangeCoordinates[0]);
+            startCol = Integer.parseInt(rangeCoordinates[1]);
+            endRow = Integer.parseInt(rangeCoordinates[2]);
+            endCol = Integer.parseInt(rangeCoordinates[3]);
+
+        // caso a range tenha só uma celula
         } else {
             rangeCoordinates = rangeDescription.split(";");
-            firstRow = lastRow = Integer.parseInt(rangeCoordinates[0]);
-            firstColumn = lastColumn = Integer.parseInt(rangeCoordinates[1]);
+            startRow = endRow = Integer.parseInt(rangeCoordinates[0]);
+            startCol = endCol = Integer.parseInt(rangeCoordinates[1]);
         }
-        Cell start = spreadsheet.getCell(firstRow, firstColumn);
-        Cell end = spreadsheet.getCell(lastRow, lastColumn);
-
-        Range range = new Range(start, end);
-        return range.traverse();
+        return new Range(startRow, endRow, startCol, endCol);
     }
 
-    public Cell[] traverse() {
-        int numRows, numCols;
-        
-        // Determine if the range is in the same column or row
-        if (_startCell.getRow() == _endCell.getRow()) {
-            // Same row, calculate the number of columns
-            numCols = Math.abs(_startCell.getCol() - _endCell.getCol()) + 1;
-            numRows = 1; // Only one row
-        } else if (_startCell.getCol() == _endCell.getCol()) {
-            // Same column, calculate the number of rows
-            numRows = Math.abs(_startCell.getRow() - _endCell.getRow()) + 1;
-            numCols = 1; // Only one column
-        } 
-        
-        Cell[] result = new Cell[numRows * numCols];
-        
-        int currentIndex = 0;
-        
-        if (_startCell.getRow() == _endCell.getRow()) {
-            // Same row, iterate through columns
-            int colStep = _startCell.getCol() <= _endCell.getCol() ? 1 : -1;
-            for (int col = _startCell.getCol(); col != _endCell.getCol() + colStep; col += colStep) {
-                result[currentIndex] = spreadsheet.getCell(_startCell.getRow(), col);
-                currentIndex++;
-            }
-        } else {
-            // Same column, iterate through rows
-            int rowStep = _startCell.getRow() <= _endCell.getRow() ? 1 : -1;
-            for (int row = _startCell.getRow(); row != _endCell.getRow() + rowStep; row += rowStep) {
-                result[currentIndex] = spreadsheet.getCell(row, _startCell.getCol());
-                currentIndex++;
+    public Cell[] traverse() throws OutOfBoundsException {
+        Spreadsheet spreadsheet = Calculator.getSpreadsheet();
+        List<Cell> cells = new ArrayList<>();
+
+        for (int row = _startRow; row <= _endRow; row++) {
+            for (int col = _startCol; col <= _endCol; col++) {
+                cells.add(spreadsheet.getCell(row, col));
             }
         }
-        return result;
+        return cells.toArray(new Cell[cells.size()]);
     }
+
+
 
 }

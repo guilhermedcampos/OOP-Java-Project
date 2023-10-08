@@ -7,29 +7,34 @@ import xxl.core.exception.ImportFileException;
 import xxl.core.exception.MissingFileAssociationException;
 import xxl.core.exception.UnavailableFileException;
 import xxl.core.exception.UnrecognizedEntryException;
-
+import xxl.core.exception.EvaluationException;
 // FIXME import classes
-import xxl.app.main.DoNew;
-import xxl.app.main.DoOpen;
-import xxl.app.main.DoSave;
+//import xxl.app.main.DoNew;
+//import xxl.app.main.DoOpen;
+//import xxl.app.main.DoSave;
 
 /**
  * Class representing a spreadsheet application.
  */
 public class Calculator {
   /** The current spreadsheet. */
-  private Spreadsheet _currentSpreadsheet;
+  private static Spreadsheet _currentSpreadsheet;
   
   // FIXME add more fields and methods if needed
   private User _currentUser;
+  private User[] _users;
 
   /**
    * Return the current spreadsheet.
    *
    * @returns the current spreadsheet of this application. This reference can be null.
    */
-  public final Spreadsheet getSpreadsheet() {
+  public static Spreadsheet getSpreadsheet() {  //final
     return _currentSpreadsheet;
+  }
+
+  public static void setSpreadsheet(Spreadsheet s) {
+    _currentSpreadsheet = s;
   }
 
   /**
@@ -72,14 +77,14 @@ public class Calculator {
    * @param filename name of the text input file
    * @throws ImportFileException
    */
-  public void importFile(String filename) throws ImportFileException {
-    try {
-      // FIXME open import file and feed entries to new spreadsheet (in a cycle)
-      //       each entry is inserted using insertContent of Spreadsheet. Set new
-      // spreadsheet as the active one.
-      // ....
-    } catch (IOException | UnrecognizedEntryException /* FIXME maybe other exceptions */ e) {
-      throw new ImportFileException(filename, e);
-    }
-  } 
+  public void importFile(String filename) throws ImportFileException, IOException, UnavailableFileException {
+      try {
+          // Your code for reading and processing the file goes here
+          // If you encounter an exception, throw it here.
+      } catch (UnrecognizedEntryException uee) {
+          // Handle or rethrow the UnrecognizedEntryException
+          throw new ImportFileException("UnrecognizedEntryException occurred while importing file: " + filename, uee);
+      } /* FIXME maybe other exceptions */ 
+  }
+
 }

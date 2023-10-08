@@ -18,23 +18,23 @@ public class Cell {
         return _row;
     }
 
-    public Content getContent(){
-        return _content;
-    }
-
-    public void setRow(int row) {
-            _row = row;
+    public Literal value() {
+        if (_content != null) {
+            return _content.value();
+        } else {
+            return null; 
         }
-
-    public void setCol(int col) {
-        _col = col;
     }
 
-    public void setContent(Content content){
+    protected Content getContent(){
+        return this._content;
+    }
+
+    protected void setContent(Content content){
         _content = content;
     }
 
     public String toString() {
-        return _row + ":" + _col;
+        return _row + ";" + _col;
     }
 } 
