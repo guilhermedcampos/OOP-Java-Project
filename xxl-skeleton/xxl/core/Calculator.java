@@ -8,6 +8,7 @@ import xxl.core.exception.MissingFileAssociationException;
 import xxl.core.exception.UnavailableFileException;
 import xxl.core.exception.UnrecognizedEntryException;
 import xxl.core.exception.EvaluationException;
+import xxl.core.exception.OutOfBoundsException;
 // FIXME import classes
 //import xxl.app.main.DoNew;
 //import xxl.app.main.DoOpen;
@@ -77,14 +78,17 @@ public class Calculator {
    * @param filename name of the text input file
    * @throws ImportFileException
    */
-  public void importFile(String filename) throws ImportFileException, IOException, UnavailableFileException {
-      try {
-          // Your code for reading and processing the file goes here
-          // If you encounter an exception, throw it here.
-      } catch (UnrecognizedEntryException uee) {
-          // Handle or rethrow the UnrecognizedEntryException
-          throw new ImportFileException("UnrecognizedEntryException occurred while importing file: " + filename, uee);
-      } /* FIXME maybe other exceptions */ 
-  }
+    public void importFile(String filename) throws IOException, UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
+        try {
+            Parser parser = new Parser();
+            _currentSpreadsheet = parser.parseFile(filename);
+        } catch (IOException | UnrecognizedEntryException e) {
+            // Handle or rethrow exceptions
+            throw e;
+        }
+    }
 
+    // Rest of your methods and class members...
 }
+
+

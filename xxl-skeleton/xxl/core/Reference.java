@@ -1,6 +1,7 @@
 package xxl.core;
 
 import xxl.core.exception.SpreadsheetException;
+import xxl.core.exception.OutOfBoundsException;
 
 public class Reference extends Content {
     private int _row;
@@ -11,7 +12,7 @@ public class Reference extends Content {
         _col = col;
     }
 
-    protected Literal value(){
+    protected Literal value() throws OutOfBoundsException {
         return Calculator.getSpreadsheet().getCell(_row, _col).value();
     }
 

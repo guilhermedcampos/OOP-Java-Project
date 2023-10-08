@@ -64,7 +64,7 @@ public class Spreadsheet implements Serializable {
    * @param contentSpecification the specification in a Conent format of the content to put
    *        in the specified cell.
    */
-  public void insert(int row, int col, Content content) {
+  public void insert(int row, int col, Content content) throws OutOfBoundsException{
     getCell(row,col).setContent(content);
   }
 

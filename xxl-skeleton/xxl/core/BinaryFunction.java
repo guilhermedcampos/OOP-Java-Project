@@ -1,5 +1,6 @@
 package xxl.core;
 import xxl.core.exception.EvaluationException;
+import xxl.core.exception.OutOfBoundsException;
 
 public abstract class BinaryFunction extends Function {
     protected Content _arg1;
@@ -11,7 +12,7 @@ public abstract class BinaryFunction extends Function {
         _arg2 = arg2;
     }
 
-    public abstract Literal compute() throws EvaluationException;
+    public abstract Literal compute() throws EvaluationException, OutOfBoundsException;
 
     @Override
     public String toString() {

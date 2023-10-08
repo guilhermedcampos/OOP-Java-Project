@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import xxl.core.exception.UnrecognizedEntryException;
 import xxl.core.exception.EvaluationException;
+import xxl.core.exception.OutOfBoundsException;
 
 public class Parser {
 
@@ -21,7 +22,7 @@ public class Parser {
     _spreadsheet = spreadsheet;
   }
 
-  Spreadsheet parseFile(String filename) throws IOException, UnrecognizedEntryException, EvaluationException /* More Exceptions? */ {
+  Spreadsheet parseFile(String filename) throws IOException, UnrecognizedEntryException, EvaluationException, OutOfBoundsException /* More Exceptions? */ {
     try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
       parseDimensions(reader);
 
@@ -54,7 +55,7 @@ public class Parser {
     _spreadsheet = new Spreadsheet(rows, columns);
   }
 
-  private void parseLine(String line) throws UnrecognizedEntryException, EvaluationException /*, more exceptions? */{
+  private void parseLine(String line) throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException /*, more exceptions? */{
     String[] components = line.split("\\|");
 
     if (components.length == 1) // do nothing
@@ -69,7 +70,7 @@ public class Parser {
   }
 
   // parse the begining of an expression
-  Content parseContent(String contentSpecification) throws UnrecognizedEntryException, EvaluationException {
+  Content parseContent(String contentSpecification) throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
     char c = contentSpecification.charAt(0);
 
     if (c == '=')
@@ -94,7 +95,7 @@ public class Parser {
   }
 
   // contentSpecification is what comes after '='
-  private Content parseContentExpression(String contentSpecification) throws UnrecognizedEntryException, EvaluationException /*more exceptions */ {
+  private Content parseContentExpression(String contentSpecification) throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException /*more exceptions */ {
     if (contentSpecification.contains("("))
       return parseFunction(contentSpecification);
     // It is a reference
@@ -102,14 +103,14 @@ public class Parser {
     return new Reference(Integer.parseInt(address[0].trim()), Integer.parseInt(address[1]));
   }
 
-  private Content parseFunction(String functionSpecification) throws UnrecognizedEntryException, EvaluationException /*more exceptions */ {
+  private Content parseFunction(String functionSpecification) throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException /*more exceptions */ {
     String[] components = functionSpecification.split("[()]");
     if (components[1].contains(","))
       return parseBinaryFunction(components[0], components[1]);
     return parseIntervalFunction(components[0], components[1]);
   }
 
-    private Content parseBinaryFunction(String functionName, String args) throws UnrecognizedEntryException, EvaluationException {
+    private Content parseBinaryFunction(String functionName, String args) throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
         String[] arguments = args.split(",");
         Content arg0 = parseArgumentExpression(arguments[0]);
         Content arg1 = parseArgumentExpression(arguments[1]);

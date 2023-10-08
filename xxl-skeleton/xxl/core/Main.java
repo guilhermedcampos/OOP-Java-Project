@@ -2,6 +2,7 @@ package xxl.core;
 import xxl.core.exception.EvaluationException;
 import java.io.IOException;
 import xxl.core.exception.UnrecognizedEntryException;
+import xxl.core.exception.OutOfBoundsException;
 
 public class Main{
     public static void main(String[] args) {
@@ -47,7 +48,7 @@ public class Main{
             System.out.println(cell33.getContent().value().asInt()); // Should print 11 (5 + 6)
 
             // You can continue testing other functionality.
-        } catch (IOException | UnrecognizedEntryException | EvaluationException e) {
+        } catch (IOException | UnrecognizedEntryException | EvaluationException | OutOfBoundsException e) {
             e.printStackTrace();
         }
     }

@@ -1,4 +1,5 @@
 package xxl.core;
+import xxl.core.exception.OutOfBoundsException;
 
 public class Cell {
     private int _row;
@@ -18,7 +19,7 @@ public class Cell {
         return _row;
     }
 
-    public Literal value() {
+    public Literal value() throws OutOfBoundsException {
         if (_content != null) {
             return _content.value();
         } else {
