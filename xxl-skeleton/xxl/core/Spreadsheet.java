@@ -17,6 +17,7 @@ public class Spreadsheet implements Serializable {
   private Cell[][] _cells;
   private int _numCols;
   private int _numRows;
+  private boolean _changed;
   
   // FIXME define attributes
   // FIXME define contructor(s)
