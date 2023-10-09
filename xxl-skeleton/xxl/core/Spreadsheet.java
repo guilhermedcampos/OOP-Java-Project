@@ -4,6 +4,7 @@ package xxl.core;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.*;
 
 import xxl.core.exception.UnrecognizedEntryException;
 import xxl.core.exception.OutOfBoundsException;
@@ -14,11 +15,17 @@ import xxl.core.exception.OutOfBoundsException;
 public class Spreadsheet implements Serializable {
   @Serial
   private static final long serialVersionUID = 202308312359L;
+  private String _name;
   private Cell[][] _cells;
+  private Cell[] _cutBuffer;
   private int _numCols;
   private int _numRows;
   private boolean _changed;
+<<<<<<< HEAD
   private AbstractDataStructure _dataStructure;
+=======
+  private User[] _users;
+>>>>>>> 42d276e4b116875b03af4a3ecd5704f810ddda69
   
   // FIXME define attributes
   // FIXME define contructor(s)
@@ -47,12 +54,35 @@ public class Spreadsheet implements Serializable {
       return _cells[row - 1][col - 1];
   }
 
+  public String getName() {
+    return _name;
+  }
+
+  public void setName(String name) {
+    _name = name;
+  }
+
   public int getCols() {
     return _numCols;
   }
 
   public int getRows() {
-    return this._numRows;
+    return _numRows;
+  }
+
+  public Cell[] getCutBufer() {
+    return _cutBuffer;
+  }
+
+  public void copy(String range) {
+
+  }
+
+  public void clear(String range) {
+
+  }
+
+  public void addUser(User u) {
   }
 
   /**
