@@ -16,6 +16,17 @@ class DoNew extends Command<Calculator> {
   
   @Override
   protected final void execute() throws CommandException {
-    // FIXME implement command
+    // Ask for the number of columns and lines
+    int columns = Form.readInt(Message.columns());
+    int lines = Form.readInt(Message.lines());
+
+    // Create a new empty spreadsheet with the specified dimensions
+    Spreadsheet newSpreadsheet = new Spreadsheet(lines, columns);
+
+    // Set the newly created spreadsheet as the current one
+    Calculator.setSpreadsheet(newSpreadsheet);
+
+    // Inform the user that the new spreadsheet has been created
+    Message.createdNewSpreadsheet();
   }
 }
