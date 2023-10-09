@@ -7,6 +7,7 @@ import xxl.core.exception.UnavailableFileException;
 
 public class Main{
     public static void main(String[] args) {
+        AbstractDataStructure _dataStructure = new MatrixDataStructure();
         /*
         try {
             testSpreadsheet();
@@ -32,7 +33,7 @@ public class Main{
         System.out.println(new Sub(l1,l2).compute().value());
         */
         try {
-            Parser parser = new Parser();
+            Parser parser = new Parser(_dataStructure);
             Spreadsheet spreadsheet = parser.parseFile("sample_spreadsheet.txt");
 
             //calculator.importFile("sample_spreadsheet.txt"); // Provide the correct file path or name

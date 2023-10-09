@@ -14,8 +14,10 @@ import xxl.core.exception.OutOfBoundsException;
 public class Parser {
 
   private Spreadsheet _spreadsheet;
-  
-  Parser() {
+  private AbstractDataStructure _dataStructure;
+
+  Parser(AbstractDataStructure dataStructure) {
+       _dataStructure = dataStructure;
   }
 
   Parser(Spreadsheet spreadsheet) {
@@ -52,7 +54,7 @@ public class Parser {
     if (rows <= 0 || columns <= 0)
       throw new UnrecognizedEntryException("Dimensões inválidas para a folha");
 
-    _spreadsheet = new Spreadsheet(rows, columns);
+    _spreadsheet = new Spreadsheet(rows, columns, _dataStructure);
   }
 
   private void parseLine(String line) throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException /*, more exceptions? */{

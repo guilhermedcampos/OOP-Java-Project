@@ -20,7 +20,7 @@ import xxl.core.exception.OutOfBoundsException;
 public class Calculator {
   /** The current spreadsheet. */
   private static Spreadsheet _currentSpreadsheet;
-  
+  AbstractDataStructure _dataStructure = new MatrixDataStructure();
   // FIXME add more fields and methods if needed
   private User _currentUser;
   private User[] _users;
@@ -80,7 +80,7 @@ public class Calculator {
    */
     public void importFile(String filename) throws IOException, UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
         try {
-            Parser parser = new Parser();
+            Parser parser = new Parser(_dataStructure);
             _currentSpreadsheet = parser.parseFile(filename);
         } catch (IOException | UnrecognizedEntryException e) {
             // Handle or rethrow exceptions
