@@ -1,7 +1,6 @@
 package xxl.core;
 
 import xxl.core.exception.EvaluationException;
-import xxl.core.exception.SpreadsheetException;
 import xxl.core.exception.OutOfBoundsException;
 
 public abstract class Content {

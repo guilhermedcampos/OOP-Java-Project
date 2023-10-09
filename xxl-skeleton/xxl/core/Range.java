@@ -18,7 +18,6 @@ public class Range {
 
     
     public Range buildRange(String rangeDescription) {
-        Spreadsheet spreadsheet = Calculator.getSpreadsheet();
         String[] rangeCoordinates;
         int startRow, startCol, endRow, endCol;
         

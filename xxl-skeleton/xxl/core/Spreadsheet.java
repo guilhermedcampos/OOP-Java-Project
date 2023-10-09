@@ -6,7 +6,6 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.*;
 
-import xxl.core.exception.UnrecognizedEntryException;
 import xxl.core.exception.OutOfBoundsException;
 
 /**

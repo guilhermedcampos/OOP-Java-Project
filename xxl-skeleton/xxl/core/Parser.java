@@ -16,11 +16,15 @@ public class Parser {
   private Spreadsheet _spreadsheet;
   private AbstractDataStructure _dataStructure;
 
-  Parser(AbstractDataStructure dataStructure) {
+  public Parser() {
+
+  }
+
+  public Parser(AbstractDataStructure dataStructure) {
        _dataStructure = dataStructure;
   }
 
-  Parser(Spreadsheet spreadsheet) {
+  public Parser(Spreadsheet spreadsheet) {
     _spreadsheet = spreadsheet;
   }
 
