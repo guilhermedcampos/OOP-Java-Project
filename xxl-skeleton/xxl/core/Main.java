@@ -3,6 +3,7 @@ import xxl.core.exception.EvaluationException;
 import java.io.IOException;
 import xxl.core.exception.UnrecognizedEntryException;
 import xxl.core.exception.OutOfBoundsException;
+import xxl.core.exception.UnavailableFileException;
 
 public class Main{
     public static void main(String[] args) {
@@ -30,24 +31,11 @@ public class Main{
         System.out.println(new Add(l1,l2).compute().value());
         System.out.println(new Sub(l1,l2).compute().value());
         */
-               try {
+        try {
             Parser parser = new Parser();
             Spreadsheet spreadsheet = parser.parseFile("sample_spreadsheet.txt");
-            Calculator c2 = new Calculator();
-            c2.setSpreadsheet(spreadsheet);
-            
-            // You can now work with the parsed spreadsheet as needed.
-            // For example, you can print the values or perform computations.
 
-            // Print the value at cell (1,1)
-            Cell cell11 = spreadsheet.getCell(1, 1);
-            System.out.println(cell11.getContent().value().asString()); // Should print 'Hello'
-            
-            // Print the value at cell (3,3) which contains the result of the ADD function
-            Cell cell33 = spreadsheet.getCell(3, 3);
-            System.out.println(cell33.getContent().value().asInt()); // Should print 11 (5 + 6)
-
-            // You can continue testing other functionality.
+            //calculator.importFile("sample_spreadsheet.txt"); // Provide the correct file path or name
         } catch (IOException | UnrecognizedEntryException | EvaluationException | OutOfBoundsException e) {
             e.printStackTrace();
         }
