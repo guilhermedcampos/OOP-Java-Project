@@ -18,24 +18,22 @@ public class Spreadsheet implements Serializable {
   private int _numCols;
   private int _numRows;
   private boolean _changed;
+  private AbstractDataStructure _dataStructure;
   
   // FIXME define attributes
   // FIXME define contructor(s)
   // FIXME define methods
 
-  public Spreadsheet(int rows, int cols) {
+  public Spreadsheet(int rows, int cols, AbstractDataStructure dataStructure) {
         if (rows <= 0 || cols <= 0) {
             throw new IllegalArgumentException("Rows and columns must be greater than zero.");
         }
-        this._numRows = rows;
-        this._numCols = cols;
-        this._cells = new Cell[rows][cols];
+        _numRows = rows;
+        _numCols = cols;
+        _dataStructure = dataStructure;
 
-        for (int row = 0; row < rows; row++) {
-            for (int col = 0; col < cols; col++) {
-                this._cells[row][col] = new Cell(row + 1, col + 1);
-            }
-        }
+        // Initialize the data structure here
+        dataStructure.initialize(rows, cols);
     }
 
   public Spreadsheet getSpreadsheet() {
