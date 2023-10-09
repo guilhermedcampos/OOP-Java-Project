@@ -15,6 +15,7 @@ import xxl.core.exception.OutOfBoundsException;
 public class Spreadsheet implements Serializable {
   @Serial
   private static final long serialVersionUID = 202308312359L;
+  private String _name;
   private Cell[][] _cells;
   private Cell[] _cutBuffer;
   private int _numCols;
@@ -50,6 +51,14 @@ public class Spreadsheet implements Serializable {
           throw new OutOfBoundsException("Invalid cell coordinates: Row " + row + ", Column " + col);
       }
       return _cells[row - 1][col - 1];
+  }
+
+  public String getName() {
+    return _name;
+  }
+
+  public void setName(String name) {
+    _name = name;
   }
 
   public int getCols() {
