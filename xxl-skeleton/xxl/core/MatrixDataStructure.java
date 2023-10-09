@@ -19,7 +19,7 @@ public class MatrixDataStructure extends AbstractDataStructure {
     }
 
     @Override
-    public void setValue(int row, int col, Content content) {
+    public void setContent(int row, int col, Content content) {
         // Check if the provided row and column are valid
         if (isValidCell(row, col)) {
             cells[row - 1][col - 1].setContent(content);
@@ -27,7 +27,7 @@ public class MatrixDataStructure extends AbstractDataStructure {
     }
 
     @Override
-    public Content getValue(int row, int col) {
+    public Content getContent(int row, int col) {
         // Check if the provided row and column are valid
         if (isValidCell(row, col)) {
             return cells[row - 1][col - 1].getContent();
