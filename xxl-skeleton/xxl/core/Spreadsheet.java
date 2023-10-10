@@ -14,7 +14,6 @@ public class Spreadsheet implements Serializable {
   @Serial
   private static final long serialVersionUID = 202308312359L;
   private String _name;
-  private Cell[][] _cells;
   private Cell[] _cutBuffer;
   private int _numCols;
   private int _numRows;
@@ -35,13 +34,6 @@ public class Spreadsheet implements Serializable {
 
   public Spreadsheet getSpreadsheet() {
     return this;
-  }
-
-  public Cell getCell(int row, int col) throws OutOfBoundsException {
-      if (row < 1 || row > _numRows || col < 1 || col > _numCols) {
-          throw new OutOfBoundsException("Invalid cell coordinates: Row " + row + ", Column " + col);
-      }
-      return _cells[row - 1][col - 1];
   }
 
   public String getName() {
@@ -65,15 +57,48 @@ public class Spreadsheet implements Serializable {
   }
 
   public void copy(String range) {
-
   }
 
   public void clear(String range) {
-
   }
 
   public void addUser(User u) {
   }
+
+  // Se if certain row and position corresponds to a valid cell
+  public boolean isValidCell(int row, int col){
+    if (row < 1 || row > _numRows || col < 1 || col > _numCols) {
+      return false;
+    }
+    return true;
+  }
+
+
+  // funções que envolvem a DataStructure implementada (Matriz)
+  public Cell getCell(int row, int col) throws OutOfBoundsException {
+  if (isValidCell(row,col)){
+    return _dataStructure.getCell(row, col);
+  } else {
+    throw new OutOfBoundsException("Invalid cell coordinates: Row " + row + ", Column " + col);
+  }
+  }
+
+  public void insert(int row, int col, Content content) throws OutOfBoundsException{
+  if (isValidCell(row,col)){
+    _dataStructure.setContent(row,col,content);
+  } else {
+    throw new OutOfBoundsException("Invalid cell coordinates: Row " + row + ", Column " + col);
+  }
+  }
+
+  public Content getContentAt(int row, int col) throws OutOfBoundsException{
+  if (isValidCell(row,col)){
+    return _dataStructure.getContent(row, col);
+  } else {
+    throw new OutOfBoundsException("Invalid cell coordinates: Row " + row + ", Column " + col);
+  }
+  }
+}
 
   /**
    * Insert specified content in specified address.
@@ -83,11 +108,3 @@ public class Spreadsheet implements Serializable {
    * @param contentSpecification the specification in a Conent format of the content to put
    *        in the specified cell.
    */
-  public void insert(int row, int col, Content content) throws OutOfBoundsException{
-    _dataStructure.setContent(row,col,content);
-  }
-
-  public Content getContentAt(int row, int col) {
-      return _dataStructure.getContent(row, col);
-    }
-}
