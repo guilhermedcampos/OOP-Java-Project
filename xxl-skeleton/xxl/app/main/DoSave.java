@@ -9,10 +9,11 @@ import pt.tecnico.uilib.menus.CommandException;
 import xxl.core.Calculator;
 import xxl.core.Spreadsheet;
 import xxl.app.main.Message;
-import xxl.core.Spreadsheet;
 import java.io.Serial;
 import java.io.Serializable;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 /**
  * Save to a file under the current name (if unnamed, query for name).
@@ -26,35 +27,35 @@ class DoSave extends Command<Calculator> {
   @Override
   protected final void execute() {
       Spreadsheet spreadsheet = _receiver.getSpreadsheet();
+      Form form = new Form("Save Spreadsheet");
 
+      /*
       if (spreadsheet == null) {
-          display(Message.newSaveAs()); // Prompt for a name if there's no spreadsheet
+          _display.popup(Message.newSaveAs()); 
           return;
       }
+      */
 
-      String fileName = null;
-      if (spreadsheet.getName() == null) {
-          Form form = new Form("Save Spreadsheet");
-          Field<String> fileNameField = form.addStringField("fileName", "Enter file name: ");
+      String fileName = spreadsheet.getName(); // Initialize it with spreadsheet name
+
+      if (fileName == null) {
+          form.addStringField("fileName", Message.newSaveAs());
           form.parse();
+          fileName = form.stringField("fileName");
 
-          // Get the file name entered by the user
-          fileName = fileNameField.value();
-      } else {
-          fileName = spreadsheet.getName();
-      }
+      } 
 
       try {
           // Serialize and save the spreadsheet with the specified file name in the current directory
           try (FileOutputStream fileOut = new FileOutputStream(fileName + ".ser");
               ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
               objectOut.writeObject(spreadsheet);
-              display("Spreadsheet saved to: " + fileName + ".ser");
           } catch (IOException e) {
-              display(Message.problemOpeningFile(e)); // Use problemOpeningFile message for IO exceptions
+              _display.popup(Message.problemOpeningFile(e)); // Use problemOpeningFile message for IO exceptions
           }
       } catch (Exception e) {
-          display("Error: " + e.getMessage());
+          _display.addLine("Error: " + e.getMessage());
+          _display.display();
       }
   }
 }
