@@ -20,13 +20,12 @@ public class Spreadsheet implements Serializable {
   private boolean _changed;
   private AbstractDataStructure _dataStructure;
   
-  public Spreadsheet(int rows, int cols, AbstractDataStructure dataStructure) {
+  public Spreadsheet(int rows, int cols) {
         if (rows <= 0 || cols <= 0) {
             throw new IllegalArgumentException("Rows and columns must be greater than zero.");
         }
         _numRows = rows;
         _numCols = cols;
-        _dataStructure = dataStructure;
 
         // Initialize the data structure here
         _dataStructure.initialize(rows, cols);

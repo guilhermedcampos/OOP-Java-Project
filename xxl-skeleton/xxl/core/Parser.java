@@ -20,10 +20,6 @@ public class Parser {
 
   }
 
-  public Parser(AbstractDataStructure dataStructure) {
-       _dataStructure = dataStructure;
-  }
-
   public Parser(Spreadsheet spreadsheet) {
     _spreadsheet = spreadsheet;
   }
@@ -58,7 +54,7 @@ public class Parser {
     if (rows <= 0 || columns <= 0)
       throw new UnrecognizedEntryException("Dimensões inválidas para a folha");
 
-    _spreadsheet = new Spreadsheet(rows, columns, _dataStructure);
+    _spreadsheet = new Spreadsheet(rows, columns);
   }
 
   private void parseLine(String line) throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException /*, more exceptions? */{
