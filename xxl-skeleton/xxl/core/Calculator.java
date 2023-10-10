@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.FileNotFoundException;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import xxl.core.exception.ImportFileException;
 import xxl.core.exception.MissingFileAssociationException;
@@ -26,10 +27,11 @@ public class Calculator {
   
   // FIXME add more fields and methods if needed
   private User _currentUser;
-  private User[] _users;
+  private List<User> _users;
 
   public Calculator() {
     _spreadsheets = new ArrayList<>();
+    _users = new ArrayList<>();
   }
 
   /**
@@ -49,6 +51,14 @@ public class Calculator {
     _spreadsheets.add(s);
   }
 
+  public boolean createUser(String name) {
+    User u = new User(name);
+    return _users.add(u);
+  }
+
+  public void createNewSpreadsheet() {
+    //App.DoNew();
+  }
   /**
    * Saves the serialized application's state into the file associated to the current network.
    *

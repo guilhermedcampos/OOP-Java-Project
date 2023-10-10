@@ -14,7 +14,6 @@ public class Spreadsheet implements Serializable {
   private Cell[] _cutBuffer;
   private int _numCols;
   private int _numRows;
-  private boolean _changed;
   private AbstractDataStructure _dataStructure;
   
   /**
