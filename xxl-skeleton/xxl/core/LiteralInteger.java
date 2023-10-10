@@ -21,6 +21,6 @@ public class LiteralInteger extends Literal{
 
     @Override
     public String asString() throws EvaluationException {
-        throw new EvaluationException("Cannot convert IntegerLiteral to string.");
+        throw new EvaluationException("Cannot convert Integer Literal to string.");
     }
 }
