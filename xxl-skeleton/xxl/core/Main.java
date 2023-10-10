@@ -32,13 +32,32 @@ public class Main{
         System.out.println(new Add(l1,l2).compute().value());
         System.out.println(new Sub(l1,l2).compute().value());
         */
+        /* 
         try {
-            Parser parser = new Parser(_dataStructure);
+            Parser parser = new Parser();
             Spreadsheet spreadsheet = parser.parseFile("sample_spreadsheet.txt");
 
             //calculator.importFile("sample_spreadsheet.txt"); // Provide the correct file path or name
         } catch (IOException | UnrecognizedEntryException | EvaluationException | OutOfBoundsException e) {
             e.printStackTrace();
         }
+        */
+
+
+        try {
+            Calculator c1 = new Calculator();
+            Spreadsheet s1 = new Spreadsheet(10,10);
+            c1.setSpreadsheet(s1);
+            
+            LiteralInteger l1 = new LiteralInteger(8);
+            s1.insert(2,2,l1);
+            System.out.println(s1.getContentAt(2, 2));
+
+            //calculator.importFile("sample_spreadsheet.txt"); // Provide the correct file path or name
+        } catch (OutOfBoundsException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

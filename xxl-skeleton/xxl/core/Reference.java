@@ -1,6 +1,4 @@
 package xxl.core;
-
-import xxl.core.exception.SpreadsheetException;
 import xxl.core.exception.OutOfBoundsException;
 
 public class Reference extends Content {

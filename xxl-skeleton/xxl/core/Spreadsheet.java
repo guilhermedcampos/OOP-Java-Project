@@ -27,6 +27,8 @@ public class Spreadsheet implements Serializable {
         _numRows = rows;
         _numCols = cols;
 
+        _dataStructure = new MatrixDataStructure();
+
         // Initialize the data structure here
         _dataStructure.initialize(rows, cols);
     }

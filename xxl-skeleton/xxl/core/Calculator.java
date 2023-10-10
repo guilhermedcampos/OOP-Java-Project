@@ -3,13 +3,15 @@ package xxl.core;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
+import java.util.ArrayList;
+
 import xxl.core.exception.ImportFileException;
 import xxl.core.exception.MissingFileAssociationException;
 import xxl.core.exception.UnavailableFileException;
 import xxl.core.exception.UnrecognizedEntryException;
 import xxl.core.exception.EvaluationException;
 import xxl.core.exception.OutOfBoundsException;
-// FIXME import classes
+
 //import xxl.app.main.DoNew;
 //import xxl.app.main.DoOpen;
 //import xxl.app.main.DoSave;
@@ -20,10 +22,15 @@ import xxl.core.exception.OutOfBoundsException;
 public class Calculator {
   /** The current spreadsheet. */
   private static Spreadsheet _currentSpreadsheet;
-  AbstractDataStructure _dataStructure = new MatrixDataStructure();
+  private static ArrayList<Spreadsheet> _spreadsheets;
+  
   // FIXME add more fields and methods if needed
   private User _currentUser;
   private User[] _users;
+
+  public Calculator() {
+    _spreadsheets = new ArrayList<>();
+  }
 
   /**
    * Return the current spreadsheet.
@@ -36,6 +43,10 @@ public class Calculator {
 
   public static void setSpreadsheet(Spreadsheet s) {
     _currentSpreadsheet = s;
+  }
+
+  public void addSpreadsheet(Spreadsheet s) {
+    _spreadsheets.add(s);
   }
 
   /**
@@ -80,7 +91,7 @@ public class Calculator {
    */
     public void importFile(String filename) throws IOException, UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
         try {
-            Parser parser = new Parser(_dataStructure);
+            Parser parser = new Parser();
             _currentSpreadsheet = parser.parseFile(filename);
         } catch (IOException | UnrecognizedEntryException e) {
             // Handle or rethrow exceptions

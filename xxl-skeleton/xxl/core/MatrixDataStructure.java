@@ -3,6 +3,10 @@ package xxl.core;
 public class MatrixDataStructure implements AbstractDataStructure {
     private Cell[][] _cells;
 
+    public MatrixDataStructure() {
+        
+    }
+
     @Override
     public void initialize(int rows, int cols) {
         _cells = new Cell[rows][cols];
