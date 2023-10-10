@@ -53,8 +53,8 @@ public class Parser {
 
     if (rows <= 0 || columns <= 0)
       throw new UnrecognizedEntryException("Dimensões inválidas para a folha");
-
     _spreadsheet = new Spreadsheet(rows, columns);
+    Calculator.setSpreadsheet(_spreadsheet);
   }
 
   private void parseLine(String line) throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException /*, more exceptions? */{

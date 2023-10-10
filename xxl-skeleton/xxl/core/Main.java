@@ -35,7 +35,8 @@ public class Main{
         Parser parser = new Parser();
         Calculator c1 = new Calculator();
         try {
-            c1.setSpreadsheet(parser.parseFile("sample_spreadsheet.txt"));
+            parser.parseFile("sample_spreadsheet.txt");
+            System.out.println(Calculator.getSpreadsheet().getContentAt(3, 3));
 
             //calculator.importFile("sample_spreadsheet.txt"); // Provide the correct file path or name
         } catch (IOException | UnrecognizedEntryException | EvaluationException | OutOfBoundsException e) {
