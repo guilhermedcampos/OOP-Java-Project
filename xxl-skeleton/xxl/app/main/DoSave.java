@@ -4,7 +4,7 @@ import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.forms.Field;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
-import pt.tecnico.uilib.forms.Display;
+import pt.tecnico.uilib.Display;
 import xxl.core.Calculator;
 import xxl.core.Spreadsheet;
 import xxl.app.main.Message;
