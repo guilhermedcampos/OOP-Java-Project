@@ -2,8 +2,10 @@ package xxl.app.main;
 
 import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
+import pt.tecnico.uilib.forms.Display;
 import pt.tecnico.uilib.menus.CommandException;
 import xxl.core.Calculator;
+import xxl.core.Spreadsheet;
 
 /**
  * Open a new file.
@@ -25,8 +27,5 @@ class DoNew extends Command<Calculator> {
 
     // Set the newly created spreadsheet as the current one
     Calculator.setSpreadsheet(newSpreadsheet);
-
-    // Inform the user that the new spreadsheet has been created
-    Message.createdNewSpreadsheet();
   }
 }
