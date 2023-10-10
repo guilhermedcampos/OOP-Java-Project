@@ -4,7 +4,6 @@ package xxl.core;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.*;
 
 import xxl.core.exception.OutOfBoundsException;
 
@@ -22,10 +21,6 @@ public class Spreadsheet implements Serializable {
   private boolean _changed;
   private AbstractDataStructure _dataStructure;
   
-  // FIXME define attributes
-  // FIXME define contructor(s)
-  // FIXME define methods
-
   public Spreadsheet(int rows, int cols, AbstractDataStructure dataStructure) {
         if (rows <= 0 || cols <= 0) {
             throw new IllegalArgumentException("Rows and columns must be greater than zero.");
@@ -35,7 +30,7 @@ public class Spreadsheet implements Serializable {
         _dataStructure = dataStructure;
 
         // Initialize the data structure here
-        dataStructure.initialize(rows, cols);
+        _dataStructure.initialize(rows, cols);
     }
 
   public Spreadsheet getSpreadsheet() {
@@ -89,22 +84,10 @@ public class Spreadsheet implements Serializable {
    *        in the specified cell.
    */
   public void insert(int row, int col, Content content) throws OutOfBoundsException{
-    getCell(row,col).setContent(content);
+    _dataStructure.setContent(row,col,content);
   }
 
   public Content getContentAt(int row, int col) {
-        // Check if the provided row and column are valid
-        if (isValidCell(row, col)) {
-            Cell cell = _cells[row - 1][col - 1];
-            if (cell != null) {
-                return cell.getContent();
-            }
-        }
-        // Return null for empty or invalid cells
-        return null;
-    }
-
-    private boolean isValidCell(int row, int col) {
-        return row >= 1 && row <= _numRows && col >= 1 && col <= _numCols;
+      return _dataStructure.getContent(row, col);
     }
 }

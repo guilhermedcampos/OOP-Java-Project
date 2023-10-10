@@ -1,6 +1,6 @@
 package xxl.core;
 
-public class MatrixDataStructure extends AbstractDataStructure {
+public class MatrixDataStructure implements AbstractDataStructure {
     private Cell[][] cells;
     private int numRows;
     private int numCols;
