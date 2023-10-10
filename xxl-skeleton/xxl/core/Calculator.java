@@ -89,10 +89,10 @@ public class Calculator {
    * @param filename name of the text input file
    * @throws ImportFileException
    */
-    public static void importFile(String filename) throws IOException, UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
+    public void importFile(String filename) throws IOException, UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
         try {
             Parser parser = new Parser();
-            parser.parseFile(filename);
+            _currentSpreadsheet = parser.parseFile(filename);
         } catch (IOException | UnrecognizedEntryException e) {
             // Handle or rethrow exceptions
             throw e;
