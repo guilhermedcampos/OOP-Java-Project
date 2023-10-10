@@ -27,7 +27,7 @@ class DoSave extends Command<Calculator> {
   @Override
   protected final void execute() {
       Spreadsheet spreadsheet = _receiver.getSpreadsheet();
-      Form form = new Form("Save Spreadsheet");
+      Form form = new Form("Save File");
 
       /*
       if (spreadsheet == null) {
@@ -42,7 +42,6 @@ class DoSave extends Command<Calculator> {
           form.addStringField("fileName", Message.newSaveAs());
           form.parse();
           fileName = form.stringField("fileName");
-
       } 
 
       try {
