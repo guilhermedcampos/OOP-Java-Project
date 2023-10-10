@@ -32,18 +32,17 @@ public class Main{
         System.out.println(new Add(l1,l2).compute().value());
         System.out.println(new Sub(l1,l2).compute().value());
         */
-        /* 
+        Parser parser = new Parser();
+        Calculator c1 = new Calculator();
         try {
-            Parser parser = new Parser();
-            Spreadsheet spreadsheet = parser.parseFile("sample_spreadsheet.txt");
+            c1.setSpreadsheet(parser.parseFile("sample_spreadsheet.txt"));
 
             //calculator.importFile("sample_spreadsheet.txt"); // Provide the correct file path or name
         } catch (IOException | UnrecognizedEntryException | EvaluationException | OutOfBoundsException e) {
             e.printStackTrace();
         }
-        */
 
-
+    /*
         try {
             Calculator c1 = new Calculator();
             Spreadsheet s1 = new Spreadsheet(10,10);
@@ -57,7 +56,7 @@ public class Main{
         } catch (OutOfBoundsException e) {
             e.printStackTrace();
         }
-
+    */
 
     }
 }
