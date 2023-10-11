@@ -1,4 +1,5 @@
 package xxl.core;
+
 import xxl.core.exception.OutOfBoundsException;
 
 public class Cell {
@@ -13,9 +14,10 @@ public class Cell {
      * @param row the row index of the cell.
      * @param col the column index of the cell.
      */
-    public Cell(int row, int col){
+    public Cell(int row, int col) {
         _row = row;
         _col = col;
+        _content = new Null();
     }
 
     /**
@@ -23,7 +25,7 @@ public class Cell {
      *
      * @return the column index of the cell.
      */
-    public int getCol(){
+    public int getCol() {
         return _col;
     }
 
@@ -32,7 +34,7 @@ public class Cell {
      *
      * @return the row index of the cell.
      */
-    public int getRow(){
+    public int getRow() {
         return _row;
     }
 
@@ -43,11 +45,7 @@ public class Cell {
      * @throws OutOfBoundsException if there is an error retrieving the value.
      */
     public Literal value() throws OutOfBoundsException {
-        if (_content != null) {
-            return _content.value();
-        } else {
-            return null; 
-        }
+        return _content.value();
     }
 
     /**
@@ -55,7 +53,7 @@ public class Cell {
      *
      * @return the content stored in the cell.
      */
-    protected Content getContent(){
+    protected Content getContent() {
         return this._content;
     }
 
@@ -64,7 +62,7 @@ public class Cell {
      *
      * @param content the content to set in the cell.
      */
-    protected void setContent(Content content){
+    protected void setContent(Content content) {
         _content = content;
     }
 
