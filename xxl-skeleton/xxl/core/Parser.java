@@ -126,16 +126,16 @@ public class Parser {
 
     switch (functionName) {
       case "ADD":
-        result = new Add(arg0, arg1).compute();
+        result = new Add(arg0, arg1);
         break;
       case "SUB":
-        result = new Sub(arg0, arg1).compute();
+        result = new Sub(arg0, arg1);
         break;
       case "MUL":
-        result = new Mul(arg0, arg1).compute();
+        result = new Mul(arg0, arg1);
         break;
       case "DIV":
-        result = new Div(arg0, arg1).compute();
+        result = new Div(arg0, arg1);
         break;
       default:
         throw new UnrecognizedEntryException("Função inválida: " + functionName);

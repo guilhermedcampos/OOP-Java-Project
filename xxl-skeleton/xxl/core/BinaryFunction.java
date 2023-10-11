@@ -41,7 +41,17 @@ public abstract class BinaryFunction extends Function {
     @Override
     public String toString() {
         try {
-            return value() + "=" + getName() + "(" + _arg1.toString() + ", " + _arg2.toString() + ")";
+            String result = value() + "=" + getName() + "(" + _arg1.toString() + "," + _arg2.toString() + ")";
+
+            // Remove all occurrences of "=" after the first one
+            int firstEqualsIndex = result.indexOf('=');
+            if (firstEqualsIndex >= 0) {
+                result = result.substring(0, firstEqualsIndex + 1) +
+                        result.substring(firstEqualsIndex + 1).replace("=", "");
+            }
+
+            return result;
+
         } catch (EvaluationException | OutOfBoundsException e) {
             return "Error: " + e.getMessage();
         }
