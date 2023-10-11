@@ -99,7 +99,7 @@ public class Calculator {
    * @param filename name of the text input file
    * @throws ImportFileException
    */
-    public void importFile(String filename) throws IOException, UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
+    public void importFile(String filename) throws ImportFileException, IOException, UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
         try {
             Parser parser = new Parser();
             _currentSpreadsheet = parser.parseFile(filename);

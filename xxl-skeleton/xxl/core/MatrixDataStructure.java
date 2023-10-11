@@ -1,9 +1,11 @@
 package xxl.core;
 
+import java.io.Serializable;
+
 /**
  * Represents a matrix-based data structure for storing spreadsheet cells and content.
  */
-public class MatrixDataStructure implements AbstractDataStructure {
+public class MatrixDataStructure implements AbstractDataStructure, Serializable {
     
     private Cell[][] _cells;
 

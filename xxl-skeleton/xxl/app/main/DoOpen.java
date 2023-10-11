@@ -29,24 +29,28 @@ class DoOpen extends Command<Calculator> {
     super(Label.OPEN, receiver);
   }
   
-  @Override
-  protected final void execute() throws CommandException {
-    Form form = new Form("Open File");
-    form.addStringField("fileName", Message.openFile());
-    form.parse();
-    String fileName = form.stringField("fileName");
-    try {
+    @Override
+    protected final void execute() throws CommandException {
+        Form form = new Form("Open File");
+        form.addStringField("fileName", Message.openFile());
+        form.parse();
+        String fileName = form.stringField("fileName");
+
         try (FileInputStream fileIn = new FileInputStream(fileName + ".ser");
             ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
-              Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
 
-              Calculator.setSpreadsheet(spreadsheet);
-        } catch (IOException e) {
-            //throw new FileOpenFailedException();
+            Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
+            Calculator.setSpreadsheet(spreadsheet);
+
+        } catch (IOException | ClassNotFoundException e) {
+            _display.popup(Message.problemOpeningFile(e));
+            throw new FileOpenFailedException(e);
         }
-    } catch (FileOpenFailedException e) {
-        _display.addLine("Error: " + e.getMessage());
-        _display.display();
     }
-  }
 }
+
+/*catch (UnavailableFileException e) {
+            _display.popup(Message.problemOpeningFile(e));
+            throw new FileOpenFailedException(e);
+
+        }  */

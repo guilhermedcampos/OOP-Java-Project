@@ -1,7 +1,12 @@
 package xxl.app;
 
 import pt.tecnico.uilib.Dialog;
+import xxl.core.exception.EvaluationException;
 import xxl.core.exception.ImportFileException;
+import xxl.core.exception.OutOfBoundsException;
+import xxl.core.exception.UnrecognizedEntryException;
+import xxl.core.exception.EvaluationException;
+import xxl.core.exception.OutOfBoundsException;
 
 import java.io.IOException;
 
@@ -17,7 +22,7 @@ public class App {
       if (datafile != null) {
         try {
           receiver.importFile(datafile);
-        } catch (ImportFileException e) {
+        } catch (ImportFileException | IOException | UnrecognizedEntryException | EvaluationException | OutOfBoundsException e) {
           // no behavior described: just present the problem
           e.printStackTrace();
         }
