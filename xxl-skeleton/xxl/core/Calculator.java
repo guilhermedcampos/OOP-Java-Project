@@ -79,8 +79,18 @@ public class Calculator {
    *                                         serializing the state of the network
    *                                         to disk.
    */
-  public void save() throws FileNotFoundException, MissingFileAssociationException, IOException {
-    // FIXME implement serialization method
+  public void save() throws IOException {
+    ObjectOutputStream objectOut = null;
+    try {
+      try (FileOutputStream fileOut = new FileOutputStream(_currentSpreadsheet.getName() + ".ser")) {
+        objectOut = new ObjectOutputStream(fileOut);
+        objectOut.writeObject(_currentSpreadsheet);
+      }
+    } finally {
+      if (objectOut != null) {
+        objectOut.close();
+      }
+    }
   }
 
   /**
@@ -97,8 +107,21 @@ public class Calculator {
    *                                         serializing the state of the network
    *                                         to disk.
    */
-  public void saveAs(String filename) throws FileNotFoundException, MissingFileAssociationException, IOException {
-    // FIXME implement serialization method
+  public void saveAs(String fileName) throws IOException {
+    ObjectOutputStream objectOut = null;
+    try {
+
+      // Serialize and save the spreadsheet with the specified file name in the
+      // current directory
+      try (FileOutputStream fileOut = new FileOutputStream(fileName + ".ser")) {
+        objectOut = new ObjectOutputStream(fileOut);
+        objectOut.writeObject(_currentSpreadsheet);
+      }
+    } finally {
+      if (objectOut != null) {
+        objectOut.close();
+      }
+    }
   }
 
   /**
@@ -113,10 +136,16 @@ public class Calculator {
       throws UnavailableFileException, FileNotFoundException, IOException, ClassNotFoundException
 
   {
-    FileInputStream fileIn = new FileInputStream(fileName + ".ser");
-    ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-    Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
-    Calculator.setSpreadsheet(spreadsheet);
+    ObjectInputStream objectIn = null;
+    try {
+      objectIn = new ObjectInputStream(new FileInputStream(fileName + ".ser"));
+      Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
+      Calculator.setSpreadsheet(spreadsheet);
+    } finally {
+      if (objectIn != null) {
+        objectIn.close();
+      }
+    }
   }
 
   /**

@@ -15,15 +15,15 @@ class DoNew extends Command<Calculator> {
   DoNew(Calculator receiver) {
     super(Label.NEW, receiver);
   }
-  
+
   @Override
   protected final void execute() throws CommandException {
-    Form form = new Form("Criar Novo");
     // Ask for the number of columns and lines
-    int columns = form.requestInteger(Message.columns());
-    int lines = form.requestInteger(Message.lines());
-    form.parse();
-
+    addIntegerField("lines", Message.lines());
+    addIntegerField("columns", Message.columns());
+    int lines = integerField("lines");
+    int columns = integerField("columns");
+    
     // Create a new empty spreadsheet with the specified dimensions
     Spreadsheet newSpreadsheet = new Spreadsheet(lines, columns);
 

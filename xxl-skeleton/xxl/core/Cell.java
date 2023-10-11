@@ -1,11 +1,13 @@
 package xxl.core;
 
+import java.io.Serializable;
+
 import xxl.core.exception.OutOfBoundsException;
 
 /**
  * Represents a cell in a spreadsheet.
  */
-public class Cell {
+public class Cell implements Serializable {
 
     private int _row;
     private int _col;

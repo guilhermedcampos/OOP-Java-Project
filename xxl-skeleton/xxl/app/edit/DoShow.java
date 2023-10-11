@@ -38,7 +38,7 @@ class DoShow extends Command<Spreadsheet> {
           // Iterate through the range and display cell contents
           for (int row = startRow; row <= endRow; row++) {
             for (int col = startCol; col <= endCol; col++) {
-              // Print cell to String
+              // Print cell and content to String
               _display
                   .addLine(_receiver.getCell(row, col).toString() + "|" + _receiver.getContentAt(row, col).toString());
               _display.display();
@@ -47,6 +47,7 @@ class DoShow extends Command<Spreadsheet> {
         }
       }
     } catch (OutOfBoundsException e) {
+      e.printStackTrace();
     }
   }
 }

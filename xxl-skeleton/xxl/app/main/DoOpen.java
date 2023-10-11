@@ -12,6 +12,7 @@ import xxl.app.exception.FileOpenFailedException;
 import java.io.Serial;
 import java.io.Serializable;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -27,20 +28,16 @@ public class DoOpen extends Command<Calculator> {
 
   DoOpen(Calculator receiver) {
     super(Label.OPEN, receiver);
+    addStringField("fileName", Message.openFile());
   }
 
   @Override
   protected final void execute() throws CommandException {
-    Form form = new Form("Open File");
-    form.addStringField("fileName", Message.openFile());
-    form.parse();
-    String fileName = form.stringField("fileName");
-
+    String fileName = stringField("fileName");
     try {
       _receiver.load(fileName);
-    } catch (IOException | ClassNotFoundException | UnavailableFileException e) {
-      _display.popup(Message.problemOpeningFile(e));
-      throw new FileOpenFailedException(e);
+    } catch (Exception e) {
+      throw new FileOpenFailedException(e); 
     }
   }
 }
