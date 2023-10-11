@@ -2,7 +2,9 @@ package xxl.app.edit;
 
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
+import xxl.core.Calculator;
 import xxl.core.Spreadsheet;
+import xxl.core.Cell;
 // FIXME import classes
 
 /**
@@ -17,6 +19,8 @@ class DoShow extends Command<Spreadsheet> {
   
   @Override
   protected final void execute() throws CommandException {
-    // FIXME implement command
+    Spreadsheet spreadsheet = Calculator.getSpreadsheet();
+    Cell[][] cells = spreadsheet.getCells();
+
   }
 }

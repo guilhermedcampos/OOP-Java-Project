@@ -26,6 +26,10 @@ public class MatrixDataStructure implements AbstractDataStructure, Serializable 
         }
     }
 
+    public Cell[][] getCells() {
+        return _cells;
+    }
+
     /**
      * Retrieves the cell at the specified row and column.
      *

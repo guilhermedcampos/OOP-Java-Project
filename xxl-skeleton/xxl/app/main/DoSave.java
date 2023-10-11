@@ -42,6 +42,7 @@ class DoSave extends Command<Calculator> {
           form.addStringField("fileName", Message.newSaveAs());
           form.parse();
           fileName = form.stringField("fileName");
+          spreadsheet.setName(fileName);
       } 
 
       try {

@@ -147,6 +147,10 @@ public class Spreadsheet implements Serializable {
     }
   }
 
+  public Cell[][] getCells() {
+    return _dataStructure.getCells();
+  }
+
   /**
    * Insert content into the cell at the specified row and column.
    *
