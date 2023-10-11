@@ -6,6 +6,7 @@ import pt.tecnico.uilib.Display;
 import pt.tecnico.uilib.menus.CommandException;
 import xxl.core.Calculator;
 import xxl.core.Spreadsheet;
+import xxl.core.exception.MissingFileAssociationException;
 import xxl.app.main.Message;
 import java.io.Serial;
 import java.io.Serializable;
@@ -33,39 +34,23 @@ class DoSave extends Command<Calculator> {
  * the current name or prompts for a name if unnamed.
  */
     @Override
-    protected final void execute() {
+    protected final void execute() throws CommandException{
         // Get the current spreadsheet from the calculator
         Spreadsheet spreadsheet = _receiver.getSpreadsheet();
-
-        // Create a form for saving
-        Form form = new Form("Save File");
-
+        
+        try {
         // Attempt to retrieve the file name associated with the spreadsheet
         String fileName = spreadsheet.getName();
-
-        // If the file name is not set, prompt the user to provide a file name
         if (fileName == null) {
-            form.addStringField("fileName", Message.newSaveAs());
-            form.parse();
-            fileName = form.stringField("fileName");
-
-            // Set the spreadsheet's name to the provided file name
-            spreadsheet.setName(fileName);
+            addStringField("fileName", Message.newSaveAs());
+            _receiver.saveAs(fileName);
+        } else {
+            // if changed, save
+            _receiver.save();
+        }  
+        } catch (MissingFileAssociationException | IOException e) {
+            e.printStackTrace();
         }
 
-        try {
-            // Serialize and save the spreadsheet to a file with the specified name
-            try (FileOutputStream fileOut = new FileOutputStream(fileName + ".ser");
-                    ObjectOutputStream objectOut = new ObjectOutputStream(fileOut)) {
-                objectOut.writeObject(spreadsheet);
-            } catch (IOException e) {
-                // Display an error message if there is a problem saving the file
-                _display.popup(Message.problemOpeningFile(e));
-            }
-        } catch (Exception e) {
-            // Display a generic error message in case of any other exceptions
-            _display.addLine("Error: " + e.getMessage());
-            _display.display();
-        }
     }
 }
