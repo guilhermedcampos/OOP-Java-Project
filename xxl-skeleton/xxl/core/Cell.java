@@ -54,7 +54,7 @@ public class Cell {
      * @return the content stored in the cell.
      */
     protected Content getContent() {
-        return this._content;
+        return _content;
     }
 
     /**

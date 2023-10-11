@@ -15,26 +15,28 @@ public class Spreadsheet implements Serializable {
   private int _numCols;
   private int _numRows;
   private AbstractDataStructure _dataStructure;
-  
+
   /**
-   * Constructor for creating a new spreadsheet with the specified number of rows and columns.
+   * Constructor for creating a new spreadsheet with the specified number of rows
+   * and columns.
    *
    * @param rows The number of rows in the spreadsheet.
    * @param cols The number of columns in the spreadsheet.
-   * @throws IllegalArgumentException if rows or columns are less than or equal to zero.
+   * @throws IllegalArgumentException if rows or columns are less than or equal to
+   *                                  zero.
    */
   public Spreadsheet(int rows, int cols) {
-        if (rows <= 0 || cols <= 0) {
-            throw new IllegalArgumentException("Rows and columns must be greater than zero.");
-        }
-        _numRows = rows;
-        _numCols = cols;
-
-        _dataStructure = new MatrixDataStructure();
-
-        // Initialize the data structure here
-        _dataStructure.initialize(rows, cols);
+    if (rows <= 0 || cols <= 0) {
+      throw new IllegalArgumentException("Rows and columns must be greater than zero.");
     }
+    _numRows = rows;
+    _numCols = cols;
+
+    _dataStructure = new MatrixDataStructure();
+
+    // Initialize the data structure here
+    _dataStructure.initialize(rows, cols);
+  }
 
   /**
    * Get the current instance of the spreadsheet.
@@ -124,7 +126,7 @@ public class Spreadsheet implements Serializable {
    * @param col The column to check.
    * @return true if the cell is valid, false otherwise.
    */
-  public boolean isValidCell(int row, int col){
+  public boolean isValidCell(int row, int col) {
     if (row < 1 || row > _numRows || col < 1 || col > _numCols) {
       return false;
     }
@@ -140,27 +142,23 @@ public class Spreadsheet implements Serializable {
    * @throws OutOfBoundsException if the cell coordinates are invalid.
    */
   public Cell getCell(int row, int col) throws OutOfBoundsException {
-    if (isValidCell(row, col)){
+    if (isValidCell(row, col)) {
       return _dataStructure.getCell(row, col);
     } else {
       throw new OutOfBoundsException("Invalid cell coordinates: Row " + row + ", Column " + col);
     }
   }
 
-  public Cell[][] getCells() {
-    return _dataStructure.getCells();
-  }
-
   /**
    * Insert content into the cell at the specified row and column.
    *
-   * @param row The row of the cell to change.
-   * @param col The column of the cell to change.
+   * @param row     The row of the cell to change.
+   * @param col     The column of the cell to change.
    * @param content The content to put in the specified cell.
    * @throws OutOfBoundsException if the cell coordinates are invalid.
    */
-  public void insert(int row, int col, Content content) throws OutOfBoundsException{
-    if (isValidCell(row, col)){
+  public void insert(int row, int col, Content content) throws OutOfBoundsException {
+    if (isValidCell(row, col)) {
       _dataStructure.setContent(row, col, content);
     } else {
       throw new OutOfBoundsException("Invalid cell coordinates: Row " + row + ", Column " + col);
@@ -175,8 +173,8 @@ public class Spreadsheet implements Serializable {
    * @return The content in the specified cell.
    * @throws OutOfBoundsException if the cell coordinates are invalid.
    */
-  public Content getContentAt(int row, int col) throws OutOfBoundsException{
-    if (isValidCell(row, col)){
+  public Content getContentAt(int row, int col) throws OutOfBoundsException {
+    if (isValidCell(row, col)) {
       return _dataStructure.getContent(row, col);
     } else {
       throw new OutOfBoundsException("Invalid cell coordinates: Row " + row + ", Column " + col);

@@ -1,6 +1,8 @@
 package xxl.core;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import java.util.ArrayList;
@@ -13,8 +15,12 @@ import xxl.core.exception.UnrecognizedEntryException;
 import xxl.core.exception.EvaluationException;
 import xxl.core.exception.OutOfBoundsException;
 
+import java.io.Serial;
+import java.io.Serializable;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 //import xxl.app.main.DoNew;
-//import xxl.app.main.DoOpen;
+import xxl.app.main.DoOpen;
 //import xxl.app.main.DoSave;
 
 /**
@@ -24,7 +30,7 @@ public class Calculator {
   /** The current spreadsheet. */
   private static Spreadsheet _currentSpreadsheet;
   private static ArrayList<Spreadsheet> _spreadsheets;
-  
+
   // FIXME add more fields and methods if needed
   private User _currentUser;
   private List<User> _users;
@@ -37,9 +43,10 @@ public class Calculator {
   /**
    * Return the current spreadsheet.
    *
-   * @returns the current spreadsheet of this application. This reference can be null.
+   * @returns the current spreadsheet of this application. This reference can be
+   *          null.
    */
-  public static Spreadsheet getSpreadsheet() {  //final
+  public static Spreadsheet getSpreadsheet() { // final
     return _currentSpreadsheet;
   }
 
@@ -57,59 +64,77 @@ public class Calculator {
   }
 
   public void createNewSpreadsheet() {
-    //App.DoNew();
+    // App.DoNew();
   }
+
   /**
-   * Saves the serialized application's state into the file associated to the current network.
+   * Saves the serialized application's state into the file associated to the
+   * current network.
    *
-   * @throws FileNotFoundException if for some reason the file cannot be created or opened. 
-   * @throws MissingFileAssociationException if the current network does not have a file.
-   * @throws IOException if there is some error while serializing the state of the network to disk.
+   * @throws FileNotFoundException           if for some reason the file cannot be
+   *                                         created or opened.
+   * @throws MissingFileAssociationException if the current network does not have
+   *                                         a file.
+   * @throws IOException                     if there is some error while
+   *                                         serializing the state of the network
+   *                                         to disk.
    */
   public void save() throws FileNotFoundException, MissingFileAssociationException, IOException {
     // FIXME implement serialization method
   }
-  
+
   /**
-   * Saves the serialized application's state into the specified file. The current network is
+   * Saves the serialized application's state into the specified file. The current
+   * network is
    * associated to this file.
    *
    * @param filename the name of the file.
-   * @throws FileNotFoundException if for some reason the file cannot be created or opened.
-   * @throws MissingFileAssociationException if the current network does not have a file.
-   * @throws IOException if there is some error while serializing the state of the network to disk.
+   * @throws FileNotFoundException           if for some reason the file cannot be
+   *                                         created or opened.
+   * @throws MissingFileAssociationException if the current network does not have
+   *                                         a file.
+   * @throws IOException                     if there is some error while
+   *                                         serializing the state of the network
+   *                                         to disk.
    */
   public void saveAs(String filename) throws FileNotFoundException, MissingFileAssociationException, IOException {
     // FIXME implement serialization method
   }
-  
+
   /**
-   * @param filename name of the file containing the serialized application's state
-   *        to load.
-   * @throws UnavailableFileException if the specified file does not exist or there is
-   *         an error while processing this file.
+   * @param filename name of the file containing the serialized application's
+   *                 state
+   *                 to load.
+   * @throws UnavailableFileException if the specified file does not exist or
+   *                                  there is
+   *                                  an error while processing this file.
    */
-  public void load(String filename) throws UnavailableFileException {
-    // FIXME implement serialization method
+  public void load(String fileName)
+      throws UnavailableFileException, FileNotFoundException, IOException, ClassNotFoundException
+
+  {
+    FileInputStream fileIn = new FileInputStream(fileName + ".ser");
+    ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+    Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
+    Calculator.setSpreadsheet(spreadsheet);
   }
-  
+
   /**
    * Read text input file and create domain entities.
    *
    * @param filename name of the text input file
    * @throws ImportFileException
    */
-    public void importFile(String filename) throws ImportFileException, IOException, UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
-        try {
-            Parser parser = new Parser();
-            _currentSpreadsheet = parser.parseFile(filename);
-        } catch (IOException | UnrecognizedEntryException e) {
-            // Handle or rethrow exceptions
-            throw e;
-        }
+  public void importFile(String filename)
+      throws ImportFileException, IOException, UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
+    try {
+      Parser parser = new Parser();
+      _currentSpreadsheet = parser.parseFile(filename);
+    } catch (IOException | UnrecognizedEntryException e) {
+      // Handle or rethrow exceptions
+      throw e;
     }
+  }
 
-    // Rest of your methods and class members...
+  // Rest of your methods and class members...
 }
-
-

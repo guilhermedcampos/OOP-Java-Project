@@ -35,7 +35,4 @@ public interface AbstractDataStructure {
      * @return the content of the cell at the specified row and column.
      */
     Content getContent(int row, int col);
-
-    Cell[][] getCells();
-
 }

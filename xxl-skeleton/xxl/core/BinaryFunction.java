@@ -1,4 +1,5 @@
 package xxl.core;
+
 import xxl.core.exception.EvaluationException;
 import xxl.core.exception.OutOfBoundsException;
 
@@ -27,7 +28,7 @@ public abstract class BinaryFunction extends Function {
      * Computes the result of the binary function.
      *
      * @return the result of the binary function as a Literal.
-     * @throws EvaluationException if there is an error during evaluation.
+     * @throws EvaluationException  if there is an error during evaluation.
      * @throws OutOfBoundsException if the operation exceeds valid bounds.
      */
     public abstract Literal compute() throws EvaluationException, OutOfBoundsException;
@@ -39,6 +40,10 @@ public abstract class BinaryFunction extends Function {
      */
     @Override
     public String toString() {
-        return "=" + getName() + "(" + _arg1.toString() + ", " + _arg2.toString() + ")";
+        try {
+            return value() + "=" + getName() + "(" + _arg1.toString() + ", " + _arg2.toString() + ")";
+        } catch (EvaluationException | OutOfBoundsException e) {
+            return "Error: " + e.getMessage();
+        }
     }
 }

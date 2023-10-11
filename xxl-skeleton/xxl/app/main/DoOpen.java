@@ -23,34 +23,24 @@ import xxl.app.main.Message;
 /**
  * Open existing file.
  */
-class DoOpen extends Command<Calculator> {
+public class DoOpen extends Command<Calculator> {
 
   DoOpen(Calculator receiver) {
     super(Label.OPEN, receiver);
   }
-  
-    @Override
-    protected final void execute() throws CommandException {
-        Form form = new Form("Open File");
-        form.addStringField("fileName", Message.openFile());
-        form.parse();
-        String fileName = form.stringField("fileName");
 
-        try (FileInputStream fileIn = new FileInputStream(fileName + ".ser");
-            ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
+  @Override
+  protected final void execute() throws CommandException {
+    Form form = new Form("Open File");
+    form.addStringField("fileName", Message.openFile());
+    form.parse();
+    String fileName = form.stringField("fileName");
 
-            Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
-            Calculator.setSpreadsheet(spreadsheet);
-
-        } catch (IOException | ClassNotFoundException e) {
-            _display.popup(Message.problemOpeningFile(e));
-            throw new FileOpenFailedException(e);
-        }
+    try {
+      _receiver.load(fileName);
+    } catch (IOException | ClassNotFoundException | UnavailableFileException e) {
+      _display.popup(Message.problemOpeningFile(e));
+      throw new FileOpenFailedException(e);
     }
+  }
 }
-
-/*catch (UnavailableFileException e) {
-            _display.popup(Message.problemOpeningFile(e));
-            throw new FileOpenFailedException(e);
-
-        }  */
