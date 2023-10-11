@@ -2,6 +2,9 @@ package xxl.core;
 
 import xxl.core.exception.OutOfBoundsException;
 
+/**
+ * Represents a cell in a spreadsheet.
+ */
 public class Cell {
 
     private int _row;

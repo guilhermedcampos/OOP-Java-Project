@@ -1,5 +1,8 @@
 package xxl.core;
 
+/**
+ * Represents a literal value in a spreadsheet.
+ */
 public abstract class Literal extends Content {
 
     /**

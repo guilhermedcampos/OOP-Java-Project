@@ -3,6 +3,9 @@ package xxl.core;
 import xxl.core.exception.EvaluationException;
 import xxl.core.exception.OutOfBoundsException;
 
+/**
+ * Represents the content of a cell in a spreadsheet.
+ */
 public abstract class Content {
     
     /**

@@ -1,11 +1,14 @@
 package xxl.core;
 
+/**
+ * An interface representing the abstract data structure for a spreadsheet.
+ */
 public interface AbstractDataStructure {
     /**
      * Initializes the data structure with the specified number of rows and columns.
      *
-     * @param rows   the number of rows for the spreadsheet.
-     * @param cols   the number of columns for the spreadsheet.
+     * @param rows the number of rows for the spreadsheet.
+     * @param cols the number of columns for the spreadsheet.
      */
     void initialize(int rows, int cols);
 
