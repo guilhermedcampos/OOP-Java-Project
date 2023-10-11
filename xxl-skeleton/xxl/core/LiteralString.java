@@ -34,14 +34,16 @@ public class LiteralString extends Literal {
      */
     @Override
     public String toString() {
-        return _value;
+        return "'" + _value;
     }
 
     /**
-     * Throws an EvaluationException because a LiteralString cannot be converted to an integer.
+     * Throws an EvaluationException because a LiteralString cannot be converted to
+     * an integer.
      *
-     * @throws EvaluationException always throws an EvaluationException with the message
-     *                              "Cannot convert String Literal to int."
+     * @throws EvaluationException always throws an EvaluationException with the
+     *                             message
+     *                             "Cannot convert String Literal to int."
      */
     @Override
     public int asInt() throws EvaluationException {

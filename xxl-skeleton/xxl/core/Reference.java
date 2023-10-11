@@ -1,4 +1,6 @@
 package xxl.core;
+
+import xxl.core.exception.EvaluationException;
 import xxl.core.exception.OutOfBoundsException;
 
 /**
@@ -26,7 +28,7 @@ public class Reference extends Content {
      * @throws OutOfBoundsException if there's an error due to out-of-bounds access.
      */
     @Override
-    protected Literal value() throws OutOfBoundsException {
+    protected Literal value() throws OutOfBoundsException, EvaluationException {
         return Calculator.getSpreadsheet().getCell(_row, _col).value();
     }
 

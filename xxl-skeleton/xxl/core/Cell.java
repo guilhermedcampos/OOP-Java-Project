@@ -2,6 +2,7 @@ package xxl.core;
 
 import java.io.Serializable;
 
+import xxl.core.exception.EvaluationException;
 import xxl.core.exception.OutOfBoundsException;
 
 /**
@@ -49,7 +50,7 @@ public class Cell implements Serializable {
      * @return the value of the cell as a Literal.
      * @throws OutOfBoundsException if there is an error retrieving the value.
      */
-    public Literal value() throws OutOfBoundsException {
+    public Literal value() throws OutOfBoundsException, EvaluationException {
         return _content.value();
     }
 

@@ -114,6 +114,7 @@ public class Calculator {
       // Serialize and save the spreadsheet with the specified file name in the
       // current directory
       try (FileOutputStream fileOut = new FileOutputStream(fileName + ".ser")) {
+        _currentSpreadsheet.setName(fileName);
         objectOut = new ObjectOutputStream(fileOut);
         objectOut.writeObject(_currentSpreadsheet);
       }

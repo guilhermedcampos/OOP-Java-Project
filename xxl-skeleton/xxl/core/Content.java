@@ -23,7 +23,7 @@ public abstract class Content implements Serializable {
      * @return the value of the content as a Literal.
      * @throws OutOfBoundsException if there is an error retrieving the value.
      */
-    protected abstract Literal value() throws OutOfBoundsException;
+    protected abstract Literal value() throws EvaluationException, OutOfBoundsException;
 
     /**
      * Gets the content as a string.
