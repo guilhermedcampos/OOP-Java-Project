@@ -23,7 +23,10 @@ class DoNew extends Command<Calculator> {
     if (_receiver.getSpreadsheet() != null) {
       // ask user to save
       addBooleanField("boolean", Message.saveBeforeExit());
-      //boolean bool = readBoolean("boolean");
+      boolean bool = Form.confirm("boolean");
+      if (bool = true) {
+        // faz perform do DoSave()
+      }
     }
 
     // Ask for the number of columns and lines
