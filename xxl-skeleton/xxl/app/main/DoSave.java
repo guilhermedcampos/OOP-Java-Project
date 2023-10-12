@@ -51,15 +51,14 @@ class DoSave extends Command<Calculator> {
                 String fileName = stringField("fileName");
                 _receiver.saveAs(fileName);
                 // after saving, set changes back to false
-                _receiver.getSpreadsheet().setChange(false);
             } else {
                 String fileName = spreadsheet.getName();
                 _receiver.save();
                 // after saving, set changes back to false
-                _receiver.getSpreadsheet().setChange(false);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        _receiver.getSpreadsheet().setChange(false);
     }
 }

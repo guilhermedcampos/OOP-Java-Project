@@ -33,11 +33,24 @@ public class DoOpen extends Command<Calculator> {
 
   @Override
   protected final void execute() throws CommandException {
-    // Check if a file is opened and changed
+
+    // see if a file is opened
     if (_receiver.getSpreadsheet() != null) {
-      // ask user to save
-      addBooleanField("boolean", Message.saveBeforeExit());
-      // boolean bool = readBoolean("boolean");
+
+      // see if its changed
+      if (_receiver.getSpreadsheet().isChanged()) {
+
+        // if its changed, ask to save before exit
+        boolean bool = Form.confirm(Message.saveBeforeExit());
+        if (bool == true) {
+          DoSave doSaveCommand = new DoSave(_receiver);
+          try {
+            doSaveCommand.performCommand();
+          } catch (CommandException e) {
+            e.printStackTrace();
+          }
+        }
+      }
     }
 
     String fileName = stringField("fileName");

@@ -31,4 +31,5 @@ public class Sub extends BinaryFunction {
         int res = _arg1.value().asInt() - _arg2.value().asInt();
         return new LiteralInteger(res);
     }
+    
 }

@@ -141,6 +141,8 @@ public class Calculator {
     try {
       objectIn = new ObjectInputStream(new FileInputStream(fileName + ".ser"));
       Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
+      // set changes as false
+      spreadsheet.setChange(false);
       Calculator.setSpreadsheet(spreadsheet);
     } finally {
       if (objectIn != null) {

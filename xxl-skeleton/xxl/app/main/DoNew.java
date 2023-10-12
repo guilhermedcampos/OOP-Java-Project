@@ -21,16 +21,21 @@ class DoNew extends Command<Calculator> {
 
   @Override
   protected final void execute() throws CommandException {
+    // see if a file is opened
     if (_receiver.getSpreadsheet() != null) {
-      // ask user to save
 
-      boolean bool = Form.confirm(Message.saveBeforeExit());
-      if (bool == true) {
-        DoSave doSaveCommand = new DoSave(_receiver);
-        try {
-          doSaveCommand.performCommand();
-        } catch (CommandException e) {
-          e.printStackTrace();
+      // see if its changed
+      if (_receiver.getSpreadsheet().isChanged()) {
+
+        // if its changed, ask to save before exit
+        boolean bool = Form.confirm(Message.saveBeforeExit());
+        if (bool == true) {
+          DoSave doSaveCommand = new DoSave(_receiver);
+          try {
+            doSaveCommand.performCommand();
+          } catch (CommandException e) {
+            e.printStackTrace();
+          }
         }
       }
     }
