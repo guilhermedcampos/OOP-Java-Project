@@ -26,7 +26,7 @@ class DoSave extends Command<Calculator> {
      * @param receiver The calculator instance to which this command is attached.
      */
     DoSave(Calculator receiver) {
-        super(Label.SAVE, receiver);
+        super(Label.SAVE, receiver, xxl -> xxl.getSpreadsheet() != null);
     }
 
     /**
@@ -38,12 +38,6 @@ class DoSave extends Command<Calculator> {
         // Get the current spreadsheet from the calculator
         Spreadsheet spreadsheet = _receiver.getSpreadsheet();
         try {
-            // If there is no current spreadsheet opened, throw a
-            // MissingFileAssociationException
-            if (spreadsheet == null) {
-                throw new MissingFileAssociationException();
-            }
-
             // Attempt to retrieve the file name associated with the spreadsheet
             if (spreadsheet.getName() == null) {
                 addStringField("fileName", Message.newSaveAs());
@@ -53,7 +47,7 @@ class DoSave extends Command<Calculator> {
                 String fileName = spreadsheet.getName();
                 _receiver.save();
             }
-        } catch (MissingFileAssociationException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

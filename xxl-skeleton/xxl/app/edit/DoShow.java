@@ -3,6 +3,7 @@ package xxl.app.edit;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.CommandException;
+import xxl.app.exception.InvalidCellRangeException;
 import xxl.core.Calculator;
 import xxl.core.Spreadsheet;
 import xxl.core.exception.OutOfBoundsException;
@@ -21,11 +22,11 @@ class DoShow extends Command<Spreadsheet> {
 
   @Override
   protected final void execute() throws CommandException {
+    String range = stringField("range");
+    String[] rangeCoords = range.split(":");
     try {
-      String range = stringField("range");
-      String[] rangeCoords = range.split(":");
-
       if (rangeCoords.length == 2) {
+        // This is a range
         String[] startCoords = rangeCoords[0].split(";");
         String[] endCoords = rangeCoords[1].split(";");
 
@@ -41,13 +42,26 @@ class DoShow extends Command<Spreadsheet> {
               // Print cell and content to String
               _display
                   .addLine(_receiver.getCell(row, col).toString() + "|" + _receiver.getContentAt(row, col).toString());
-              _display.display();
             }
           }
         }
+      } else {
+        // This is a single cell
+        String[] cellCoords = range.split(";");
+        if (cellCoords.length == 2) {
+          int cellRow = Integer.parseInt(cellCoords[0]);
+          int cellCol = Integer.parseInt(cellCoords[1]);
+
+          // Display the content of the single cell
+          _display.addLine(_receiver.getCell(cellRow, cellCol).toString() + "|"
+              + _receiver.getContentAt(cellRow, cellCol).toString());
+        }
       }
+
+      // Display the results
+      _display.display();
     } catch (OutOfBoundsException e) {
-      e.printStackTrace();
+      throw new InvalidCellRangeException(range);
     }
   }
 }

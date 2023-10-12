@@ -39,6 +39,10 @@ public class Reference extends Content {
      */
     @Override
     public String toString() {
-        return "=" + _row + ";" + _col;
+        try {
+            return value().toString() + "=" + _row + ";" + _col;
+        } catch (OutOfBoundsException | EvaluationException e) {
+            return e.getMessage();
+        }
     }
 }

@@ -43,11 +43,16 @@ public abstract class BinaryFunction extends Function {
         try {
             String result = value() + "=" + getName() + "(" + _arg1.toString() + "," + _arg2.toString() + ")";
 
-            // Remove all occurrences of "=" after the first one
+            // Remove all numbers and "=" characters behind the first "="
             int firstEqualsIndex = result.indexOf('=');
             if (firstEqualsIndex >= 0) {
-                result = result.substring(0, firstEqualsIndex + 1) +
-                        result.substring(firstEqualsIndex + 1).replace("=", "");
+                String beforeFirstEquals = result.substring(0, firstEqualsIndex + 1);
+                String afterFirstEquals = result.substring(firstEqualsIndex + 1);
+
+                // Remove all numbers and "=" characters behind the first "="
+                String cleanedAfterFirstEquals = afterFirstEquals.replaceAll("\\d+=", "");
+
+                result = beforeFirstEquals + cleanedAfterFirstEquals;
             }
 
             return result;
