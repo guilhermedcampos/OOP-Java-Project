@@ -25,6 +25,27 @@ public abstract class BinaryFunction extends Function {
     }
 
     /**
+     * Remove all numbers and "=" characters behind the first "=" in the input
+     * string.
+     *
+     * @param input the input string.
+     * @return the cleaned string.
+     */
+    private String cleanStringAfterFirstEquals(String input) {
+        int firstEqualsIndex = input.indexOf('=');
+        if (firstEqualsIndex >= 0) {
+            String beforeFirstEquals = input.substring(0, firstEqualsIndex + 1);
+            String afterFirstEquals = input.substring(firstEqualsIndex + 1);
+
+            // Remove all numbers and "=" characters behind the first "="
+            String cleanedAfterFirstEquals = afterFirstEquals.replaceAll("\\d+=", "");
+
+            return beforeFirstEquals + cleanedAfterFirstEquals;
+        }
+        return input; // Return input as is if no "=" found
+    }
+
+    /**
      * Computes the result of the binary function.
      *
      * @return the result of the binary function as a Literal.
@@ -42,23 +63,14 @@ public abstract class BinaryFunction extends Function {
     public String toString() {
         try {
             String result = value() + "=" + getName() + "(" + _arg1.toString() + "," + _arg2.toString() + ")";
+            return cleanStringAfterFirstEquals(result);
 
-            // Remove all numbers and "=" characters behind the first "="
-            int firstEqualsIndex = result.indexOf('=');
-            if (firstEqualsIndex >= 0) {
-                String beforeFirstEquals = result.substring(0, firstEqualsIndex + 1);
-                String afterFirstEquals = result.substring(firstEqualsIndex + 1);
-
-                // Remove all numbers and "=" characters behind the first "="
-                String cleanedAfterFirstEquals = afterFirstEquals.replaceAll("\\d+=", "");
-
-                result = beforeFirstEquals + cleanedAfterFirstEquals;
-            }
-
-            return result;
-
-        } catch (EvaluationException | OutOfBoundsException e) {
-            return "Error: " + e.getMessage();
+        } catch (EvaluationException e) {
+            String result = "#VALUE=" + getName() + "(" + _arg1.toString() + "," + _arg2.toString() + ")";
+            return cleanStringAfterFirstEquals(result);
+        } catch (OutOfBoundsException e) {
+            e.printStackTrace();
+            return "#VALUE";
         }
     }
 }

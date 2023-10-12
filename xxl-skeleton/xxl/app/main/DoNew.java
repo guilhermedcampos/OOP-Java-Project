@@ -15,23 +15,27 @@ class DoNew extends Command<Calculator> {
 
   DoNew(Calculator receiver) {
     super(Label.NEW, receiver);
+    addIntegerField("lines", Message.lines());
+    addIntegerField("columns", Message.columns());
   }
 
   @Override
   protected final void execute() throws CommandException {
-    // Check if a file is opened and changed
     if (_receiver.getSpreadsheet() != null) {
       // ask user to save
-      addBooleanField("boolean", Message.saveBeforeExit());
-      boolean bool = Form.confirm("boolean");
-      if (bool = true) {
-        // faz perform do DoSave()
+
+      boolean bool = Form.confirm(Message.saveBeforeExit());
+      if (bool == true) {
+        DoSave doSaveCommand = new DoSave(_receiver);
+        try {
+          doSaveCommand.performCommand();
+        } catch (CommandException e) {
+          e.printStackTrace();
+        }
       }
     }
 
     // Ask for the number of columns and lines
-    addIntegerField("lines", Message.lines());
-    addIntegerField("columns", Message.columns());
     int lines = integerField("lines");
     int columns = integerField("columns");
 

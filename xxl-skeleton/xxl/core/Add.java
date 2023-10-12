@@ -27,7 +27,7 @@ public class Add extends BinaryFunction {
      * @throws OutOfBoundsException if the operation exceeds valid bounds.
      */
     @Override
-    public LiteralInteger compute() throws EvaluationException, OutOfBoundsException {
+    public Literal compute() throws EvaluationException, OutOfBoundsException {
         int res = _arg1.value().asInt() + _arg2.value().asInt();
         return new LiteralInteger(res);
     }

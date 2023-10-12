@@ -15,6 +15,7 @@ public class Spreadsheet implements Serializable {
   private int _numCols;
   private int _numRows;
   private AbstractDataStructure _dataStructure;
+  private boolean _isChanged;
 
   /**
    * Constructor for creating a new spreadsheet with the specified number of rows
@@ -31,6 +32,7 @@ public class Spreadsheet implements Serializable {
     }
     _numRows = rows;
     _numCols = cols;
+    _isChanged = true;
 
     _dataStructure = new MatrixDataStructure();
 
@@ -179,5 +181,13 @@ public class Spreadsheet implements Serializable {
     } else {
       throw new OutOfBoundsException("Invalid cell coordinates: Row " + row + ", Column " + col);
     }
+  }
+
+  public boolean isChanged() {
+    return _isChanged;
+  }
+
+  public void setChange(boolean bool) {
+    _isChanged = bool;
   }
 }

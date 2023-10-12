@@ -37,15 +37,26 @@ class DoSave extends Command<Calculator> {
     protected final void execute() throws CommandException {
         // Get the current spreadsheet from the calculator
         Spreadsheet spreadsheet = _receiver.getSpreadsheet();
+
+        // see if spreadsheet was changed, if not, do nothing
+        if (spreadsheet.isChanged() == false) {
+            return;
+        }
+
+        // if spreadsheet was changed, save file
         try {
             // Attempt to retrieve the file name associated with the spreadsheet
             if (spreadsheet.getName() == null) {
                 addStringField("fileName", Message.newSaveAs());
                 String fileName = stringField("fileName");
                 _receiver.saveAs(fileName);
+                // after saving, set changes back to false
+                _receiver.getSpreadsheet().setChange(false);
             } else {
                 String fileName = spreadsheet.getName();
                 _receiver.save();
+                // after saving, set changes back to false
+                _receiver.getSpreadsheet().setChange(false);
             }
         } catch (IOException e) {
             e.printStackTrace();
