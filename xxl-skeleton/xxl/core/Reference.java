@@ -40,7 +40,12 @@ public class Reference extends Content {
     @Override
     public String toString() {
         try {
-            return value().toString() + "=" + _row + ";" + _col;
+            // se o conteudo for nulo
+            if (value().toString() == "") {
+                return "#VALUE=" + _row + ";" + _col;
+            } else {
+                return value().toString() + "=" + _row + ";" + _col;
+            }
         } catch (OutOfBoundsException | EvaluationException e) {
             return e.getMessage();
         }

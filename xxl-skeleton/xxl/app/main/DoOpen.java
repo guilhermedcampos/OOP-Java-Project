@@ -33,11 +33,18 @@ public class DoOpen extends Command<Calculator> {
 
   @Override
   protected final void execute() throws CommandException {
+    // Check if a file is opened and changed
+    if (_receiver.getSpreadsheet() != null) {
+      // ask user to save
+      addBooleanField("boolean", Message.saveBeforeExit());
+      // boolean bool = readBoolean("boolean");
+    }
+
     String fileName = stringField("fileName");
     try {
       _receiver.load(fileName);
     } catch (Exception e) {
-      throw new FileOpenFailedException(e); 
+      throw new FileOpenFailedException(e);
     }
   }
 }
