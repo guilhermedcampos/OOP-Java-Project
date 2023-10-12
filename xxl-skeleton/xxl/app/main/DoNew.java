@@ -9,25 +9,36 @@ import xxl.core.Spreadsheet;
 import xxl.app.main.DoSave;
 
 /**
- * Open a new file.
+ * Command for creating a new file or opening an existing one.
  */
 class DoNew extends Command<Calculator> {
 
+  /**
+   * Constructs a new instance of the `DoNew` command.
+   *
+   * @param receiver The calculator instance to which this command is attached.
+   */
   DoNew(Calculator receiver) {
     super(Label.NEW, receiver);
     addIntegerField("lines", Message.lines());
     addIntegerField("columns", Message.columns());
   }
 
+  /**
+   * Executes the "New" command, allowing the user to create a new empty
+   * spreadsheet.
+   *
+   * @throws CommandException If an error occurs during command execution.
+   */
   @Override
   protected final void execute() throws CommandException {
-    // see if a file is opened
+    // Check if a file is currently opened
     if (_receiver.getSpreadsheet() != null) {
 
-      // see if its changed
+      // Check if it's been changed
       if (_receiver.getSpreadsheet().isChanged()) {
 
-        // if its changed, ask to save before exit
+        // If it's been changed, ask to save before exiting
         boolean bool = Form.confirm(Message.saveBeforeExit());
         if (bool) {
           DoSave doSaveCommand = new DoSave(_receiver);
@@ -40,7 +51,7 @@ class DoNew extends Command<Calculator> {
       }
     }
 
-    // Ask for the number of columns and lines
+    // Prompt the user for the number of columns and lines
     int lines = integerField("lines");
     int columns = integerField("columns");
 

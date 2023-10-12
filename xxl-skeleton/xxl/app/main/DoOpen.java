@@ -4,10 +4,13 @@ import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.Display;
 import pt.tecnico.uilib.menus.CommandException;
+
 import xxl.core.Calculator;
 import xxl.core.Spreadsheet;
 import xxl.core.exception.UnavailableFileException;
+
 import xxl.app.exception.FileOpenFailedException;
+import xxl.app.main.Message;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -17,9 +20,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
-import xxl.app.main.Message;
-// FIXME import classes
 
 /**
  * Open existing file.
