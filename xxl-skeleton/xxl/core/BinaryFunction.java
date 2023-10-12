@@ -24,21 +24,17 @@ public abstract class BinaryFunction extends Function {
         _arg2 = arg2;
     }
 
-    /**
-     * Remove all numbers and "=" characters behind the first "=" in the input
-     * string.
-     *
-     * @param input the input string.
-     * @return the cleaned string.
-     */
     private String cleanStringAfterFirstEquals(String input) {
         int firstEqualsIndex = input.indexOf('=');
         if (firstEqualsIndex >= 0) {
             String beforeFirstEquals = input.substring(0, firstEqualsIndex + 1);
             String afterFirstEquals = input.substring(firstEqualsIndex + 1);
 
-            // Remove all numbers and "=" characters behind the first "="
-            String cleanedAfterFirstEquals = afterFirstEquals.replaceAll("\\d+=", "");
+            // Remove everything between the first "(" and "=" (including "=")
+            String cleanedAfterFirstEquals = afterFirstEquals.replaceAll("\\([^=]+=", "(");
+
+            // Remove everything between "," and the last "="
+            cleanedAfterFirstEquals = cleanedAfterFirstEquals.replaceAll(",[^=]+=", ",");
 
             return beforeFirstEquals + cleanedAfterFirstEquals;
         }
@@ -68,9 +64,8 @@ public abstract class BinaryFunction extends Function {
         } catch (EvaluationException e) {
             String result = "#VALUE=" + getName() + "(" + _arg1.toString() + "," + _arg2.toString() + ")";
             return cleanStringAfterFirstEquals(result);
-        } catch (OutOfBoundsException e) {
-            e.printStackTrace();
-            return "#VALUE";
+        } catch (OutOfBoundsException e) { // tirar, exceção nao devia chegar aqui
+            return e.getMessage(); // TIRARRRR
         }
     }
 }
