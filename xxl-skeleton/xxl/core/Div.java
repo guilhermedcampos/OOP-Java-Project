@@ -32,7 +32,6 @@ public class Div extends BinaryFunction {
         if (_arg2.value().asInt() == 0) {
             return new LiteralString("#VALUE");
         }
-        int res = _arg1.value().asInt() / _arg2.value().asInt();
-        return new LiteralInteger(res);
+        return new LiteralInteger(_arg1.value().asInt() / _arg2.value().asInt());
     }
 }

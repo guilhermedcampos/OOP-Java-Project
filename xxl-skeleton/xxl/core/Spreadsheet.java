@@ -129,11 +129,9 @@ public class Spreadsheet implements Serializable {
    * @return true if the cell is valid, false otherwise.
    */
   public boolean isValidCell(int row, int col) {
-    if (row < 1 || row > _numRows || col < 1 || col > _numCols) {
-      return false;
-    }
-    return true;
+    return row >= 1 && row <= _numRows && col >= 1 && col <= _numCols;
   }
+
 
   /**
    * Get the cell at the specified row and column.

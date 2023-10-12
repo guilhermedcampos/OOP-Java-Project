@@ -28,8 +28,7 @@ public class Sub extends BinaryFunction {
      */
     @Override
     public Literal compute() throws EvaluationException, OutOfBoundsException {
-        int res = _arg1.value().asInt() - _arg2.value().asInt();
-        return new LiteralInteger(res);
+        return new LiteralInteger(_arg1.value().asInt() - _arg2.value().asInt());
     }
     
 }

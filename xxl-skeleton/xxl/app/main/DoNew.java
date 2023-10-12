@@ -29,7 +29,7 @@ class DoNew extends Command<Calculator> {
 
         // if its changed, ask to save before exit
         boolean bool = Form.confirm(Message.saveBeforeExit());
-        if (bool == true) {
+        if (bool) {
           DoSave doSaveCommand = new DoSave(_receiver);
           try {
             doSaveCommand.performCommand();

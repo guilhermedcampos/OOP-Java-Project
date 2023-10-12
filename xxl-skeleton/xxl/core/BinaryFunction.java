@@ -24,23 +24,6 @@ public abstract class BinaryFunction extends Function {
         _arg2 = arg2;
     }
 
-    private String cleanStringAfterFirstEquals(String input) {
-        int firstEqualsIndex = input.indexOf('=');
-        if (firstEqualsIndex >= 0) {
-            String beforeFirstEquals = input.substring(0, firstEqualsIndex + 1);
-            String afterFirstEquals = input.substring(firstEqualsIndex + 1);
-
-            // Remove everything between the first "(" and "=" (including "=")
-            String cleanedAfterFirstEquals = afterFirstEquals.replaceAll("\\([^=]+=", "(");
-
-            // Remove everything between "," and the last "="
-            cleanedAfterFirstEquals = cleanedAfterFirstEquals.replaceAll(",[^=]+=", ",");
-
-            return beforeFirstEquals + cleanedAfterFirstEquals;
-        }
-        return input; // Return input as is if no "=" found
-    }
-
     /**
      * Computes the result of the binary function.
      *
@@ -67,5 +50,23 @@ public abstract class BinaryFunction extends Function {
         } catch (OutOfBoundsException e) { // tirar, exceção nao devia chegar aqui
             return e.getMessage(); // TIRARRRR
         }
+    }
+    /**
+     * Cleans the input string after the first equals sign ('=') by removing everything
+     * between the first '(' and '=' (including '=') and removing everything between ','
+     * and the last '='. This method is used to format the string representation of the
+     * binary function.
+     *
+     * @param input the input string to be cleaned.
+     * @return a cleaned string representation.
+     */
+    private String cleanStringAfterFirstEquals(String input) {
+        int firstEqualsIndex = input.indexOf('=');
+        if (firstEqualsIndex >= 0) {
+            String beforeFirstEquals = input.substring(0, firstEqualsIndex + 1);
+            String afterFirstEquals = input.substring(firstEqualsIndex + 1);
+            return beforeFirstEquals + afterFirstEquals.replaceAll("\\([^=]+=", "(").replaceAll(",[^=]+=", ",");
+        }
+        return input;
     }
 }

@@ -15,13 +15,8 @@ import xxl.core.exception.UnrecognizedEntryException;
 import xxl.core.exception.EvaluationException;
 import xxl.core.exception.OutOfBoundsException;
 
-import java.io.Serial;
-import java.io.Serializable;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-//import xxl.app.main.DoNew;
-import xxl.app.main.DoOpen;
-//import xxl.app.main.DoSave;
 
 /**
  * Class representing a spreadsheet application.

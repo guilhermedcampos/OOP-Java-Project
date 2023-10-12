@@ -17,7 +17,7 @@ public class Range {
     }
 
     
-    public Range buildRange(String rangeDescription) {
+    public static Range buildRange(String rangeDescription) {
         String[] rangeCoordinates;
         int startRow, startCol, endRow, endCol;
         
