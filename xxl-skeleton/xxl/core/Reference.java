@@ -1,7 +1,6 @@
 package xxl.core;
 
 import xxl.core.exception.EvaluationException;
-import xxl.core.exception.OutOfBoundsException;
 
 /**
  * Represents a reference to a cell in the spreadsheet.
@@ -25,7 +24,7 @@ public class Reference extends Content {
      * Retrieves the value of the referenced cell.
      *
      * @return the value of the referenced cell as a `Literal`.
-     * @throws OutOfBoundsException if there's an error due to out-of-bounds access.
+     * @throws EvaluationException  if there is an error during evaluation.
      */
     @Override
     protected Literal value() throws EvaluationException {

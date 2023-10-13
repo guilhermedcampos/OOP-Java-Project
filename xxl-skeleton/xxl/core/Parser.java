@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 
 import xxl.core.exception.UnrecognizedEntryException;
-import xxl.core.exception.EvaluationException;
 import xxl.core.exception.OutOfBoundsException;
 
 /**
@@ -38,7 +37,6 @@ public class Parser {
      * @return the populated spreadsheet.
      * @throws IOException                if there is an IO error.
      * @throws UnrecognizedEntryException if there is an unrecognized entry.
-     * @throws EvaluationException        if there is an evaluation error.
      * @throws OutOfBoundsException       if the operation exceeds valid bounds.
      */
     Spreadsheet parseFile(String filename)
@@ -87,7 +85,6 @@ public class Parser {
      *
      * @param line the line to parse.
      * @throws UnrecognizedEntryException if there is an unrecognized entry.
-     * @throws EvaluationException        if there is an evaluation error.
      * @throws OutOfBoundsException       if the operation exceeds valid bounds.
      */
     private void parseLine(String line) throws UnrecognizedEntryException, OutOfBoundsException {
@@ -153,8 +150,6 @@ public class Parser {
      * @param functionSpecification the function specification to parse.
      * @return the parsed content expression.
      * @throws UnrecognizedEntryException if there is an unrecognized entry.
-     * @throws EvaluationException        if there is an evaluation error.
-     * @throws OutOfBoundsException       if the operation exceeds valid bounds.
      */
     private Content parseFunction(String functionSpecification)
             throws UnrecognizedEntryException {
@@ -171,8 +166,6 @@ public class Parser {
      * @param args         the function arguments.
      * @return the parsed binary function.
      * @throws UnrecognizedEntryException if there is an unrecognized entry.
-     * @throws EvaluationException        if there is an evaluation error.
-     * @throws OutOfBoundsException       if the operation exceeds valid bounds.
      */
     private Content parseBinaryFunction(String functionName, String args)
             throws UnrecognizedEntryException {

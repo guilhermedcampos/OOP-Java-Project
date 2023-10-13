@@ -1,14 +1,17 @@
 package xxl.app.main;
 
+import xxl.app.main.Message;
+
 import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.Display;
 import pt.tecnico.uilib.menus.CommandException;
+
 import xxl.core.Calculator;
 import xxl.core.Spreadsheet;
 import xxl.core.exception.MissingFileAssociationException;
 import xxl.app.exception.FileOpenFailedException;
-import xxl.app.main.Message;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.io.FileNotFoundException;
@@ -23,7 +26,7 @@ import java.io.ObjectOutputStream;
 class DoSave extends Command<Calculator> {
 
     /**
-     * Constructs a new instance of the "DoSave" command.
+     * Constructs a new instance of the DoSave command.
      *
      * @param receiver The calculator instance to which this command is attached.
      */
@@ -34,19 +37,18 @@ class DoSave extends Command<Calculator> {
     /**
      * Executes the "Save" command, which saves the current state to a file under
      * the current name or prompts for a name if unnamed.
-     *
-     * @throws CommandException If an error occurs during command execution.
      */
     @Override
     protected final void execute() throws CommandException {
         // Get the current spreadsheet from the calculator
         Spreadsheet spreadsheet = _receiver.getSpreadsheet();
 
-        // Check if the spreadsheet has been changed; if not, do nothing
+        // see if spreadsheet was changed, if not, do nothing
         if (spreadsheet.isChanged() == false) {
             return;
         }
 
+        // if spreadsheet was changed, save file
         try {
             // Attempt to retrieve the file name associated with the spreadsheet
             if (spreadsheet.getName() == null) {
@@ -56,9 +58,9 @@ class DoSave extends Command<Calculator> {
             } else {
                 String fileName = spreadsheet.getName();
                 _receiver.save();
-            }
 
-            // After saving, set changes back to false
+            }
+            // after saving, set changes back to false
             _receiver.getSpreadsheet().setChange(false);
         } catch (MissingFileAssociationException | IOException e) {
             throw new FileOpenFailedException(e);

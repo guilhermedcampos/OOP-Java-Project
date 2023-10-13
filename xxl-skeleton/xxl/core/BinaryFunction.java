@@ -1,7 +1,6 @@
 package xxl.core;
 
 import xxl.core.exception.EvaluationException;
-import xxl.core.exception.OutOfBoundsException;
 
 /**
  * Represents an abstract binary function that operates on two content objects.

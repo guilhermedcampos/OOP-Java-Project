@@ -38,42 +38,65 @@ public class Calculator {
    * @returns the current spreadsheet of this application. This reference can be
    *          null.
    */
-  public static Spreadsheet getSpreadsheet() { // final
+  public static Spreadsheet getSpreadsheet() { 
     return _currentSpreadsheet;
   }
 
-  public static void setSpreadsheet(Spreadsheet s) {
-    _currentSpreadsheet = s;
-  }
-
-  public void addSpreadsheet(Spreadsheet s) {
-    _spreadsheets.add(s);
-  }
-
-  public boolean createUser(String name) {
-    User u = new User(name);
-    return _users.add(u);
+  /**
+   * Define a new current spreadsheet.
+   *
+   * @param spreadsheet The spreadsheet to set as the current one.
+   */
+  public static void setSpreadsheet(Spreadsheet spreadsheet) {
+    _currentSpreadsheet = spreadsheet;
   }
 
   /**
-   * Saves the serialized application's state into the file associated to the
-   * current network.
-   * 
-   * @throws IOException if there is some error while
-   *                     serializing the state of the network
-   *                     to disk.
+  * Adds a spreadsheet to the collection of spreadsheets.
+  *
+  * @param spreadsheet The spreadsheet to add to the collection.
+  */
+  public void addSpreadsheet(Spreadsheet spreadsheet) {
+    _spreadsheets.add(spreadsheet);
+  }
+
+  /**
+  * Creates a new user and adds them to the collection of users.
+  *
+  * @param name The name of the user to create.
+  * @return true if the user was successfully created and added; false otherwise.
+  */
+  public boolean createUser(String name) {
+    User user = new User(name);
+    return _users.add(user);
+  }
+
+
+  /**
+   * Saves the serialized application's state into the specified file. The current
+   * network is
+   * associated to this file.
+   *
+   * @param filename the name of the file.
+   * @throws FileNotFoundException           if for some reason the file cannot be
+   *                                         created or opened.
+   * @throws MissingFileAssociationException if the current network does not have
+   *                                         a file.
+   * @throws IOException                     if there is some error while
+   *                                         serializing the state of the network
+   *                                         to disk.
    */
   public void save() throws FileNotFoundException, MissingFileAssociationException, IOException {
     ObjectOutputStream objectOut = null;
     try {
-      try (FileOutputStream fileOut = new FileOutputStream(_currentSpreadsheet.getName() + ".ser")) {
-        objectOut = new ObjectOutputStream(fileOut);
-        objectOut.writeObject(_currentSpreadsheet);
-      }
+        try (FileOutputStream fileOut = new FileOutputStream(_currentSpreadsheet.getName() + ".ser")) {
+            objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(_currentSpreadsheet);
+        }
     } finally {
-      if (objectOut != null) {
-        objectOut.close();
-      }
+        if (objectOut != null) {
+            objectOut.close();
+        }
     }
   }
 

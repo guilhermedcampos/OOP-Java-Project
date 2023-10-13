@@ -12,7 +12,7 @@ import xxl.core.exception.OutOfBoundsException;
 import xxl.core.Cell;
 
 /**
- * Class for searching functions.
+ * Class for showing the content in given range.
  */
 class DoShow extends Command<Spreadsheet> {
 

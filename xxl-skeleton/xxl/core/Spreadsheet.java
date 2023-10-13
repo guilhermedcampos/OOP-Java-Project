@@ -36,7 +36,7 @@ public class Spreadsheet implements Serializable {
 
     _dataStructure = new MatrixDataStructure();
 
-    // Initialize the data structure here
+    // Initializes the data structure
     _dataStructure.initialize(rows, cols);
   }
 
@@ -100,7 +100,7 @@ public class Spreadsheet implements Serializable {
    * @param range The range from which to copy data.
    */
   public void copy(String range) {
-    // Implementation for copying data goes here
+    
   }
 
   /**
@@ -109,16 +109,16 @@ public class Spreadsheet implements Serializable {
    * @param range The range from which to clear data.
    */
   public void clear(String range) {
-    // Implementation for clearing data goes here
+    
   }
 
   /**
    * Add a user to the spreadsheet.
    *
-   * @param u The user to add to the spreadsheet.
+   * @param user The user to add to the spreadsheet.
    */
-  public void addUser(User u) {
-    // Implementation for adding a user goes here
+  public void addUser(User user) {
+
   }
 
   /**
@@ -138,46 +138,59 @@ public class Spreadsheet implements Serializable {
    * @param row The row of the cell to retrieve.
    * @param col The column of the cell to retrieve.
    * @return The cell at the specified position.
+   * @throws OutOfBoundsException if the specified cell is out of bounds.
    */
   public Cell getCell(int row, int col) throws OutOfBoundsException {
     if (isValidCell(row, col)) {
-      return _dataStructure.getCell(row, col);
+        return _dataStructure.getCell(row, col);
     } else {
-      throw new OutOfBoundsException("Cell is out of bounds.");
+        throw new OutOfBoundsException("Cell is out of bounds.");
     }
   }
 
   /**
-   * Insert content into the cell at the specified row and column.
-   *
-   * @param row     The row of the cell to change.
-   * @param col     The column of the cell to change.
-   * @param content The content to put in the specified cell.
-   */
+  * Insert content into the cell at the specified row and column.
+  *
+  * @param row     The row of the cell to change.
+  * @param col     The column of the cell to change.
+  * @param content The content to put in the specified cell.
+  * @throws OutOfBoundsException if the specified cell is out of bounds.
+  */
   public void insert(int row, int col, Content content) throws OutOfBoundsException {
     if (isValidCell(row, col)) {
-      _dataStructure.setContent(row, col, content);
+        _dataStructure.setContent(row, col, content);
     } else {
-      throw new OutOfBoundsException("Cell is out of bounds.");
+        throw new OutOfBoundsException("Cell is out of bounds.");
     }
   }
 
   /**
-   * Get the content at the specified row and column.
-   *
-   * @param row The row of the cell to change.
-   * @param col The column of the cell to change.
-   * @return The content in the specified cell.
-   */
+  * Get the content at the specified row and column.
+  *
+  * @param row The row of the cell to change.
+  * @param col The column of the cell to change.
+  * @return The content in the specified cell.
+  */
   public Content getContentAt(int row, int col) {
     return _dataStructure.getContent(row, col);
   }
 
+  /**
+  * Check if the spreadsheet has been changed.
+  *
+  * @return True if the spreadsheet has been changed, false otherwise.
+  */
   public boolean isChanged() {
     return _isChanged;
   }
 
+  /**
+  * Set the change status of the spreadsheet.
+  *
+  * @param bool True if the spreadsheet has been changed, false otherwise.
+  */
   public void setChange(boolean bool) {
     _isChanged = bool;
   }
+
 }
