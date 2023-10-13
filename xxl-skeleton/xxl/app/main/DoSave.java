@@ -7,6 +7,7 @@ import pt.tecnico.uilib.menus.CommandException;
 import xxl.core.Calculator;
 import xxl.core.Spreadsheet;
 import xxl.core.exception.MissingFileAssociationException;
+import xxl.app.exception.FileOpenFailedException;
 import xxl.app.main.Message;
 import java.io.Serial;
 import java.io.Serializable;
@@ -59,7 +60,7 @@ class DoSave extends Command<Calculator> {
             // after saving, set changes back to false
             _receiver.getSpreadsheet().setChange(false);
         } catch (MissingFileAssociationException | IOException e) {
-            e.printStackTrace();
+            throw new FileOpenFailedException(e);
         }
     }
 }
