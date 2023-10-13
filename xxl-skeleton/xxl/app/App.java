@@ -28,7 +28,6 @@ public class App {
           receiver.importFile(datafile);
         } catch (ImportFileException | IOException | UnrecognizedEntryException | EvaluationException
             | OutOfBoundsException e) {
-          // No specific behavior described; print the error.
           e.printStackTrace();
         }
       }

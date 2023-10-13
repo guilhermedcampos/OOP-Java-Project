@@ -47,8 +47,8 @@ public abstract class BinaryFunction extends Function {
         } catch (EvaluationException e) {
             String result = "#VALUE=" + getName() + "(" + _arg1.toString() + "," + _arg2.toString() + ")";
             return cleanStringAfterFirstEquals(result);
-        } catch (OutOfBoundsException e) { // tirar, exceção nao devia chegar aqui
-            return e.getMessage(); // TIRARRRR
+        } catch (OutOfBoundsException e) { 
+            return e.getMessage(); 
         }
     }
     /**

@@ -42,11 +42,7 @@ class DoNew extends Command<Calculator> {
         boolean bool = Form.confirm(Message.saveBeforeExit());
         if (bool) {
           DoSave doSaveCommand = new DoSave(_receiver);
-          try {
-            doSaveCommand.performCommand();
-          } catch (CommandException e) {
-            e.printStackTrace();
-          }
+          doSaveCommand.performCommand();
         }
       }
     }

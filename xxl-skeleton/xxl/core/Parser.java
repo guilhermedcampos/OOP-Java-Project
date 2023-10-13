@@ -36,10 +36,10 @@ public class Parser {
      *
      * @param filename the name of the file to parse.
      * @return the populated spreadsheet.
-     * @throws IOException             if there is an IO error.
+     * @throws IOException                if there is an IO error.
      * @throws UnrecognizedEntryException if there is an unrecognized entry.
-     * @throws EvaluationException      if there is an evaluation error.
-     * @throws OutOfBoundsException     if the operation exceeds valid bounds.
+     * @throws EvaluationException        if there is an evaluation error.
+     * @throws OutOfBoundsException       if the operation exceeds valid bounds.
      */
     Spreadsheet parseFile(String filename)
             throws IOException, UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
@@ -59,7 +59,7 @@ public class Parser {
      * Parses the dimensions of the spreadsheet from the input.
      *
      * @param reader the BufferedReader for reading input.
-     * @throws IOException             if there is an IO error.
+     * @throws IOException                if there is an IO error.
      * @throws UnrecognizedEntryException if there is an unrecognized entry.
      */
     private void parseDimensions(BufferedReader reader) throws IOException, UnrecognizedEntryException {
@@ -87,8 +87,8 @@ public class Parser {
      *
      * @param line the line to parse.
      * @throws UnrecognizedEntryException if there is an unrecognized entry.
-     * @throws EvaluationException      if there is an evaluation error.
-     * @throws OutOfBoundsException     if the operation exceeds valid bounds.
+     * @throws EvaluationException        if there is an evaluation error.
+     * @throws OutOfBoundsException       if the operation exceeds valid bounds.
      */
     private void parseLine(String line) throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
         String[] components = line.split("\\|");
@@ -153,8 +153,8 @@ public class Parser {
      * @param functionSpecification the function specification to parse.
      * @return the parsed content expression.
      * @throws UnrecognizedEntryException if there is an unrecognized entry.
-     * @throws EvaluationException      if there is an evaluation error.
-     * @throws OutOfBoundsException     if the operation exceeds valid bounds.
+     * @throws EvaluationException        if there is an evaluation error.
+     * @throws OutOfBoundsException       if the operation exceeds valid bounds.
      */
     private Content parseFunction(String functionSpecification)
             throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
@@ -171,8 +171,8 @@ public class Parser {
      * @param args         the function arguments.
      * @return the parsed binary function.
      * @throws UnrecognizedEntryException if there is an unrecognized entry.
-     * @throws EvaluationException      if there is an evaluation error.
-     * @throws OutOfBoundsException     if the operation exceeds valid bounds.
+     * @throws EvaluationException        if there is an evaluation error.
+     * @throws OutOfBoundsException       if the operation exceeds valid bounds.
      */
     private Content parseBinaryFunction(String functionName, String args)
             throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
@@ -220,8 +220,8 @@ public class Parser {
     /**
      * Parses an interval function from the input.
      *
-     * @param functionName      the name of the interval function.
-     * @param rangeDescription  the description of the range.
+     * @param functionName     the name of the interval function.
+     * @param rangeDescription the description of the range.
      * @return the parsed interval function.
      * @throws UnrecognizedEntryException if there is an unrecognized entry.
      */
@@ -230,16 +230,16 @@ public class Parser {
         switch (functionName) {
             case "CONCAT":
                 // return new Concat(range);
-                return null; 
+                return null;
             case "COASLECE":
                 // return new Coaslece(range);
-                return null; 
+                return null;
             case "PRODUCT":
                 // return new Product(range);
-                return null; 
+                return null;
             case "AVERAGE":
                 // return new Average(range);
-                return null; 
+                return null;
             default:
                 throw new UnrecognizedEntryException("Função inválida: " + functionName);
         }

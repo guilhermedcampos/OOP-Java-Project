@@ -44,11 +44,7 @@ public class DoOpen extends Command<Calculator> {
         boolean bool = Form.confirm(Message.saveBeforeExit());
         if (bool == true) {
           DoSave doSaveCommand = new DoSave(_receiver);
-          try {
-            doSaveCommand.performCommand();
-          } catch (CommandException e) {
-            e.printStackTrace();
-          }
+          doSaveCommand.performCommand();
         }
       }
     }
