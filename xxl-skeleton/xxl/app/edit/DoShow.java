@@ -12,12 +12,12 @@ import xxl.core.exception.OutOfBoundsException;
 import xxl.core.Cell;
 
 /**
- * Class for showing the content in given range.
+ * Class for showing the spreadsheet in a given range.
  */
 class DoShow extends Command<Spreadsheet> {
 
     /**
-     * Constructs a new DoShow command.
+     * Constructs a new "DoShow" command.
      *
      * @param receiver The spreadsheet instance on which this command operates.
      */
