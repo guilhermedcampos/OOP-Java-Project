@@ -47,7 +47,7 @@ public class Cell implements Serializable {
      * Gets the value of the cell as a Literal.
      *
      * @return the value of the cell as a Literal.
-     * @throws OutOfBoundsException if there is an error retrieving the value.
+     * @throws EvaluationException  if there is an error during evaluation.
      */
     public Literal value() throws EvaluationException {
         return _content.value();

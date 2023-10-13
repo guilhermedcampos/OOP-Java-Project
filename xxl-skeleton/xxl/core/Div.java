@@ -12,8 +12,6 @@ public class Div extends BinaryFunction {
      *
      * @param arg1 the first argument.
      * @param arg2 the second argument.
-     * @throws EvaluationException  if there is an error during evaluation.
-     * @throws OutOfBoundsException if there is an error accessing data.
      */
     public Div(Content arg1, Content arg2) {
         super("DIV", arg1, arg2);
@@ -24,7 +22,6 @@ public class Div extends BinaryFunction {
      *
      * @return the result of the division as a LiteralInteger.
      * @throws EvaluationException  if there is an error during evaluation.
-     * @throws OutOfBoundsException if there is an error accessing data.
      */
     @Override
     public Literal compute() throws EvaluationException {
