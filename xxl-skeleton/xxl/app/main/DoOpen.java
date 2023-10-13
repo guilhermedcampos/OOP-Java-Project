@@ -26,23 +26,33 @@ import java.io.ObjectOutputStream;
  */
 public class DoOpen extends Command<Calculator> {
 
+  /**
+   * Constructs a new instance of the "DoOpen" command.
+   *
+   * @param receiver The calculator instance to which this command is attached.
+   */
   DoOpen(Calculator receiver) {
     super(Label.OPEN, receiver);
     addStringField("fileName", Message.openFile());
   }
 
+  /**
+   * Executes the "Open" command, allowing the user to open an existing file.
+   *
+   * @throws CommandException If an error occurs during command execution.
+   */
   @Override
   protected final void execute() throws CommandException {
 
-    // see if a file is opened
+    // Check if a file is currently opened
     if (_receiver.getSpreadsheet() != null) {
 
-      // see if its changed
+      // Check if it's been changed
       if (_receiver.getSpreadsheet().isChanged()) {
 
-        // if its changed, ask to save before exit
+        // If it's been changed, ask to save before exiting
         boolean bool = Form.confirm(Message.saveBeforeExit());
-        if (bool == true) {
+        if (bool) {
           DoSave doSaveCommand = new DoSave(_receiver);
           doSaveCommand.performCommand();
         }
@@ -52,7 +62,7 @@ public class DoOpen extends Command<Calculator> {
     String fileName = stringField("fileName");
     try {
       _receiver.load(fileName);
-    } catch (Exception e) {
+    } catch (UnavailableFileException e) {
       throw new FileOpenFailedException(e);
     }
   }

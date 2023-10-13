@@ -117,22 +117,13 @@ public class Calculator {
    *                                  there is
    *                                  an error while processing this file.
    */
-  public void load(String fileName)
-      throws UnavailableFileException {
-    ObjectInputStream objectIn = null;
-    try {
-      try {
-        objectIn = new ObjectInputStream(new FileInputStream(fileName + ".ser"));
-        Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
-        spreadsheet.setChange(false);
-        Calculator.setSpreadsheet(spreadsheet);
-      } catch (FileNotFoundException | ClassNotFoundException e) {
-        throw new UnavailableFileException(fileName);
-      } finally {
-        if (objectIn != null) {
-          objectIn.close();
-        }
-      }
+  public void load(String fileName) throws UnavailableFileException {
+    try (ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(fileName + ".ser"))) {
+      Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
+      spreadsheet.setChange(false);
+      Calculator.setSpreadsheet(spreadsheet);
+    } catch (FileNotFoundException | ClassNotFoundException e) {
+      throw new UnavailableFileException(fileName);
     } catch (IOException e) {
       throw new UnavailableFileException(fileName);
     }

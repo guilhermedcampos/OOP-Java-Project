@@ -28,6 +28,10 @@ public class Div extends BinaryFunction {
      */
     @Override
     public Literal compute() throws EvaluationException {
-        return new LiteralInteger(_arg1.value().asInt() / _arg2.value().asInt());
+        try {
+            return new LiteralInteger(_arg1.value().asInt() / _arg2.value().asInt());
+        } catch (ArithmeticException e) {
+            throw new EvaluationException("Division by zero not possible.");
+        }
     }
 }

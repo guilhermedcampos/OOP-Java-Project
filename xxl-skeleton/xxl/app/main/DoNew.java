@@ -14,7 +14,7 @@ import xxl.app.main.DoSave;
 class DoNew extends Command<Calculator> {
 
   /**
-   * Constructs a new instance of the `DoNew` command.
+   * Constructs a new instance of the "DoNew" command.
    *
    * @param receiver The calculator instance to which this command is attached.
    */

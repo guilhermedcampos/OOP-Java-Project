@@ -10,7 +10,7 @@ import xxl.core.Calculator;
 class DoOpenEditMenu extends Command<Calculator> {
 
   /**
-   * Constructs a new instance of the DoOpenEditMenu command.
+   * Constructs a new instance of the "DoOpenEditMenu" command.
    *
    * @param receiver The calculator instance to which this command is attached.
    */

@@ -29,7 +29,6 @@ public abstract class BinaryFunction extends Function {
      *
      * @return the result of the binary function as a Literal.
      * @throws EvaluationException  if there is an error during evaluation.
-     * @throws OutOfBoundsException if the operation exceeds valid bounds.
      */
     public abstract Literal compute() throws EvaluationException;
 

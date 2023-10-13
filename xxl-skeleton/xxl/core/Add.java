@@ -1,7 +1,6 @@
 package xxl.core;
 
 import xxl.core.exception.EvaluationException;
-import xxl.core.exception.OutOfBoundsException;
 
 /**
  * Represents the addition operation between two content objects.
@@ -13,7 +12,6 @@ public class Add extends BinaryFunction {
      *
      * @param arg1 the first content argument.
      * @param arg2 the second content argument.
-     * @throws EvaluationException if there is an error during evaluation.
      */
     public Add(Content arg1, Content arg2) {
         super("ADD", arg1, arg2);
@@ -24,8 +22,7 @@ public class Add extends BinaryFunction {
      * LiteralInteger.
      *
      * @return the result of the addition as a LiteralInteger.
-     * @throws EvaluationException  if there is an error during evaluation.
-     * @throws OutOfBoundsException if the operation exceeds valid bounds.
+     * @throws EvaluationException if there is an error during evaluation.
      */
     @Override
     public Literal compute() throws EvaluationException {

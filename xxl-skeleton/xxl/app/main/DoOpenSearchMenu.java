@@ -11,7 +11,7 @@ import xxl.core.Calculator;
 class DoOpenSearchMenu extends Command<Calculator> {
 
     /**
-     * Constructs a new instance of the DoOpenSearchMenu command.
+     * Constructs a new instance of the "DoOpenSearchMenu" command.
      *
      * @param receiver The calculator instance to which this command is attached.
      */

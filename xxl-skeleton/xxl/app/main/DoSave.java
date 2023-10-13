@@ -23,7 +23,7 @@ import java.io.ObjectOutputStream;
 class DoSave extends Command<Calculator> {
 
     /**
-     * Constructs a new instance of the DoSave command.
+     * Constructs a new instance of the "DoSave" command.
      *
      * @param receiver The calculator instance to which this command is attached.
      */
@@ -34,18 +34,19 @@ class DoSave extends Command<Calculator> {
     /**
      * Executes the "Save" command, which saves the current state to a file under
      * the current name or prompts for a name if unnamed.
+     *
+     * @throws CommandException If an error occurs during command execution.
      */
     @Override
     protected final void execute() throws CommandException {
         // Get the current spreadsheet from the calculator
         Spreadsheet spreadsheet = _receiver.getSpreadsheet();
 
-        // see if spreadsheet was changed, if not, do nothing
+        // Check if the spreadsheet has been changed; if not, do nothing
         if (spreadsheet.isChanged() == false) {
             return;
         }
 
-        // if spreadsheet was changed, save file
         try {
             // Attempt to retrieve the file name associated with the spreadsheet
             if (spreadsheet.getName() == null) {
@@ -55,9 +56,9 @@ class DoSave extends Command<Calculator> {
             } else {
                 String fileName = spreadsheet.getName();
                 _receiver.save();
-
             }
-            // after saving, set changes back to false
+
+            // After saving, set changes back to false
             _receiver.getSpreadsheet().setChange(false);
         } catch (MissingFileAssociationException | IOException e) {
             throw new FileOpenFailedException(e);
