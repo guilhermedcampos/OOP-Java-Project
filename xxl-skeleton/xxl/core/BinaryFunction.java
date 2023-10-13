@@ -36,7 +36,7 @@ public abstract class BinaryFunction extends Function {
      * @return the result of the binary function as a Literal.
      * @throws EvaluationException  if there is an error during evaluation.
      */
-    public abstract Literal compute() throws EvaluationException;
+    protected abstract Literal compute() throws EvaluationException;
 
     /**
      * Returns a string representation of the binary function.

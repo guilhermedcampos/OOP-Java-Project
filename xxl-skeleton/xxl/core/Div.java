@@ -24,7 +24,7 @@ public class Div extends BinaryFunction {
      * @throws EvaluationException  if there is an error during evaluation.
      */
     @Override
-    public Literal compute() throws EvaluationException {
+    protected Literal compute() throws EvaluationException {
         try {
             return new LiteralInteger(_arg1.value().asInt() / _arg2.value().asInt());
         } catch (ArithmeticException e) {

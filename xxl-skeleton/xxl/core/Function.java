@@ -6,7 +6,7 @@ import xxl.core.exception.EvaluationException;
  * Represents a generic function in the spreadsheet.
  */
 public abstract class Function extends Content {
-    
+
     /**
      * The name of the function.
      */
@@ -36,7 +36,7 @@ public abstract class Function extends Content {
      * @return the result of the function as a Literal.
      * @throws EvaluationException  if there is an error during evaluation.
      */
-    public abstract Literal compute() throws EvaluationException;
+    protected abstract Literal compute() throws EvaluationException;
 
     /**
      * Gets the result of the function as a string.

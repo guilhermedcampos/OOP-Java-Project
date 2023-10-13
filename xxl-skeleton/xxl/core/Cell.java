@@ -60,7 +60,7 @@ public class Cell implements Serializable {
      * @return the value of the cell as a Literal.
      * @throws EvaluationException  if there is an error during evaluation.
      */
-    public Literal value() throws EvaluationException {
+    protected Literal value() throws EvaluationException {
         return _content.value();
     }
 
