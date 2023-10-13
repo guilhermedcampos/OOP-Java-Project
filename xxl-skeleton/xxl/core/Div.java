@@ -1,7 +1,6 @@
 package xxl.core;
 
 import xxl.core.exception.EvaluationException;
-import xxl.core.exception.OutOfBoundsException;
 
 /**
  * Represents a division operation between two content elements.
@@ -16,7 +15,7 @@ public class Div extends BinaryFunction {
      * @throws EvaluationException  if there is an error during evaluation.
      * @throws OutOfBoundsException if there is an error accessing data.
      */
-    public Div(Content arg1, Content arg2) throws EvaluationException, OutOfBoundsException {
+    public Div(Content arg1, Content arg2) {
         super("DIV", arg1, arg2);
     }
 
@@ -28,10 +27,7 @@ public class Div extends BinaryFunction {
      * @throws OutOfBoundsException if there is an error accessing data.
      */
     @Override
-    public Literal compute() throws EvaluationException, OutOfBoundsException {
-        if (_arg2.value().asInt() == 0) {
-            return new LiteralString("#VALUE");
-        }
+    public Literal compute() throws EvaluationException {
         return new LiteralInteger(_arg1.value().asInt() / _arg2.value().asInt());
     }
 }

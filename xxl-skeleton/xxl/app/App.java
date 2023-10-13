@@ -4,6 +4,7 @@ import pt.tecnico.uilib.Dialog;
 import xxl.core.Calculator;
 import xxl.core.exception.EvaluationException;
 import xxl.core.exception.ImportFileException;
+import xxl.core.exception.MissingFileAssociationException;
 import xxl.core.exception.OutOfBoundsException;
 import xxl.core.exception.UnrecognizedEntryException;
 
@@ -26,12 +27,10 @@ public class App {
       if (datafile != null) {
         try {
           receiver.importFile(datafile);
-        } catch (ImportFileException | IOException | UnrecognizedEntryException | EvaluationException
-            | OutOfBoundsException e) {
+        } catch (ImportFileException e) {
           e.printStackTrace();
         }
       }
-
       (new xxl.app.main.Menu(receiver)).open();
     }
   }

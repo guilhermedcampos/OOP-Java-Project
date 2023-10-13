@@ -10,6 +10,7 @@ import xxl.core.exception.MissingFileAssociationException;
 import xxl.app.main.Message;
 import java.io.Serial;
 import java.io.Serializable;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -57,7 +58,7 @@ class DoSave extends Command<Calculator> {
             }
             // after saving, set changes back to false
             _receiver.getSpreadsheet().setChange(false);
-        } catch (IOException e) {
+        } catch (MissingFileAssociationException | IOException e) {
             e.printStackTrace();
         }
     }

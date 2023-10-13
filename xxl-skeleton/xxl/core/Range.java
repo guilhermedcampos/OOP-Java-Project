@@ -9,27 +9,27 @@ public class Range {
     private int _startCol;
     private int _endCol;
 
-    public Range(int startRow, int endRow, int startCol, int endCol) { // exception de range valida dentro spreadsheet, e 0
+    public Range(int startRow, int endRow, int startCol, int endCol) { // exception de range valida dentro spreadsheet,
+                                                                       // e 0
         this._startRow = startRow;
         this._endRow = endRow;
         this._startCol = startCol;
         this._endCol = endCol;
     }
 
-    
     public static Range buildRange(String rangeDescription) {
         String[] rangeCoordinates;
         int startRow, startCol, endRow, endCol;
-        
+
         // caso a range tenha mais do que uma célula
-        if (rangeDescription.indexOf(':') != -1) { 
+        if (rangeDescription.indexOf(':') != -1) {
             rangeCoordinates = rangeDescription.split("[:;]");
             startRow = Integer.parseInt(rangeCoordinates[0]);
             startCol = Integer.parseInt(rangeCoordinates[1]);
             endRow = Integer.parseInt(rangeCoordinates[2]);
             endCol = Integer.parseInt(rangeCoordinates[3]);
 
-        // caso a range tenha só uma celula
+            // caso a range tenha só uma celula
         } else {
             rangeCoordinates = rangeDescription.split(";");
             startRow = endRow = Integer.parseInt(rangeCoordinates[0]);
@@ -49,7 +49,5 @@ public class Range {
         }
         return cells.toArray(new Cell[cells.size()]);
     }
-
-
 
 }

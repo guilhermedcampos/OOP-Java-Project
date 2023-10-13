@@ -10,10 +10,9 @@ import java.util.List;
 
 import xxl.core.exception.ImportFileException;
 import xxl.core.exception.MissingFileAssociationException;
+import xxl.core.exception.OutOfBoundsException;
 import xxl.core.exception.UnavailableFileException;
 import xxl.core.exception.UnrecognizedEntryException;
-import xxl.core.exception.EvaluationException;
-import xxl.core.exception.OutOfBoundsException;
 
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
@@ -22,11 +21,9 @@ import java.io.ObjectOutputStream;
  * Class representing a spreadsheet application.
  */
 public class Calculator {
-  /** The current spreadsheet. */
+
   private static Spreadsheet _currentSpreadsheet;
   private static ArrayList<Spreadsheet> _spreadsheets;
-
-  // FIXME add more fields and methods if needed
   private User _currentUser;
   private List<User> _users;
 
@@ -58,23 +55,15 @@ public class Calculator {
     return _users.add(u);
   }
 
-  public void createNewSpreadsheet() {
-    // App.DoNew();
-  }
-
   /**
    * Saves the serialized application's state into the file associated to the
    * current network.
-   *
-   * @throws FileNotFoundException           if for some reason the file cannot be
-   *                                         created or opened.
-   * @throws MissingFileAssociationException if the current network does not have
-   *                                         a file.
-   * @throws IOException                     if there is some error while
-   *                                         serializing the state of the network
-   *                                         to disk.
+   * 
+   * @throws IOException if there is some error while
+   *                     serializing the state of the network
+   *                     to disk.
    */
-  public void save() throws IOException {
+  public void save() throws FileNotFoundException, MissingFileAssociationException, IOException {
     ObjectOutputStream objectOut = null;
     try {
       try (FileOutputStream fileOut = new FileOutputStream(_currentSpreadsheet.getName() + ".ser")) {
@@ -102,7 +91,7 @@ public class Calculator {
    *                                         serializing the state of the network
    *                                         to disk.
    */
-  public void saveAs(String fileName) throws IOException {
+  public void saveAs(String fileName) throws FileNotFoundException, MissingFileAssociationException, IOException {
     ObjectOutputStream objectOut = null;
     try {
 
@@ -129,20 +118,23 @@ public class Calculator {
    *                                  an error while processing this file.
    */
   public void load(String fileName)
-      throws UnavailableFileException, FileNotFoundException, IOException, ClassNotFoundException
-
-  {
+      throws UnavailableFileException {
     ObjectInputStream objectIn = null;
     try {
-      objectIn = new ObjectInputStream(new FileInputStream(fileName + ".ser"));
-      Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
-      // set changes as false
-      spreadsheet.setChange(false);
-      Calculator.setSpreadsheet(spreadsheet);
-    } finally {
-      if (objectIn != null) {
-        objectIn.close();
+      try {
+        objectIn = new ObjectInputStream(new FileInputStream(fileName + ".ser"));
+        Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
+        spreadsheet.setChange(false);
+        Calculator.setSpreadsheet(spreadsheet);
+      } catch (FileNotFoundException | ClassNotFoundException e) {
+        throw new UnavailableFileException(fileName);
+      } finally {
+        if (objectIn != null) {
+          objectIn.close();
+        }
       }
+    } catch (IOException e) {
+      throw new UnavailableFileException(fileName);
     }
   }
 
@@ -153,15 +145,12 @@ public class Calculator {
    * @throws ImportFileException
    */
   public void importFile(String filename)
-      throws ImportFileException, IOException, UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
+      throws ImportFileException {
     try {
       Parser parser = new Parser();
       _currentSpreadsheet = parser.parseFile(filename);
-    } catch (IOException | UnrecognizedEntryException e) {
-      // Handle or rethrow exceptions
-      throw e;
+    } catch (IOException | UnrecognizedEntryException | OutOfBoundsException e) {
+      throw new ImportFileException(filename, e);
     }
   }
-
-  // Rest of your methods and class members...
 }

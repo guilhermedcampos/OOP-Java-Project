@@ -23,7 +23,7 @@ public abstract class Content implements Serializable {
      * @return the value of the content as a Literal.
      * @throws OutOfBoundsException if there is an error retrieving the value.
      */
-    protected abstract Literal value() throws EvaluationException, OutOfBoundsException;
+    protected abstract Literal value() throws EvaluationException;
 
     /**
      * Gets the content as a string.
@@ -32,7 +32,7 @@ public abstract class Content implements Serializable {
      * @throws EvaluationException  if there is an error evaluating the content.
      * @throws OutOfBoundsException if there is an error retrieving the value.
      */
-    public String asString() throws EvaluationException, OutOfBoundsException {
+    public String asString() throws EvaluationException {
         return value().asString();
     }
 
@@ -43,7 +43,7 @@ public abstract class Content implements Serializable {
      * @throws EvaluationException  if there is an error evaluating the content.
      * @throws OutOfBoundsException if there is an error retrieving the value.
      */
-    public int asInt() throws EvaluationException, OutOfBoundsException {
+    public int asInt() throws EvaluationException {
         return value().asInt();
     }
 }

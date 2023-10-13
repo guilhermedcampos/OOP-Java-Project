@@ -28,8 +28,8 @@ public class Reference extends Content {
      * @throws OutOfBoundsException if there's an error due to out-of-bounds access.
      */
     @Override
-    protected Literal value() throws OutOfBoundsException, EvaluationException {
-        return Calculator.getSpreadsheet().getCell(_row, _col).value();
+    protected Literal value() throws EvaluationException {
+        return Calculator.getSpreadsheet().getContentAt(_row, _col).value();
     }
 
     /**
@@ -40,14 +40,13 @@ public class Reference extends Content {
     @Override
     public String toString() {
         try {
-            // se o conteudo for nulo
+            // if the value is an empty cell
             if (value().toString() == "") {
-                return "#VALUE=" + _row + ";" + _col;
-            } else {
-                return value().toString() + "=" + _row + ";" + _col;
+                return "#VALUE" + "=" + _row + ";" + _col;
             }
-        } catch (OutOfBoundsException | EvaluationException e) {
-            return e.getMessage();
+            return value().toString() + "=" + _row + ";" + _col;
+        } catch (EvaluationException e) {
+            return "#VALUE" + "=" + _row + ";" + _col;
         }
     }
 }

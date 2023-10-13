@@ -132,20 +132,18 @@ public class Spreadsheet implements Serializable {
     return row >= 1 && row <= _numRows && col >= 1 && col <= _numCols;
   }
 
-
   /**
    * Get the cell at the specified row and column.
    *
    * @param row The row of the cell to retrieve.
    * @param col The column of the cell to retrieve.
    * @return The cell at the specified position.
-   * @throws OutOfBoundsException if the cell coordinates are invalid.
    */
   public Cell getCell(int row, int col) throws OutOfBoundsException {
     if (isValidCell(row, col)) {
       return _dataStructure.getCell(row, col);
     } else {
-      throw new OutOfBoundsException("Invalid cell coordinates: Row " + row + ", Column " + col);
+      throw new OutOfBoundsException("Cell is out of bounds.");
     }
   }
 
@@ -155,13 +153,12 @@ public class Spreadsheet implements Serializable {
    * @param row     The row of the cell to change.
    * @param col     The column of the cell to change.
    * @param content The content to put in the specified cell.
-   * @throws OutOfBoundsException if the cell coordinates are invalid.
    */
   public void insert(int row, int col, Content content) throws OutOfBoundsException {
     if (isValidCell(row, col)) {
       _dataStructure.setContent(row, col, content);
     } else {
-      throw new OutOfBoundsException("Invalid cell coordinates: Row " + row + ", Column " + col);
+      throw new OutOfBoundsException("Cell is out of bounds.");
     }
   }
 
@@ -171,14 +168,9 @@ public class Spreadsheet implements Serializable {
    * @param row The row of the cell to change.
    * @param col The column of the cell to change.
    * @return The content in the specified cell.
-   * @throws OutOfBoundsException if the cell coordinates are invalid.
    */
-  public Content getContentAt(int row, int col) throws OutOfBoundsException {
-    if (isValidCell(row, col)) {
-      return _dataStructure.getContent(row, col);
-    } else {
-      throw new OutOfBoundsException("Invalid cell coordinates: Row " + row + ", Column " + col);
-    }
+  public Content getContentAt(int row, int col) {
+    return _dataStructure.getContent(row, col);
   }
 
   public boolean isChanged() {

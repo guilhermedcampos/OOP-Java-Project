@@ -42,7 +42,7 @@ public class Parser {
      * @throws OutOfBoundsException       if the operation exceeds valid bounds.
      */
     Spreadsheet parseFile(String filename)
-            throws IOException, UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
+            throws IOException, UnrecognizedEntryException, OutOfBoundsException {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             parseDimensions(reader);
 
@@ -90,10 +90,10 @@ public class Parser {
      * @throws EvaluationException        if there is an evaluation error.
      * @throws OutOfBoundsException       if the operation exceeds valid bounds.
      */
-    private void parseLine(String line) throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
+    private void parseLine(String line) throws UnrecognizedEntryException, OutOfBoundsException {
         String[] components = line.split("\\|");
 
-        if (components.length == 1) // do nothing
+        if (components.length == 1)
             return;
 
         if (components.length == 2) {
@@ -106,7 +106,7 @@ public class Parser {
 
     // parse the beginning of an expression
     Content parseContent(String contentSpecification)
-            throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
+            throws UnrecognizedEntryException {
         char c = contentSpecification.charAt(0);
 
         if (c == '=')
@@ -139,7 +139,7 @@ public class Parser {
 
     // contentSpecification is what comes after '='
     private Content parseContentExpression(String contentSpecification)
-            throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
+            throws UnrecognizedEntryException {
         if (contentSpecification.contains("("))
             return parseFunction(contentSpecification);
         // It is a reference
@@ -157,7 +157,7 @@ public class Parser {
      * @throws OutOfBoundsException       if the operation exceeds valid bounds.
      */
     private Content parseFunction(String functionSpecification)
-            throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
+            throws UnrecognizedEntryException {
         String[] components = functionSpecification.split("[()]");
         if (components[1].contains(","))
             return parseBinaryFunction(components[0], components[1]);
@@ -175,7 +175,7 @@ public class Parser {
      * @throws OutOfBoundsException       if the operation exceeds valid bounds.
      */
     private Content parseBinaryFunction(String functionName, String args)
-            throws UnrecognizedEntryException, EvaluationException, OutOfBoundsException {
+            throws UnrecognizedEntryException {
         String[] arguments = args.split(",");
         Content arg0 = parseArgumentExpression(arguments[0]);
         Content arg1 = parseArgumentExpression(arguments[1]);

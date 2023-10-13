@@ -15,19 +15,20 @@ public class Add extends BinaryFunction {
      * @param arg2 the second content argument.
      * @throws EvaluationException if there is an error during evaluation.
      */
-    public Add(Content arg1, Content arg2) throws EvaluationException {
+    public Add(Content arg1, Content arg2) {
         super("ADD", arg1, arg2);
     }
 
     /**
-     * Computes the result of the addition operation and returns it as a LiteralInteger.
+     * Computes the result of the addition operation and returns it as a
+     * LiteralInteger.
      *
      * @return the result of the addition as a LiteralInteger.
-     * @throws EvaluationException if there is an error during evaluation.
+     * @throws EvaluationException  if there is an error during evaluation.
      * @throws OutOfBoundsException if the operation exceeds valid bounds.
      */
     @Override
-    public Literal compute() throws EvaluationException, OutOfBoundsException {
+    public Literal compute() throws EvaluationException {
         return new LiteralInteger(_arg1.value().asInt() + _arg2.value().asInt());
     }
 }

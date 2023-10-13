@@ -31,7 +31,7 @@ public abstract class BinaryFunction extends Function {
      * @throws EvaluationException  if there is an error during evaluation.
      * @throws OutOfBoundsException if the operation exceeds valid bounds.
      */
-    public abstract Literal compute() throws EvaluationException, OutOfBoundsException;
+    public abstract Literal compute() throws EvaluationException;
 
     /**
      * Returns a string representation of the binary function.
@@ -43,19 +43,17 @@ public abstract class BinaryFunction extends Function {
         try {
             String result = value() + "=" + getName() + "(" + _arg1.toString() + "," + _arg2.toString() + ")";
             return cleanStringAfterFirstEquals(result);
-
         } catch (EvaluationException e) {
-            String result = "#VALUE=" + getName() + "(" + _arg1.toString() + "," + _arg2.toString() + ")";
+            String result = "#VALUE" + "=" + getName() + "(" + _arg1.toString() + "," + _arg2.toString() + ")";
             return cleanStringAfterFirstEquals(result);
-        } catch (OutOfBoundsException e) { 
-            return e.getMessage(); 
         }
     }
+
     /**
-     * Cleans the input string after the first equals sign ('=') by removing everything
-     * between the first '(' and '=' (including '=') and removing everything between ','
-     * and the last '='. This method is used to format the string representation of the
-     * binary function.
+     * Cleans the input string after the first equals sign ('=') by removing
+     * everything between the first '(' and '=' (including '=') and removing
+     * everything between ',' and the last '='. This method is used to format the
+     * string representation of the binary function.
      *
      * @param input the input string to be cleaned.
      * @return a cleaned string representation.
@@ -65,8 +63,16 @@ public abstract class BinaryFunction extends Function {
         if (firstEqualsIndex >= 0) {
             String beforeFirstEquals = input.substring(0, firstEqualsIndex + 1);
             String afterFirstEquals = input.substring(firstEqualsIndex + 1);
-            return beforeFirstEquals + afterFirstEquals.replaceAll("\\([^=]+=", "(").replaceAll(",[^=]+=", ",");
+
+            // Remove everything between the first '(' and '=' (including '=')
+            afterFirstEquals = afterFirstEquals.replaceAll("\\([^=]+=", "(");
+
+            // Remove everything between ',' and the last '='
+            afterFirstEquals = afterFirstEquals.replaceAll(",[^=]+=", ",");
+
+            return beforeFirstEquals + afterFirstEquals;
         }
         return input;
     }
+
 }

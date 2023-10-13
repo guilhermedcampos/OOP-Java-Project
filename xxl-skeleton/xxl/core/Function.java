@@ -34,7 +34,7 @@ public abstract class Function extends Content {
      * @throws EvaluationException  if there is an error during evaluation.
      * @throws OutOfBoundsException if there is an error accessing data.
      */
-    public abstract Literal compute() throws EvaluationException, OutOfBoundsException;
+    public abstract Literal compute() throws EvaluationException;
 
     /**
      * Gets the result of the function as a string.
@@ -43,7 +43,7 @@ public abstract class Function extends Content {
      * @throws EvaluationException  if there is an error during evaluation.
      * @throws OutOfBoundsException if there is an error accessing data.
      */
-    public String asString() throws EvaluationException, OutOfBoundsException {
+    public String asString() throws EvaluationException {
         return compute().asString();
     }
 
@@ -54,7 +54,7 @@ public abstract class Function extends Content {
      * @throws EvaluationException  if there is an error during evaluation.
      * @throws OutOfBoundsException if there is an error accessing data.
      */
-    public int asInt() throws EvaluationException, OutOfBoundsException {
+    public int asInt() throws EvaluationException {
         return compute().asInt();
     }
 
@@ -65,7 +65,7 @@ public abstract class Function extends Content {
      * @throws EvaluationException  if there is an error during evaluation.
      * @throws OutOfBoundsException if there is an error accessing data.
      */
-    public Literal value() throws EvaluationException, OutOfBoundsException {
+    public Literal value() throws EvaluationException{
         return compute();
     }
 }
