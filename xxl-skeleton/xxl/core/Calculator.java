@@ -37,6 +37,10 @@ public class Calculator {
    */
   private List<User> _users;
 
+  /**
+   * Constructs a new Calculator object.
+   * Initializes the list of users as an empty ArrayList.
+   */
   public Calculator() {
     _users = new ArrayList<>();
   }
@@ -44,7 +48,7 @@ public class Calculator {
   /**
    * Return the current spreadsheet.
    *
-   * @returns the current spreadsheet of this application. This reference can be
+   * @return the current spreadsheet of this application. This reference can be
    *          null.
    */
   public static Spreadsheet getSpreadsheet() { 
@@ -77,7 +81,6 @@ public class Calculator {
    * network is
    * associated to this file.
    *
-   * @param filename the name of the file.
    * @throws FileNotFoundException           if for some reason the file cannot be
    *                                         created or opened.
    * @throws MissingFileAssociationException if the current network does not have
@@ -105,7 +108,7 @@ public class Calculator {
    * network is
    * associated to this file.
    *
-   * @param filename the name of the file.
+   * @param fileName the name of the file.
    * @throws FileNotFoundException           if for some reason the file cannot be
    *                                         created or opened.
    * @throws MissingFileAssociationException if the current network does not have
@@ -133,7 +136,7 @@ public class Calculator {
   }
 
   /**
-   * @param filename name of the file containing the serialized application's
+   * @param fileName name of the file containing the serialized application's
    *                 state
    *                 to load.
    * @throws UnavailableFileException if the specified file does not exist or
@@ -155,8 +158,8 @@ public class Calculator {
   /**
    * Read text input file and create domain entities.
    *
-   * @param filename name of the text input file
-   * @throws ImportFileException
+   * @param filename name of the text input file.
+   * @throws ImportFileException when an error occurs importing the file.
    */
   public void importFile(String filename)
       throws ImportFileException {

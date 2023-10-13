@@ -7,7 +7,14 @@ import xxl.core.exception.EvaluationException;
  */
 public abstract class BinaryFunction extends Function {
 
+    /**
+     * The first content argument of the binary function.
+     */
     protected Content _arg1;
+
+    /**
+     * The second content argument of the binary function.
+     */
     protected Content _arg2;
 
     /**
