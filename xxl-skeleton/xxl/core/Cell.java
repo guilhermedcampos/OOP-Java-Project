@@ -9,8 +9,19 @@ import xxl.core.exception.EvaluationException;
  */
 public class Cell implements Serializable {
 
+    /**
+     * The row position of the cell within the spreadsheet.
+     */
     private int _row;
+
+    /**
+     * The column position of the cell within the spreadsheet.
+     */
     private int _col;
+
+    /**
+     * The content stored in the cell.
+     */
     private Content _content;
 
     /**

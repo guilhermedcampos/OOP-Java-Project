@@ -6,6 +6,10 @@ import xxl.core.exception.EvaluationException;
  * Represents a generic function in the spreadsheet.
  */
 public abstract class Function extends Content {
+    
+    /**
+     * The name of the function.
+     */
     private String _name;
 
     /**

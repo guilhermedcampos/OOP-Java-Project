@@ -6,6 +6,10 @@ import xxl.core.exception.EvaluationException;
  * Represents a literal integer value in the spreadsheet.
  */
 public class LiteralInteger extends Literal {
+    
+    /**
+     * The integer value stored in the literal.
+     */
     private int _value;
 
     /**

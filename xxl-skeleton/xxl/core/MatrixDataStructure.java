@@ -7,6 +7,9 @@ import java.io.Serializable;
  */
 public class MatrixDataStructure implements AbstractDataStructure, Serializable {
     
+    /**
+     * A two-dimensional array representing the cells in the spreadsheet.
+     */
     private Cell[][] _cells;
 
     /**

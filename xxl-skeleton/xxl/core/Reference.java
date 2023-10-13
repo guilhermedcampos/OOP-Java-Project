@@ -6,9 +6,17 @@ import xxl.core.exception.EvaluationException;
  * Represents a reference to a cell in the spreadsheet.
  */
 public class Reference extends Content {
-    private int _row;
-    private int _col;
 
+    /**
+     * The row position referred to by this reference.
+     */
+    private int _row;
+
+    /**
+     * The column position referred to by this reference.
+     */
+    private int _col;
+    
     /**
      * Initializes a new reference to a cell with the specified row and column.
      *

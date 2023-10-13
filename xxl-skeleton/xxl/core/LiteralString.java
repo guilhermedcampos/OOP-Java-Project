@@ -6,8 +6,12 @@ import xxl.core.exception.EvaluationException;
  * Represents a literal string value in the spreadsheet.
  */
 public class LiteralString extends Literal {
-    private String _value;
 
+    /**
+     * The string value stored in the literal.
+     */
+    private String _value;
+    
     /**
      * Constructs a new LiteralString with the specified string value.
      *

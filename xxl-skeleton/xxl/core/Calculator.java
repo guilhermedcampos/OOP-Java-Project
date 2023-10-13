@@ -22,13 +22,22 @@ import java.io.ObjectOutputStream;
  */
 public class Calculator {
 
+  /**
+   * The currently active spreadsheet.
+   */
   private static Spreadsheet _currentSpreadsheet;
-  private static ArrayList<Spreadsheet> _spreadsheets;
+
+  /**
+   * The current user who is using the application.
+   */
   private User _currentUser;
+
+  /**
+   * A list of users who have access to the application.
+   */
   private List<User> _users;
 
   public Calculator() {
-    _spreadsheets = new ArrayList<>();
     _users = new ArrayList<>();
   }
 
@@ -49,15 +58,6 @@ public class Calculator {
    */
   public static void setSpreadsheet(Spreadsheet spreadsheet) {
     _currentSpreadsheet = spreadsheet;
-  }
-
-  /**
-  * Adds a spreadsheet to the collection of spreadsheets.
-  *
-  * @param spreadsheet The spreadsheet to add to the collection.
-  */
-  public void addSpreadsheet(Spreadsheet spreadsheet) {
-    _spreadsheets.add(spreadsheet);
   }
 
   /**

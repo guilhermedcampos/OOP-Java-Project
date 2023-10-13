@@ -8,13 +8,41 @@ import xxl.core.exception.OutOfBoundsException;
  * Class representing a spreadsheet.
  */
 public class Spreadsheet implements Serializable {
+
+  /**
+   * A unique identifier for serialization.
+   */
   @Serial
   private static final long serialVersionUID = 202308312359L;
+
+  /**
+   * The name of the spreadsheet.
+   */
   private String _name;
+
+  /**
+   * An array used to store cut cells for clipboard operations.
+   */
   private Cell[] _cutBuffer;
+
+  /**
+   * The number of columns in the spreadsheet.
+   */
   private int _numCols;
+
+  /**
+   * The number of rows in the spreadsheet.
+   */
   private int _numRows;
+
+  /**
+   * The data structure used to store cells in the spreadsheet.
+   */
   private AbstractDataStructure _dataStructure;
+
+  /**
+   * A flag indicating whether the spreadsheet has been changed.
+   */
   private boolean _isChanged;
 
   /**
