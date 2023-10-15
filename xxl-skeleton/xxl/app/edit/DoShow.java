@@ -42,7 +42,6 @@ class DoShow extends Command<Spreadsheet> {
                 // Traverse the cells within the range and display their content
                 Cell[] cells = parsedRange.traverse();
                 for (Cell cell : cells) {
-                    //System.out.println(_receiver.getContentAt(cell.getRow(), cell.getCol()));
                     _display.addLine(cell.toString() + "|" + _receiver.getContentAt(cell.getRow(), cell.getCol()).toString());
                 }
             }

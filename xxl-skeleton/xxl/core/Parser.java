@@ -102,7 +102,7 @@ public class Parser {
     }
 
     // parse the beginning of an expression
-    Content parseContent(String contentSpecification)
+    public Content parseContent(String contentSpecification)
             throws UnrecognizedEntryException {
         char c = contentSpecification.charAt(0);
 
