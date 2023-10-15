@@ -73,5 +73,17 @@ public class Range {
         }
         return cells.toArray(new Cell[cells.size()]);
     }
-}
+
+    public boolean isRangeValid() throws OutOfBoundsException {
+        Spreadsheet spreadsheet = Calculator.getSpreadsheet();
+
+        for (int row = _startRow; row <= _endRow; row++) {
+            for (int col = _startCol; col <= _endCol; col++) {
+                if (!spreadsheet.isValidCell(row, col)) {
+                    throw new OutOfBoundsException("Invalid range");
+                }
+            }
+        }
+        return true;
+    }
 
