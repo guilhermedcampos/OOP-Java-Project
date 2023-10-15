@@ -62,7 +62,7 @@ public class Range {
      * @return An array of Cell objects representing the cells within the range.
      * @throws OutOfBoundsException if the traversal exceeds the bounds of the associated spreadsheet.
      */
-    public Cell[] traverse() throws OutOfBoundsException {
+    public Cell[] traverse() {
         Spreadsheet spreadsheet = Calculator.getSpreadsheet();
         List<Cell> cells = new ArrayList<>();
 
@@ -86,4 +86,4 @@ public class Range {
         }
         return true;
     }
-
+}

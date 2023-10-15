@@ -1,7 +1,6 @@
 package xxl.core;
 
 import xxl.core.exception.EvaluationException;
-import xxl.core.exception.OutOfBoundsException;
 
 public abstract class SequenceFunction extends Function {
 
@@ -14,23 +13,30 @@ public abstract class SequenceFunction extends Function {
 
     protected abstract Literal compute() throws EvaluationException;
 
-    public Cell[] getCellsFromRangeDescription(String rangeDescription) throws OutOfBoundsException {
+    public Cell[] getCellsFromRangeDescription(String rangeDescription)  {
         return Range.buildRange(_rangeDescription).traverse();
 
     }
 
+    protected Cell getFirstCell() {
+        return getCellsFromRangeDescription(_rangeDescription)[0];
+    }
+
+    protected Cell getLastCell() {
+        Cell[] cells = getCellsFromRangeDescription(_rangeDescription);
+        return getCellsFromRangeDescription(_rangeDescription)[cells.length-1];
+    }
+
     @Override
     public String toString() {
-        /* 
+
         try {
-            String result = value() + "=" + getName() + "(" + _arg1.toString() + ":" + _arg2.toString() + ")";
+            String result = value() + "=" + getName() + "(" + getFirstCell().toString() + ":" + getLastCell().toString() + ")";
             return Function.cleanStringAfterFirstEquals(result);
         } catch (EvaluationException e) {
-            String result = "#VALUE" + "=" + getName() + "(" + _arg1.toString() + "," + _arg2.toString() + ")";
+            String result = "#VALUE" + "=" + getName() + "(" + getFirstCell().toString() + "," + getLastCell().toString() + ")";
             return Function.cleanStringAfterFirstEquals(result);
         }
-        */
-        return "";
     }
     
 }

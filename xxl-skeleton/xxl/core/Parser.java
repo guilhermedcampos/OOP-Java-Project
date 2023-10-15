@@ -220,21 +220,25 @@ public class Parser {
      */
     private Content parseIntervalFunction(String functionName, String rangeDescription)
             throws UnrecognizedEntryException {
+        Content result;
+
         switch (functionName) {
             case "CONCAT":
-                // return new Concat(range);
-                return null;
+                result = new Concat(rangeDescription);
+                break;
             case "COASLECE":
-                // return new Coaslece(range);
-                return null;
+                result = new Coaslece(rangeDescription);
+                break;
             case "PRODUCT":
-                // return new Product(range);
-                return null;
+                result = new Product(rangeDescription);
+                break;
             case "AVERAGE":
-                // return new Average(range);
-                return null;
+                result = new Average(rangeDescription);
+                break;
+                
             default:
                 throw new UnrecognizedEntryException("Função inválida: " + functionName);
         }
+        return result;
     }
 }

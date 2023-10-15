@@ -168,14 +168,10 @@ public class Spreadsheet implements Serializable {
    * @return The cell at the specified position.
    * @throws OutOfBoundsException if the specified cell is out of bounds.
    */
-  public Cell getCell(int row, int col) throws OutOfBoundsException {
-    if (isValidCell(row, col)) {
+  public Cell getCell(int row, int col) {
         return _dataStructure.getCell(row, col);
-    } else {
-        throw new OutOfBoundsException("Cell is out of bounds.");
-    }
   }
-
+  
   /**
   * Insert content into the cell at the specified row and column.
   *

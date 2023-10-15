@@ -37,11 +37,14 @@ class DoShow extends Command<Spreadsheet> {
         try {
             // Attempt to parse the given range string into a range object
             Range parsedRange = Range.buildRange(range);
-
-            // Traverse the cells within the range and display their content
-            Cell[] cells = parsedRange.traverse();
-            for (Cell cell : cells) {
-                _display.addLine(cell.toString() + "|" + _receiver.getContentAt(cell.getRow(), cell.getCol()).toString());
+            
+            if (parsedRange.isRangeValid()) {
+                // Traverse the cells within the range and display their content
+                Cell[] cells = parsedRange.traverse();
+                for (Cell cell : cells) {
+                    //System.out.println(_receiver.getContentAt(cell.getRow(), cell.getCol()));
+                    _display.addLine(cell.toString() + "|" + _receiver.getContentAt(cell.getRow(), cell.getCol()).toString());
+                }
             }
 
             _display.display();
