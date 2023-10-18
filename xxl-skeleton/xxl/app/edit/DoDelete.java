@@ -23,16 +23,8 @@ class DoDelete extends Command<Spreadsheet> {
   protected final void execute() throws CommandException {
     String range = stringField("range");
         try {
-            // Attempt to parse the given range string into a range object
-            Range parsedRange = Range.buildRange(range);
-            
-            if (parsedRange.isRangeValid()) {
-                // Traverse the cells within the range and display their content
-                Cell[] cells = parsedRange.traverse();
-                for (Cell cell : cells) {
-                  _receiver.getSpreadsheet().insert(cell.getRow(),cell.getCol(), new Null());
-                }
-            }
+            // Call the clear method with the specified range
+            _receiver.getSpreadsheet().clear(range);
         } catch (OutOfBoundsException e) {
             // If an out-of-bounds exception occurs, throw an InvalidCellRangeException
             throw new InvalidCellRangeException(range);

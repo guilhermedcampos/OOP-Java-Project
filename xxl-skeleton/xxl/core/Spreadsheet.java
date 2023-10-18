@@ -2,6 +2,8 @@ package xxl.core;
 
 import java.io.Serial;
 import java.io.Serializable;
+
+import xxl.app.exception.InvalidCellRangeException;
 import xxl.core.exception.OutOfBoundsException;
 
 /**
@@ -136,8 +138,17 @@ public class Spreadsheet implements Serializable {
    *
    * @param range The range from which to clear data.
    */
-  public void clear(String range) {
+  public void clear(String range) throws OutOfBoundsException {
+    // Attempt to parse the given range string into a range object
+    Range parsedRange = Range.buildRange(range);
     
+    if (parsedRange.isRangeValid()) {
+        // Traverse the cells within the range and display their content
+        Cell[] cells = parsedRange.traverse();
+        for (Cell cell : cells) {
+          insert(cell.getRow(),cell.getCol(), new Null());
+        }
+    }
   }
 
   /**
