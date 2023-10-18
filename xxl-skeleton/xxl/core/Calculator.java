@@ -64,6 +64,10 @@ public class Calculator {
     _currentSpreadsheet = spreadsheet;
   }
 
+  public CutBuffer getCutBuffer() {
+    return _currentSpreadsheet.getCutBuffer();
+  }
+
   /**
   * Creates a new user and adds them to the collection of users.
   *

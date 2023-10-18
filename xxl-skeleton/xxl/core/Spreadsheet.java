@@ -3,7 +3,6 @@ package xxl.core;
 import java.io.Serial;
 import java.io.Serializable;
 
-import xxl.app.exception.InvalidCellRangeException;
 import xxl.core.exception.OutOfBoundsException;
 
 /**
@@ -25,7 +24,7 @@ public class Spreadsheet implements Serializable {
   /**
    * An array used to store cut cells for clipboard operations.
    */
-  private Cell[] _cutBuffer;
+  private CutBuffer _cutBuffer;
 
   /**
    * The number of columns in the spreadsheet.
@@ -78,7 +77,7 @@ public class Spreadsheet implements Serializable {
   public Spreadsheet getSpreadsheet() {
     return this;
   }
-
+  
   /**
    * Get the name of the spreadsheet.
    *
@@ -120,7 +119,7 @@ public class Spreadsheet implements Serializable {
    *
    * @return The cut buffer of the spreadsheet.
    */
-  public Cell[] getCutBufer() {
+  public CutBuffer getCutBuffer() {
     return _cutBuffer;
   }
 
@@ -129,9 +128,25 @@ public class Spreadsheet implements Serializable {
    *
    * @param range The range from which to copy data.
    */
-  public void copy(String range) {
-    
+  public void copy(String range) throws OutOfBoundsException {
+    Range parsedRange = Range.buildRange(range);
+    Cell[] cells = parsedRange.traverse();
+
+    if (parsedRange.isRangeValid()) {
+        CutBuffer cutBuffer = new CutBuffer();
+        cutBuffer.setCells(new Cell[cells.length]);
+
+        for (int i = 0; i < cells.length; i++) {
+            Cell originalCell = cells[i];
+            cutBuffer.getCells()[i] = new Cell(originalCell.getRow(), originalCell.getCol());
+            cutBuffer.getCells()[i].setContent(getContentAt(originalCell.getRow(), originalCell.getCol()));
+        }
+
+        _cutBuffer = cutBuffer;
+    }
   }
+
+
 
   /**
    * Clear data in the specified range.

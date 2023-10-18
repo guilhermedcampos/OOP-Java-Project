@@ -6,23 +6,14 @@ public class CutBuffer {
     public Cell[] getCells() {
         return _cells;
     }
-    public void addCell(Cell cell) {
+
+    public void setCells(Cell[] cells) {
+        _cells = cells;
+    }
+
+    public Content getContent(int index) {
+        return _cells[index].getContent();
 
     }
 
-    public void removeCell(Cell cell) {
-
-    }
-
-    public void copy() {
-
-    }
-
-    public void cut() {
-
-    }
-
-    public void paste() {
-        
-    }
 }
