@@ -44,6 +44,7 @@ public class Calculator {
   public Calculator() {
     _users = new ArrayList<>();
   }
+  
 
   /**
    * Return the current spreadsheet.

@@ -1,0 +1,25 @@
+*** testsBoth/A-026-026-M-ok.out	2023-10-20 13:53:43.099842488 +0100
+--- testsBoth/A-026-026-M-ok.outhyp	2023-10-20 13:59:25.741261130 +0100
+***************
+*** 29,36 ****
+  2 - Procurar funções
+  0 - Sair
+  Escolha uma opção: 1
+! Valor a procurar: 49
+! 1;2|49
+  Menu de Consultas
+  1 - Procurar valores
+  2 - Procurar funções
+--- 29,40 ----
+  2 - Procurar funções
+  0 - Sair
+  Escolha uma opção: 1
+! Menu de Consultas
+! 1 - Procurar valores
+! 2 - Procurar funções
+! 0 - Sair
+! Escolha uma opção: 49
+! Opção inválida!
+  Menu de Consultas
+  1 - Procurar valores
+  2 - Procurar funções

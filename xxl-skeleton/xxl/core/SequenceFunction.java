@@ -34,7 +34,7 @@ public abstract class SequenceFunction extends Function {
             String result = value() + "=" + getName() + "(" + getFirstCell().toString() + ":" + getLastCell().toString() + ")";
             return Function.cleanStringAfterFirstEquals(result);
         } catch (EvaluationException e) {
-            String result = "#VALUE" + "=" + getName() + "(" + getFirstCell().toString() + "," + getLastCell().toString() + ")";
+            String result = "#VALUE" + "=" + getName() + "(" + getFirstCell().toString() + ":" + getLastCell().toString() + ")";
             return Function.cleanStringAfterFirstEquals(result);
         }
     }

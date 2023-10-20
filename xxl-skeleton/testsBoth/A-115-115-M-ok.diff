@@ -1,0 +1,19 @@
+*** testsBoth/A-115-115-M-ok.out	2023-10-20 13:53:43.127842262 +0100
+--- testsBoth/A-115-115-M-ok.outhyp	2023-10-20 13:59:28.765239688 +0100
+***************
+*** 17,23 ****
+  0 - Sair
+  Escolha uma opção: 1
+  Especifique a gama (startline;startcol:endline;endcol): 2;3
+! 2;3|'abc=COALESCE(1;1:1;4)
+  Menu de Edição
+  1 - Visualizar
+  2 - Inserir
+--- 17,23 ----
+  0 - Sair
+  Escolha uma opção: 1
+  Especifique a gama (startline;startcol:endline;endcol): 2;3
+! 2;3|
+  Menu de Edição
+  1 - Visualizar
+  2 - Inserir

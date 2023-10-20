@@ -1,0 +1,29 @@
+*** testsBoth/A-031-031-M-ok.out	2023-10-20 13:53:43.107842424 +0100
+--- testsBoth/A-031-031-M-ok.outhyp	2023-10-20 13:59:25.921259853 +0100
+***************
+*** 29,40 ****
+  2 - Procurar funções
+  0 - Sair
+  Escolha uma opção: 2
+- Função a procurar: ADD
+- 2;3|48=ADD(2;2,5)
+  Menu de Consultas
+  1 - Procurar valores
+  2 - Procurar funções
+  0 - Sair
+  Escolha uma opção: 0
+  Menu Principal
+  1 - Novo
+--- 29,40 ----
+  2 - Procurar funções
+  0 - Sair
+  Escolha uma opção: 2
+  Menu de Consultas
+  1 - Procurar valores
+  2 - Procurar funções
+  0 - Sair
++ Escolha uma opção: ADD
++ Número inválido!
+  Escolha uma opção: 0
+  Menu Principal
+  1 - Novo

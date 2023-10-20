@@ -48,7 +48,7 @@ public class Reference extends Content {
     public String toString() {
         try {
             // if the value is an empty cell
-            if (value().toString() == "") {
+            if (value().toString().equals("")) {
                 return "#VALUE" + "=" + _row + ";" + _col;
             }
             return value().toString() + "=" + _row + ";" + _col;

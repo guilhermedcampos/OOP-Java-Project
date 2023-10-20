@@ -1,0 +1,28 @@
+*** testsBoth/A-032-032-M-ok.out	2023-10-20 13:53:43.107842424 +0100
+--- testsBoth/A-032-032-M-ok.outhyp	2023-10-20 13:59:25.973259484 +0100
+***************
+*** 11,21 ****
+  2 - Procurar funções
+  0 - Sair
+  Escolha uma opção: 2
+- Função a procurar: DIV
+  Menu de Consultas
+  1 - Procurar valores
+  2 - Procurar funções
+  0 - Sair
+  Escolha uma opção: 0
+  Menu Principal
+  1 - Novo
+--- 11,22 ----
+  2 - Procurar funções
+  0 - Sair
+  Escolha uma opção: 2
+  Menu de Consultas
+  1 - Procurar valores
+  2 - Procurar funções
+  0 - Sair
++ Escolha uma opção: DIV
++ Número inválido!
+  Escolha uma opção: 0
+  Menu Principal
+  1 - Novo
