@@ -25,7 +25,7 @@ class DoCopy extends Command<Spreadsheet> {
     try {
       
       if (parsedRange.isRangeValid()) {
-        // Call the clear method with the specified range
+        // Call the copy method with the specified range
         _receiver.getSpreadsheet().copy(range);
 
       }
