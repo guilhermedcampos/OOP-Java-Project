@@ -226,8 +226,8 @@ public class Parser {
             case "CONCAT":
                 result = new Concat(rangeDescription);
                 break;
-            case "COASLECE":
-                result = new Coaslece(rangeDescription);
+            case "COALESCE":
+                result = new Coalesce(rangeDescription);
                 break;
             case "PRODUCT":
                 result = new Product(rangeDescription);

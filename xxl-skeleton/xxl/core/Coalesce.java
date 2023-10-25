@@ -2,10 +2,10 @@ package xxl.core;
 
 import xxl.core.exception.EvaluationException;
 
-public class Coaslece extends SequenceFunction {
+public class Coalesce extends SequenceFunction {
 
-    public Coaslece(String rangeDescription){
-        super("COASLECE", rangeDescription);
+    public Coalesce(String rangeDescription){
+        super("COALESCE", rangeDescription);
         
     }
 
@@ -16,7 +16,6 @@ public class Coaslece extends SequenceFunction {
         for (Cell c : cells) {
             try {
                 result = c.getContent().asString();
-                System.out.println(c.getContent().asString());
                 return new LiteralString(result);
             } catch (EvaluationException e){
                 continue;
