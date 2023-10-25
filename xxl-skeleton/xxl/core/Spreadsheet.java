@@ -219,7 +219,7 @@ public class Spreadsheet implements Serializable {
 
     if (parsedRange.isRangeValid()) {
 
-            for (int i = 0; i < _cutBuffer.getContents().length; i++) {
+            for (int i = 0; i < _cutBuffer.getContents().length && i < cells.length; i++) {
               if (cells[i].getRow() < _numRows && cells[i].getCol() < _numCols) { // check if the spreadsheet has reached its end
                 insert(cells[i].getRow(),cells[i].getCol(),_cutBuffer.getContent(i));
               }
