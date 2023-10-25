@@ -28,15 +28,25 @@ public abstract class BinaryFunction extends Function {
         super(name);
         _arg1 = arg1;
         _arg2 = arg2;
+
+        // Check if arg1 is a reference and add the observer
+        if (_arg1.isReference()) {
+            ((Reference)_arg1).addFunctionObserver(this);
+        }
+
+        // Check if arg2 is a reference and add the observer
+        if (_arg2.isReference()) {
+            ((Reference)_arg2).addFunctionObserver(this);
+        }
+        update();
     }
 
     /**
      * Computes the result of the binary function.
      *
      * @return the result of the binary function as a Literal.
-     * @throws EvaluationException  if there is an error during evaluation.
      */
-    protected abstract Literal compute() throws EvaluationException;
+    public abstract void update();
 
 
     public String cleanArgument(String arg) {
@@ -57,13 +67,8 @@ public abstract class BinaryFunction extends Function {
      */
     @Override
     public String toString() {
-        try {
-            String result = value() + "=" + getName() + "(" + cleanArgument(_arg1.toString()) + "," + cleanArgument(_arg2.toString()) + ")";
-            return result;
-        } catch (EvaluationException e) {
-            String result = "#VALUE" + "=" + getName() + "(" + cleanArgument(_arg1.toString()) + "," + cleanArgument(_arg2.toString()) + ")";
-            return result;
-        }
+        String result = _value.toString() + "=" + getName() + "(" + cleanArgument(_arg1.toString()) + "," + cleanArgument(_arg2.toString()) + ")";
+        return result;
     }
 
 }

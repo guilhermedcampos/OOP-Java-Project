@@ -43,4 +43,8 @@ public abstract class Content implements Serializable {
     public int asInt() throws EvaluationException {
         return value().asInt();
     }
+
+    public boolean isReference(){
+        return false;
+    }
 }

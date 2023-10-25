@@ -10,16 +10,19 @@ public class Product extends SequenceFunction {
     }
 
     @Override
-    protected Literal compute() throws EvaluationException {
-        int total = 1;
+    public void update() {
+    int total = 1;
+        try {
 
         Cell[] cells = getCellsFromRangeDescription(_rangeDescription);
 
 
         for (Cell cell : cells) {
-            total *= cell.value().asInt();
+            total *= cell.getContent().asInt();
         }
-
-    return new LiteralInteger(total);
+        _value = new LiteralInteger(total);
+        } catch (EvaluationException e){
+            _value = new LiteralException();
+        }
     }
 }

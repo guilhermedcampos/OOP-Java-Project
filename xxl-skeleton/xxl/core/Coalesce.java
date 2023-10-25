@@ -10,17 +10,18 @@ public class Coalesce extends SequenceFunction {
     }
 
     @Override
-    protected Literal compute() throws EvaluationException {
+    public void update() {
         Cell[] cells = getCellsFromRangeDescription(_rangeDescription);
         String result;
         for (Cell c : cells) {
             try {
                 result = c.getContent().asString();
-                return new LiteralString(result);
+                _value = new LiteralString(result);
+                return;
             } catch (EvaluationException e){
                 continue;
             }
         }
-    return new LiteralString("");
+    _value = new LiteralString("");
     }
 }

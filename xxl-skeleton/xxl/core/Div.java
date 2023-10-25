@@ -24,11 +24,11 @@ public class Div extends BinaryFunction {
      * @throws EvaluationException  if there is an error during evaluation.
      */
     @Override
-    protected Literal compute() throws EvaluationException {
+    public void update(){
         try {
-            return new LiteralInteger(_arg1.value().asInt() / _arg2.value().asInt());
-        } catch (ArithmeticException e) {
-            throw new EvaluationException("Division by zero not possible.");
+        _value = new LiteralInteger(_arg1.value().asInt() / _arg2.value().asInt());
+        } catch (EvaluationException | ArithmeticException e) {
+        _value = new LiteralException();
         }
     }
 }

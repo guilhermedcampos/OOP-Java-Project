@@ -9,9 +9,14 @@ public abstract class SequenceFunction extends Function {
     public SequenceFunction(String name, String range) {
         super(name);
         _rangeDescription = range;
+        Cell[] rangeCells = getCellsFromRangeDescription(_rangeDescription);
+        for(Cell cell : rangeCells){
+            cell.addObserver(this);
+        }
+        update();
     }
 
-    protected abstract Literal compute() throws EvaluationException;
+    public abstract void update();
 
     public Cell[] getCellsFromRangeDescription(String rangeDescription)  {
         return Range.buildRange(_rangeDescription).traverse();

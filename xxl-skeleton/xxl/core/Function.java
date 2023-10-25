@@ -5,12 +5,14 @@ import xxl.core.exception.EvaluationException;
 /**
  * Represents a generic function in the spreadsheet.
  */
-public abstract class Function extends Content {
+public abstract class Function extends Content implements Observer {
 
     /**
      * The name of the function.
      */
     private String _name;
+
+    protected Literal _value;
 
     /**
      * Constructs a new function with the given name.
@@ -34,9 +36,8 @@ public abstract class Function extends Content {
      * Computes the result of the function.
      *
      * @return the result of the function as a Literal.
-     * @throws EvaluationException  if there is an error during evaluation.
      */
-    protected abstract Literal compute() throws EvaluationException;
+    public abstract void update();
 
     /**
      * Gets the result of the function as a string.
@@ -45,7 +46,7 @@ public abstract class Function extends Content {
      * @throws EvaluationException  if there is an error during evaluation.
      */
     public String asString() throws EvaluationException {
-        return compute().asString();
+        return _value.asString();
     }
 
     /**
@@ -55,7 +56,7 @@ public abstract class Function extends Content {
      * @throws EvaluationException  if there is an error during evaluation.
      */
     public int asInt() throws EvaluationException {
-        return compute().asInt();
+        return _value.asInt();
     }
 
     /**
@@ -65,11 +66,11 @@ public abstract class Function extends Content {
      * @throws EvaluationException  if there is an error during evaluation.
      */
     public Literal value() throws EvaluationException{
-        return compute();
+        return _value;
     }
 
 
-        /**
+    /*
      * Cleans the input string after the first equals sign ('=') by removing
      * everything between the first '(' and '=' (including '=') and removing
      * everything between ',' and the last '='. This method is used to format the

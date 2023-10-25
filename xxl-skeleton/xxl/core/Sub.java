@@ -23,7 +23,11 @@ public class Sub extends BinaryFunction {
      * @throws EvaluationException  if there's an error during evaluation.
      */
     @Override
-    protected Literal compute() throws EvaluationException {
-        return new LiteralInteger(_arg1.value().asInt() - _arg2.value().asInt());
+    public void update() {
+       try{
+        _value = new LiteralInteger(_arg1.value().asInt() - _arg2.value().asInt());
+       } catch (EvaluationException e){
+        _value = new LiteralException();
+       }
     }
 }

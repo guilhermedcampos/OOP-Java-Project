@@ -10,7 +10,7 @@ public class Concat extends SequenceFunction {
     }
 
     @Override
-    protected Literal compute() throws EvaluationException {
+    public void update() {
         Cell[] cells = getCellsFromRangeDescription(_rangeDescription);
         String total = "";
 
@@ -23,6 +23,6 @@ public class Concat extends SequenceFunction {
         }
 
 
-    return new LiteralString(total.toString());
+    _value = new LiteralString(total.toString());
     }
 }

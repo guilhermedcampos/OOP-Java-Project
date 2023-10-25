@@ -56,4 +56,21 @@ public class Reference extends Content {
             return "#VALUE" + "=" + _row + ";" + _col;
         }
     }
+
+
+    @Override
+    public boolean isReference() {
+        return true;
+    }
+
+    /**
+     * Adds an observer to the referenced cell.
+     *
+     * @param function the function that is the observer.
+     */
+    public void addFunctionObserver(Function function) {
+        // Add the function as an observer to the referenced cell
+            Cell referencedCell = Calculator.getSpreadsheet().getCell(_row, _col);
+            referencedCell.addObserver(function);
+    }
 }

@@ -24,7 +24,11 @@ public class Mul extends BinaryFunction {
      *                              multiplication.
      */
     @Override
-    protected Literal compute() throws EvaluationException{
-        return new LiteralInteger(_arg1.value().asInt() * _arg2.value().asInt());
+    public void update() {
+        try{
+        _value = new LiteralInteger(_arg1.value().asInt() * _arg2.value().asInt());
+        } catch (EvaluationException e){
+        _value = new LiteralException();
+        }
     }
 }

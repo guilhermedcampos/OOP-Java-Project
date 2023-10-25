@@ -1,6 +1,8 @@
 package xxl.core;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.ArrayList;
 
 import xxl.core.exception.EvaluationException;
 
@@ -23,6 +25,22 @@ public class Cell implements Serializable {
      * The content stored in the cell.
      */
     private Content _content;
+
+    private List<Observer> _observers = new ArrayList<>();
+
+    public void addObserver(Observer observer) {
+        _observers.add(observer);
+    }
+
+    public void removeObserver(Observer observer) {
+        _observers.remove(observer);
+    }
+
+    private void notifyObservers() {
+        for (Observer observer : _observers) {
+            observer.update();
+        }
+    }
 
     /**
      * Constructs a cell with the specified row and column indices.
@@ -80,6 +98,7 @@ public class Cell implements Serializable {
      */
     protected void setContent(Content content) {
         _content = content;
+        notifyObservers();
     }
 
     /**

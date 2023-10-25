@@ -10,10 +10,11 @@ public class Average extends SequenceFunction {
     }
 
     @Override
-    protected Literal compute() throws EvaluationException {
+    public void update() {
         int total = 0;
         int numCells;
     
+            try {
             Cell[] cells = getCellsFromRangeDescription(_rangeDescription);
             numCells = cells.length;
     
@@ -22,9 +23,12 @@ public class Average extends SequenceFunction {
             }
     
             if (numCells > 0) {
-                return new LiteralInteger(total / numCells);
-            } else {
-                throw new EvaluationException("Division by zero: the range has no cells.");
+                _value = new LiteralInteger(total / numCells);}
+            else {
+                _value = new LiteralException();
+            }
+            } catch(EvaluationException e) {
+                _value = new LiteralException();
             }
     }
 }
