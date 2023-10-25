@@ -16,6 +16,7 @@ public class Coaslece extends SequenceFunction {
         for (Cell c : cells) {
             try {
                 result = c.getContent().asString();
+                System.out.println(c.getContent().asString());
                 return new LiteralString(result);
             } catch (EvaluationException e){
                 continue;
