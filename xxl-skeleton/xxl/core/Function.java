@@ -78,7 +78,7 @@ public abstract class Function extends Content {
      * @param input the input string to be cleaned.
      * @return a cleaned string representation.
      */
-    protected static String cleanStringAfterFirstEquals(String input) {
+    protected String cleanStringAfterFirstEquals(String input) {
         int firstEqualsIndex = input.indexOf('=');
         if (firstEqualsIndex >= 0) {
             String beforeFirstEquals = input.substring(0, firstEqualsIndex + 1);
@@ -94,4 +94,5 @@ public abstract class Function extends Content {
         }
         return input;
     }
+    
 }

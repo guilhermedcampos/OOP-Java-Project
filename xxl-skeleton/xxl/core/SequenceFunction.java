@@ -32,10 +32,10 @@ public abstract class SequenceFunction extends Function {
 
         try {
             String result = value() + "=" + getName() + "(" + getFirstCell().toString() + ":" + getLastCell().toString() + ")";
-            return Function.cleanStringAfterFirstEquals(result);
+            return cleanStringAfterFirstEquals(result);
         } catch (EvaluationException e) {
             String result = "#VALUE" + "=" + getName() + "(" + getFirstCell().toString() + ":" + getLastCell().toString() + ")";
-            return Function.cleanStringAfterFirstEquals(result);
+            return cleanStringAfterFirstEquals(result);
         }
     }
     

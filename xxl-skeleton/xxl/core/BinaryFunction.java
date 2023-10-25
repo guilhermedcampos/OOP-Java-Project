@@ -38,6 +38,18 @@ public abstract class BinaryFunction extends Function {
      */
     protected abstract Literal compute() throws EvaluationException;
 
+
+    public String cleanArgument(String arg) {
+        if (arg.contains("=")) {
+            // If there's an '=', keep everything after it
+            int equalsIndex = arg.indexOf('=');
+            return arg.substring(equalsIndex + 1);
+        } else {
+            // If no '=', or if there's a '#VALUE', return the argument as is
+            return arg;
+        }
+    }
+
     /**
      * Returns a string representation of the binary function.
      *
@@ -46,11 +58,11 @@ public abstract class BinaryFunction extends Function {
     @Override
     public String toString() {
         try {
-            String result = value() + "=" + getName() + "(" + _arg1.toString() + "," + _arg2.toString() + ")";
-            return cleanStringAfterFirstEquals(result);
+            String result = value() + "=" + getName() + "(" + cleanArgument(_arg1.toString()) + "," + cleanArgument(_arg2.toString()) + ")";
+            return result;
         } catch (EvaluationException e) {
-            String result = "#VALUE" + "=" + getName() + "(" + _arg1.toString() + "," + _arg2.toString() + ")";
-            return cleanStringAfterFirstEquals(result);
+            String result = "#VALUE" + "=" + getName() + "(" + cleanArgument(_arg1.toString()) + "," + cleanArgument(_arg2.toString()) + ")";
+            return result;
         }
     }
 
