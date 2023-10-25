@@ -143,7 +143,7 @@ public class Spreadsheet implements Serializable {
         }
 
         _cutBuffer = cutBuffer;
-    }
+    } 
   }
 
 

@@ -80,7 +80,7 @@ public class Range {
         if (_startCol != _endCol && _startRow != _endRow) {
             throw new OutOfBoundsException("Invalid range.");
         }
-        
+
         for (int row = _startRow; row <= _endRow; row++) {
             for (int col = _startCol; col <= _endCol; col++) {
                 if (!spreadsheet.isValidCell(row, col)) {
