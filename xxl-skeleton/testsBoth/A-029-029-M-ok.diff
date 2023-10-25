@@ -1,5 +1,5 @@
-*** testsBoth/A-029-029-M-ok.out	2023-10-20 13:53:43.103842456 +0100
---- testsBoth/A-029-029-M-ok.outhyp	2023-10-20 23:37:22.379066210 +0100
+*** testsBoth/A-029-029-M-ok.out	Wed Oct 25 17:26:08 2023
+--- testsBoth/A-029-029-M-ok.outhyp	Wed Oct 25 20:13:30 2023
 ***************
 *** 11,17 ****
   2 - Procurar funções

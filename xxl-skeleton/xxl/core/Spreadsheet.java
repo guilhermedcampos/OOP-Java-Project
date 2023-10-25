@@ -123,27 +123,37 @@ public class Spreadsheet implements Serializable {
     return _cutBuffer;
   }
 
-  /**
-   * Copy data from the specified range.
-   *
-   * @param range The range from which to copy data.
-   */
-  public void copy(String range) throws OutOfBoundsException {
+/**
+ * Copy data from the specified range.
+ *
+ * @param range The range from which to copy data.
+ */
+public void copy(String range) throws OutOfBoundsException {
     Range parsedRange = Range.buildRange(range);
     Cell[] cells = parsedRange.traverse();
+    boolean variesInColumns = false;
 
     if (parsedRange.isRangeValid()) {
         CutBuffer cutBuffer = new CutBuffer();
-        cutBuffer.setContent(new Content[cells.length]);
+        
+        if (cells.length > 1) {
+            if (cells[0].getCol() != cells[1].getCol()){
+             variesInColumns = true;
+            }
+        }
 
+        cutBuffer.setContents(new Content[cells.length]);
         for (int i = 0; i < cells.length; i++) {
             Content originalContent = cells[i].getContent();
             cutBuffer.getContents()[i] = originalContent;
         }
 
         _cutBuffer = cutBuffer;
-    } 
-  }
+
+        // Set the flag indicating whether the range varies in columns
+        _cutBuffer.setVariesInColumns(variesInColumns);
+    }
+}
 
 
 
@@ -218,14 +228,44 @@ public class Spreadsheet implements Serializable {
     Cell[] cells = parsedRange.traverse();
 
     if (parsedRange.isRangeValid()) {
+        if (cells.length == 1) {
+            // If the range consists of a single cell, check how the cut buffer varies
+            boolean variesInColumns = _cutBuffer.variesInColumns();
 
-            for (int i = 0; i < _cutBuffer.getContents().length && i < cells.length; i++) {
-              if (cells[i].getRow() < _numRows && cells[i].getCol() < _numCols) { // check if the spreadsheet has reached its end
-                insert(cells[i].getRow(),cells[i].getCol(),_cutBuffer.getContent(i));
-              }
+            for (int i = 0; i < _cutBuffer.getContents().length; i++) {
+                if (variesInColumns) {
+                    // If the cut buffer varies in columns, paste along the line
+                    int newRow = cells[0].getRow();
+                    int newCol = cells[0].getCol() + i;
+
+                    if (newRow <= _numRows && newCol <= _numCols) {
+                        insert(newRow, newCol, _cutBuffer.getContent(i));
+                    }
+                } else {
+                    // If the cut buffer varies in rows, paste along the column
+                    int newRow = cells[0].getRow() + i;
+                    int newCol = cells[0].getCol();
+
+                    if (newRow <= _numRows && newCol <= _numCols) {
+                        insert(newRow, newCol, _cutBuffer.getContent(i));
+                    }
+                }
             }
-    } 
-  }
+        } else {
+            // If the range consists of multiple cells, paste along the provided range
+            for (int i = 0; i < cells.length && i < _cutBuffer.getContents().length; i++) {
+                int newRow = cells[i].getRow();
+                int newCol = cells[i].getCol();
+
+                if (newRow <= _numRows && newCol <= _numCols) {
+                    insert(newRow, newCol, _cutBuffer.getContent(i));
+                }
+            }
+        }
+    }
+}
+
+
 
   /**
   * Get the content at the specified row and column.
