@@ -1,18 +1,18 @@
 package xxl.core;
 
 public class CutBuffer { 
-    private Cell[] _cells;
+    private Content[] _contents;
 
-    public Cell[] getCells() {
-        return _cells;
+    public Content[] getContents() {
+        return _contents;
     }
 
-    public void setCells(Cell[] cells) {
-        _cells = cells;
+    public void setContent(Content[] contents) {
+        _contents = contents;
     }
 
     public Content getContent(int index) {
-        return _cells[index].getContent();
+        return _contents[index];
 
     }
 

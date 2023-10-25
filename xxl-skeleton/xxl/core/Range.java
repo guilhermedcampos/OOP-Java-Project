@@ -29,6 +29,14 @@ public class Range {
         _endCol = endCol;
     }
 
+    public int getFirstRow(){
+        return _startRow;
+    }
+
+    public int getFirstCol(){
+        return _startCol;
+    }
+
     /**
      * Creates a Range object from a range description string.
      *
@@ -90,4 +98,6 @@ public class Range {
         }
         return true;
     }
+
+
 }

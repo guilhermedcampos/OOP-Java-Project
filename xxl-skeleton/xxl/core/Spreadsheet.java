@@ -134,12 +134,11 @@ public class Spreadsheet implements Serializable {
 
     if (parsedRange.isRangeValid()) {
         CutBuffer cutBuffer = new CutBuffer();
-        cutBuffer.setCells(new Cell[cells.length]);
+        cutBuffer.setContent(new Content[cells.length]);
 
         for (int i = 0; i < cells.length; i++) {
-            Cell originalCell = cells[i];
-            cutBuffer.getCells()[i] = new Cell(originalCell.getRow(), originalCell.getCol());
-            cutBuffer.getCells()[i].setContent(getContentAt(originalCell.getRow(), originalCell.getCol()));
+            Content originalContent = cells[i].getContent();
+            cutBuffer.getContents()[i] = originalContent;
         }
 
         _cutBuffer = cutBuffer;
@@ -212,6 +211,20 @@ public class Spreadsheet implements Serializable {
     } else {
         throw new OutOfBoundsException("Cell is out of bounds.");
     }
+  }
+
+  public void paste(String range) throws OutOfBoundsException {
+    Range parsedRange = Range.buildRange(range);
+    Cell[] cells = parsedRange.traverse();
+
+    if (parsedRange.isRangeValid()) {
+
+            for (int i = 0; i < _cutBuffer.getContents().length; i++) {
+              if (cells[i].getRow() < _numRows && cells[i].getCol() < _numCols) { // check if the spreadsheet has reached its end
+                insert(cells[i].getRow(),cells[i].getCol(),_cutBuffer.getContent(i));
+              }
+            }
+    } 
   }
 
   /**
