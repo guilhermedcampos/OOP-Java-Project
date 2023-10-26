@@ -36,10 +36,9 @@ public class Reference extends Content {
      * Retrieves the value of the referenced cell.
      *
      * @return the value of the referenced cell as a `Literal`.
-     * @throws EvaluationException  if there is an error during evaluation.
      */
     @Override
-    protected Literal value() throws EvaluationException {
+    protected Literal value() {
         return Calculator.getSpreadsheet().getContentAt(_row, _col).value();
     }
 
@@ -50,15 +49,10 @@ public class Reference extends Content {
      */
     @Override
     public String toString() {
-        try {
-            // if the value is an empty cell
             if (value().toString().equals("")) {
                 return "#VALUE" + "=" + _row + ";" + _col;
             }
             return value().toString() + "=" + _row + ";" + _col;
-        } catch (EvaluationException e) {
-            return "#VALUE" + "=" + _row + ";" + _col;
-        }
     }
 
 

@@ -24,25 +24,34 @@ public class SearchValueVisitor implements ContentVisitor {
     }
 
     @Override
-    public void visit(Literal content, Cell cell) {
-        try {
-            if (content.value().asString().equals(_searchTerm)) {
+    public void visit(LiteralString content, Cell cell) {
+            if (content.value().toString().equals(_searchTerm)) {
                 _matchingCells.add(cell);
             }
-        } catch (EvaluationException e) {
-            // Handle the exception, e.g., log it or ignore
-        }
+    }
+
+    @Override
+    public void visit(LiteralInteger content, Cell cell) {
+            if (content.value().toString().equals(_searchTerm)) {
+                _matchingCells.add(cell);
+            }
+    }
+
+    @Override
+    public void visit(LiteralException content, Cell cell) {
+        // Do nothing for literals in the context of searching for functions
+    }
+
+    @Override
+    public void visit(Null content, Cell cell) {
+        // Do nothing for literals in the context of searching for functions
     }
 
     @Override
     public void visit(Reference content, Cell cell) {
-        try {
-            if (content.value().asString().equals(_searchTerm)) {
+            if (content.value().toString().equals(_searchTerm)) {
                 _matchingCells.add(cell);
             }
-        } catch (EvaluationException e) {
-            // Handle the exception, e.g., log it or ignore
-        }
     }
 
     @Override

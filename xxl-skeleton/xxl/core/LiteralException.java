@@ -37,4 +37,9 @@ public class LiteralException extends Literal {
     public String asString() throws EvaluationException {
         throw new EvaluationException("Cannot convert Exception Literal to string.");
     }
+
+    @Override
+    public void accept(ContentVisitor visitor, Cell cell){
+        visitor.visit(this, cell);
+    }
 }

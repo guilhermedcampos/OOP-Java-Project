@@ -53,4 +53,9 @@ public class LiteralString extends Literal {
     public int asInt() throws EvaluationException {
         throw new EvaluationException("Cannot convert String Literal to int.");
     }
+
+    @Override
+    public void accept(ContentVisitor visitor, Cell cell){
+        visitor.visit(this, cell);
+    }
 }

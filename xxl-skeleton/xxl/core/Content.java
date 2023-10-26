@@ -22,7 +22,7 @@ public abstract class Content implements Serializable {
      * @return the value of the content as a Literal.
      * @throws EvaluationException  if there is an error during evaluation.
      */
-    protected abstract Literal value() throws EvaluationException;
+    protected abstract Literal value();
 
     public abstract void accept(ContentVisitor visitor, Cell cell);
 

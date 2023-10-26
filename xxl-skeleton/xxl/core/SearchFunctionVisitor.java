@@ -24,7 +24,22 @@ public class SearchFunctionVisitor implements ContentVisitor {
     }
 
     @Override
-    public void visit(Literal content, Cell cell) {
+    public void visit(LiteralString content, Cell cell) {
+        // Do nothing for literals in the context of searching for functions
+    }
+
+    @Override
+    public void visit(LiteralInteger content, Cell cell) {
+        // Do nothing for literals in the context of searching for functions
+    }
+
+    @Override
+    public void visit(LiteralException content, Cell cell) {
+        // Do nothing for literals in the context of searching for functions
+    }
+
+    @Override
+    public void visit(Null content, Cell cell) {
         // Do nothing for literals in the context of searching for functions
     }
 
@@ -32,6 +47,9 @@ public class SearchFunctionVisitor implements ContentVisitor {
     public void visit(Reference content, Cell cell) {
         // Do nothing for references in the context of searching for functions
     }
+
+    
+
 
     @Override
     public void visit(Function content, Cell cell) {

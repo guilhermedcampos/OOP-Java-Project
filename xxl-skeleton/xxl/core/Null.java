@@ -41,4 +41,9 @@ public class Null extends Literal {
     public String asString() throws EvaluationException {
         throw new EvaluationException("Cannot convert Null Literal to string.");
     }
+
+    @Override
+    public void accept(ContentVisitor visitor, Cell cell){
+        visitor.visit(this, cell);
+    }
 }
