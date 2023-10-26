@@ -221,6 +221,7 @@ public void copy(String range) throws OutOfBoundsException {
     } else {
         throw new OutOfBoundsException("Cell is out of bounds.");
     }
+    setChange(true);
   }
 
   public void paste(String range) throws OutOfBoundsException {
