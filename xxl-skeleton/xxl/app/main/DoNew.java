@@ -55,6 +55,6 @@ class DoNew extends Command<Calculator> {
     Spreadsheet newSpreadsheet = new Spreadsheet(lines, columns);
 
     // Set the newly created spreadsheet as the current one
-    Calculator.setSpreadsheet(newSpreadsheet);
+    _receiver.setSpreadsheet(newSpreadsheet);
   }
 }

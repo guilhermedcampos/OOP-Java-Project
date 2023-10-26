@@ -37,14 +37,21 @@ public class Calculator {
    */
   private List<User> _users;
 
+  private static Calculator _calculator;
   /**
    * Constructs a new Calculator object.
    * Initializes the list of users as an empty ArrayList.
    */
-  public Calculator() {
+  private Calculator() {
     _users = new ArrayList<>();
   }
   
+  public static Calculator getCalculator(){
+    if ( _calculator == null ) {
+      _calculator = new Calculator();
+    }
+    return _calculator;
+  }
 
   /**
    * Return the current spreadsheet.
@@ -152,7 +159,7 @@ public class Calculator {
     try (ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(fileName + ".ser"))) {
       Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
       spreadsheet.setChange(false);
-      Calculator.setSpreadsheet(spreadsheet);
+      Calculator.getCalculator().setSpreadsheet(spreadsheet);
     } catch (FileNotFoundException | ClassNotFoundException e) {
       throw new UnavailableFileException(fileName);
     } catch (IOException e) {

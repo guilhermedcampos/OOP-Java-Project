@@ -39,7 +39,7 @@ public class Reference extends Content {
      */
     @Override
     protected Literal value() {
-        return Calculator.getSpreadsheet().getContentAt(_row, _col).value();
+        return Calculator.getCalculator().getSpreadsheet().getContentAt(_row, _col).value();
     }
 
     /**
@@ -68,7 +68,7 @@ public class Reference extends Content {
      */
     public void addFunctionObserver(Function function) {
         // Add the function as an observer to the referenced cell
-            Cell referencedCell = Calculator.getSpreadsheet().getCell(_row, _col);
+            Cell referencedCell = Calculator.getCalculator().getSpreadsheet().getCell(_row, _col);
             referencedCell.addObserver(function);
     }
 }

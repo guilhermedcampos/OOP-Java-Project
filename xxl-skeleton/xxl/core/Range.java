@@ -63,7 +63,7 @@ public class Range {
      * @throws OutOfBoundsException if the traversal exceeds the bounds of the associated spreadsheet.
      */
     public Cell[] traverse() {
-        Spreadsheet spreadsheet = Calculator.getSpreadsheet();
+        Spreadsheet spreadsheet = Calculator.getCalculator().getSpreadsheet();
         List<Cell> cells = new ArrayList<>();
 
         for (int row = _startRow; row <= _endRow; row++) {
@@ -75,7 +75,7 @@ public class Range {
     }
 
     public boolean isRangeValid() throws OutOfBoundsException {
-        Spreadsheet spreadsheet = Calculator.getSpreadsheet();
+        Spreadsheet spreadsheet = Calculator.getCalculator().getSpreadsheet();
 
         if (_startCol != _endCol && _startRow != _endRow) {
             throw new OutOfBoundsException("Invalid range.");
