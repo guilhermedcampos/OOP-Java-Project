@@ -23,6 +23,10 @@ public abstract class Function extends Content implements Observer {
         _name = name;
     }
 
+    public void accept(ContentVisitor visitor, Cell cell) {
+        visitor.visit(this, cell);
+    }
+
     /**
      * Gets the name of the function.
      *
@@ -63,9 +67,8 @@ public abstract class Function extends Content implements Observer {
      * Gets the result of the function as a Literal.
      *
      * @return the result of the function as a Literal.
-     * @throws EvaluationException  if there is an error during evaluation.
      */
-    public Literal value() throws EvaluationException{
+    public Literal value() {
         return _value;
     }
 

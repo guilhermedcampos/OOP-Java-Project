@@ -24,6 +24,8 @@ public abstract class Content implements Serializable {
      */
     protected abstract Literal value() throws EvaluationException;
 
+    public abstract void accept(ContentVisitor visitor, Cell cell);
+
     /**
      * Gets the content as a string.
      *

@@ -34,14 +34,8 @@ public abstract class SequenceFunction extends Function {
 
     @Override
     public String toString() {
-
-        try {
-            String result = value() + "=" + getName() + "(" + getFirstCell().toString() + ":" + getLastCell().toString() + ")";
+            String result = value().toString() + "=" + getName() + "(" + getFirstCell().toString() + ":" + getLastCell().toString() + ")";
             return cleanStringAfterFirstEquals(result);
-        } catch (EvaluationException e) {
-            String result = "#VALUE" + "=" + getName() + "(" + getFirstCell().toString() + ":" + getLastCell().toString() + ")";
-            return cleanStringAfterFirstEquals(result);
-        }
     }
     
 }

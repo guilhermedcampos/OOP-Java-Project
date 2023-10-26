@@ -28,6 +28,10 @@ public class Reference extends Content {
         _col = col;
     }
 
+    public void accept(ContentVisitor visitor, Cell cell) {
+        visitor.visit(this, cell);
+    }
+
     /**
      * Retrieves the value of the referenced cell.
      *

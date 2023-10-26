@@ -64,4 +64,9 @@ public class MatrixDataStructure implements AbstractDataStructure, Serializable 
     public Content getContent(int row, int col) {
         return _cells[row - 1][col - 1].getContent();
     }
+
+    @Override
+    public Cell[][] getCells(){
+        return _cells;
+    }
 }

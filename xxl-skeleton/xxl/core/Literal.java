@@ -13,4 +13,8 @@ public abstract class Literal extends Content {
     protected Literal value() {
         return this;
     }
+
+    public void accept(ContentVisitor visitor, Cell cell) {
+        visitor.visit(this, cell);
+    }
 }

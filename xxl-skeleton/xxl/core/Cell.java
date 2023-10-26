@@ -87,7 +87,7 @@ public class Cell implements Serializable {
      *
      * @return the content stored in the cell.
      */
-    protected Content getContent() {
+    public Content getContent() {
         return _content;
     }
 

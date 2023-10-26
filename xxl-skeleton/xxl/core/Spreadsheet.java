@@ -297,4 +297,8 @@ public void copy(String range) throws OutOfBoundsException {
     _isChanged = bool;
   }
 
+  public Cell[][] getCells(){
+    return _dataStructure.getCells();
+  }
+
 }
