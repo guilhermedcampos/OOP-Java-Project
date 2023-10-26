@@ -1,11 +1,17 @@
 package xxl.core;
 
 public interface ContentVisitor {
-    void visit(LiteralString content, Cell cell);
-    void visit(LiteralInteger content, Cell cell);
-    void visit(LiteralException content, Cell cell);
-    void visit(Null content, Cell cell);
-    void visit(Reference content, Cell cell);
-    void visit(Function content, Cell cell);
+    void visit(LiteralString content);
+
+    void visit(LiteralInteger content);
+
+    void visit(LiteralException content);
+
+    void visit(Null content);
+
+    void visit(Reference content);
+
+    void visit(Function content);
+
     void visit(Cell cell);
 }

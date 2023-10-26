@@ -14,5 +14,9 @@ public abstract class Literal extends Content {
         return this;
     }
 
-    public abstract void accept(ContentVisitor visitor, Cell cell);
+    public void update() {
+
+    }
+
+    public abstract void accept(ContentVisitor visitor);
 }

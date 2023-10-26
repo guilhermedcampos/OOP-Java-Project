@@ -53,7 +53,7 @@ public class LiteralInteger extends Literal {
     }
 
     @Override
-    public void accept(ContentVisitor visitor, Cell cell){
-        visitor.visit(this, cell);
+    public void accept(ContentVisitor visitor){
+        visitor.visit(this);
     }
 }

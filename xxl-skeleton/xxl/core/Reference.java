@@ -1,7 +1,5 @@
 package xxl.core;
 
-import xxl.core.exception.EvaluationException;
-
 /**
  * Represents a reference to a cell in the spreadsheet.
  */
@@ -16,7 +14,9 @@ public class Reference extends Content {
      * The column position referred to by this reference.
      */
     private int _col;
-    
+
+    private Literal _value;
+
     /**
      * Initializes a new reference to a cell with the specified row and column.
      *
@@ -26,10 +26,12 @@ public class Reference extends Content {
     public Reference(int row, int col) {
         _row = row;
         _col = col;
+        Calculator.getCalculator().getSpreadsheet().getCell(row, col).addObserver(this);
+        update();
     }
 
-    public void accept(ContentVisitor visitor, Cell cell) {
-        visitor.visit(this, cell);
+    public void accept(ContentVisitor visitor) {
+        visitor.visit(this);
     }
 
     /**
@@ -38,8 +40,12 @@ public class Reference extends Content {
      * @return the value of the referenced cell as a `Literal`.
      */
     @Override
-    protected Literal value() {
-        return Calculator.getCalculator().getSpreadsheet().getContentAt(_row, _col).value();
+    public void update() {
+        _value = Calculator.getCalculator().getSpreadsheet().getCell(_row, _col).getContent().value();
+    }
+
+    public Literal value() {
+        return _value;
     }
 
     /**
@@ -49,26 +55,14 @@ public class Reference extends Content {
      */
     @Override
     public String toString() {
-            if (value().toString().equals("")) {
-                return "#VALUE" + "=" + _row + ";" + _col;
-            }
-            return value().toString() + "=" + _row + ";" + _col;
+        if (value().toString().equals("")) {
+            return "#VALUE" + "=" + _row + ";" + _col;
+        }
+        return value().toString() + "=" + _row + ";" + _col;
     }
-
 
     @Override
     public boolean isReference() {
         return true;
-    }
-
-    /**
-     * Adds an observer to the referenced cell.
-     *
-     * @param function the function that is the observer.
-     */
-    public void addFunctionObserver(Function function) {
-        // Add the function as an observer to the referenced cell
-            Cell referencedCell = Calculator.getCalculator().getSpreadsheet().getCell(_row, _col);
-            referencedCell.addObserver(function);
     }
 }

@@ -30,7 +30,7 @@ class DoShowFunctions extends Command<Spreadsheet> {
         // Traverse the cells and apply the search visitor
         for (Cell[] row : _receiver.getSpreadsheet().getCells()) {
       for (Cell cell : row) {
-        cell.getContent().accept(functionVisitor, cell);
+        functionVisitor.visit(cell);
     }
 }
 

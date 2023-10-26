@@ -7,7 +7,19 @@ import xxl.core.exception.EvaluationException;
 /**
  * Represents the content of a cell in a spreadsheet.
  */
-public abstract class Content implements Serializable {
+public abstract class Content implements Serializable, Observer {
+
+    private Cell _connectedCell;
+
+    public Cell getConnectedCell() {
+        return _connectedCell;
+    }
+
+    public void setConnectedCell(Cell cell) {
+        _connectedCell = cell;
+    }
+
+    public abstract void update();
 
     /**
      * Returns a string representation of the content.
@@ -20,17 +32,17 @@ public abstract class Content implements Serializable {
      * Gets the value of the content as a Literal.
      *
      * @return the value of the content as a Literal.
-     * @throws EvaluationException  if there is an error during evaluation.
+     * @throws EvaluationException if there is an error during evaluation.
      */
     protected abstract Literal value();
 
-    public abstract void accept(ContentVisitor visitor, Cell cell);
+    public abstract void accept(ContentVisitor visitor);
 
     /**
      * Gets the content as a string.
      *
      * @return the content as a string.
-     * @throws EvaluationException  if there is an error during evaluation.
+     * @throws EvaluationException if there is an error during evaluation.
      */
     public String asString() throws EvaluationException {
         return value().asString();
@@ -40,13 +52,13 @@ public abstract class Content implements Serializable {
      * Gets the content as an integer.
      *
      * @return the content as an integer.
-     * @throws EvaluationException  if there is an error during evaluation.
+     * @throws EvaluationException if there is an error during evaluation.
      */
     public int asInt() throws EvaluationException {
         return value().asInt();
     }
 
-    public boolean isReference(){
+    public boolean isReference() {
         return false;
     }
 }

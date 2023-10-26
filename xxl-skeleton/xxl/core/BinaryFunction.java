@@ -29,14 +29,12 @@ public abstract class BinaryFunction extends Function {
         _arg1 = arg1;
         _arg2 = arg2;
 
-        // Check if arg1 is a reference and add the observer
-        if (_arg1.isReference()) {
-            ((Reference)_arg1).addFunctionObserver(this);
-        }
 
-        // Check if arg2 is a reference and add the observer
-        if (_arg2.isReference()) {
-            ((Reference)_arg2).addFunctionObserver(this);
+        if (_arg1.getConnectedCell() != null) {
+            _arg1.getConnectedCell().addObserver(this);
+        }
+        if (arg2.getConnectedCell() != null) {
+            _arg2.getConnectedCell().addObserver(this);
         }
         update();
     }
@@ -47,7 +45,6 @@ public abstract class BinaryFunction extends Function {
      * @return the result of the binary function as a Literal.
      */
     public abstract void update();
-
 
     public String cleanArgument(String arg) {
         if (arg.contains("=")) {
@@ -67,7 +64,8 @@ public abstract class BinaryFunction extends Function {
      */
     @Override
     public String toString() {
-        String result = _value.toString() + "=" + getName() + "(" + cleanArgument(_arg1.toString()) + "," + cleanArgument(_arg2.toString()) + ")";
+        String result = _value.toString() + "=" + getName() + "(" + cleanArgument(_arg1.toString()) + ","
+                + cleanArgument(_arg2.toString()) + ")";
         return result;
     }
 

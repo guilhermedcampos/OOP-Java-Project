@@ -38,6 +38,7 @@ public class Calculator {
   private List<User> _users;
 
   private static Calculator _calculator;
+
   /**
    * Constructs a new Calculator object.
    * Initializes the list of users as an empty ArrayList.
@@ -45,9 +46,9 @@ public class Calculator {
   private Calculator() {
     _users = new ArrayList<>();
   }
-  
-  public static Calculator getCalculator(){
-    if ( _calculator == null ) {
+
+  public static Calculator getCalculator() {
+    if (_calculator == null) {
       _calculator = new Calculator();
     }
     return _calculator;
@@ -57,9 +58,9 @@ public class Calculator {
    * Return the current spreadsheet.
    *
    * @return the current spreadsheet of this application. This reference can be
-   *          null.
+   *         null.
    */
-  public static Spreadsheet getSpreadsheet() { 
+  public Spreadsheet getSpreadsheet() {
     return _currentSpreadsheet;
   }
 
@@ -77,16 +78,15 @@ public class Calculator {
   }
 
   /**
-  * Creates a new user and adds them to the collection of users.
-  *
-  * @param name The name of the user to create.
-  * @return true if the user was successfully created and added; false otherwise.
-  */
+   * Creates a new user and adds them to the collection of users.
+   *
+   * @param name The name of the user to create.
+   * @return true if the user was successfully created and added; false otherwise.
+   */
   public boolean createUser(String name) {
     User user = new User(name);
     return _users.add(user);
   }
-
 
   /**
    * Saves the serialized application's state into the specified file. The current
@@ -104,14 +104,14 @@ public class Calculator {
   public void save() throws FileNotFoundException, MissingFileAssociationException, IOException {
     ObjectOutputStream objectOut = null;
     try {
-        try (FileOutputStream fileOut = new FileOutputStream(_currentSpreadsheet.getName() + ".ser")) {
-            objectOut = new ObjectOutputStream(fileOut);
-            objectOut.writeObject(_currentSpreadsheet);
-        }
+      try (FileOutputStream fileOut = new FileOutputStream(_currentSpreadsheet.getName() + ".ser")) {
+        objectOut = new ObjectOutputStream(fileOut);
+        objectOut.writeObject(_currentSpreadsheet);
+      }
     } finally {
-        if (objectOut != null) {
-            objectOut.close();
-        }
+      if (objectOut != null) {
+        objectOut.close();
+      }
     }
   }
 

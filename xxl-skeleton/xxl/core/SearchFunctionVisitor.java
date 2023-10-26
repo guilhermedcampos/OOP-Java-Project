@@ -7,6 +7,7 @@ import xxl.core.exception.EvaluationException;
 public class SearchFunctionVisitor implements ContentVisitor {
     private String _searchTerm;
     private List<Cell> _matchingCells;
+    private Cell _cell;
 
     public SearchFunctionVisitor(String searchTerm) {
         _searchTerm = searchTerm;
@@ -20,31 +21,32 @@ public class SearchFunctionVisitor implements ContentVisitor {
     @Override
     public void visit(Cell cell) {
         Content content = cell.getContent();
-        content.accept(this, cell); // Visit the content to check for a match
+        _cell = cell;
+        content.accept(this); // Visit the content to check for a match
     }
 
     @Override
-    public void visit(LiteralString content, Cell cell) {
+    public void visit(LiteralString content) {
         // Do nothing for literals in the context of searching for functions
     }
 
     @Override
-    public void visit(LiteralInteger content, Cell cell) {
+    public void visit(LiteralInteger content) {
         // Do nothing for literals in the context of searching for functions
     }
 
     @Override
-    public void visit(LiteralException content, Cell cell) {
+    public void visit(LiteralException content) {
         // Do nothing for literals in the context of searching for functions
     }
 
     @Override
-    public void visit(Null content, Cell cell) {
+    public void visit(Null content) {
         // Do nothing for literals in the context of searching for functions
     }
 
     @Override
-    public void visit(Reference content, Cell cell) {
+    public void visit(Reference content) {
         // Do nothing for references in the context of searching for functions
     }
 
@@ -52,9 +54,9 @@ public class SearchFunctionVisitor implements ContentVisitor {
 
 
     @Override
-    public void visit(Function content, Cell cell) {
+    public void visit(Function content) {
             if (content.getName().contains(_searchTerm)) {
-                _matchingCells.add(cell);
+                _matchingCells.add(_cell);
             }
     }
 }

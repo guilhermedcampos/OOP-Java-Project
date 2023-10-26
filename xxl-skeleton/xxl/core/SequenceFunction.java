@@ -1,7 +1,5 @@
 package xxl.core;
 
-import xxl.core.exception.EvaluationException;
-
 public abstract class SequenceFunction extends Function {
 
     protected String _rangeDescription;
