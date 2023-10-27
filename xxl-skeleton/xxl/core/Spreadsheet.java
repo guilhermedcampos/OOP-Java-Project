@@ -62,6 +62,10 @@ public class Spreadsheet implements Serializable {
     return _cutBuffer;
   }
 
+  public void setCutBuffer(CutBuffer cutbuffer) {
+    _cutBuffer = cutbuffer;
+  }
+
   public void copy(String range) throws OutOfBoundsException {
     Range parsedRange = Range.buildRange(range);
     Cell[] cells = parsedRange.traverse();
@@ -69,6 +73,7 @@ public class Spreadsheet implements Serializable {
 
     if (parsedRange.isRangeValid()) {
       CutBuffer cutBuffer = new CutBuffer();
+      setChange(true);
 
       if (cells.length > 1) {
         if (cells[0].getCol() != cells[1].getCol()) {

@@ -19,6 +19,7 @@ class DoShowCutBuffer extends Command<Spreadsheet> {
   protected final void execute() {
     CutBuffer cutBuffer = _receiver.getCutBuffer();
 
+
     if (cutBuffer.getContents() == null) {
       return;
     }

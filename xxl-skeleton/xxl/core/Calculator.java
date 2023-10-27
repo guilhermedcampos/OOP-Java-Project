@@ -117,6 +117,7 @@ public class Calculator {
       try (FileOutputStream fileOut = new FileOutputStream(_currentSpreadsheet.getName() + ".ser")) {
         objectOut = new ObjectOutputStream(fileOut);
         objectOut.writeObject(_currentSpreadsheet);
+
       }
     } finally {
       if (objectOut != null) {
@@ -157,8 +158,11 @@ public class Calculator {
   public void load(String fileName) throws UnavailableFileException {
     try (ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(fileName + ".ser"))) {
       Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
+      //CutBuffer cutbuffer = (CutBuffer)objectIn.readObject();
+      //spreadsheet.setCutBuffer(cutbuffer);
       spreadsheet.setChange(false);
       setSpreadsheet(spreadsheet);
+      
     } catch (FileNotFoundException | ClassNotFoundException e) {
       throw new UnavailableFileException(fileName);
     } catch (IOException e) {

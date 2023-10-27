@@ -43,10 +43,11 @@ public class DoOpen extends Command<Calculator> {
    */
   @Override
   protected final void execute() throws CommandException {
+    
 
     // Check if a file is currently opened
     if (_receiver.getSpreadsheet() != null) {
-
+      
       // Check if it's been changed
       if (_receiver.getSpreadsheet().isChanged()) {
 

@@ -22,7 +22,7 @@ class DoPaste extends Command<Spreadsheet> {
   protected final void execute() throws CommandException {
     String range = stringField("range");
     Range parsedRange = Range.buildRange(range);
-    if (_receiver.getSpreadsheet().getCutBuffer() != null) {
+    if (_receiver.getSpreadsheet().getCutBuffer().getContents() != null) {
       try {
       
         if (parsedRange.isRangeValid()) {
