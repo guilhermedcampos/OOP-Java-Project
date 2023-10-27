@@ -2,7 +2,6 @@ package xxl.core;
 
 import java.util.List;
 import java.util.ArrayList;
-import xxl.core.exception.EvaluationException;
 
 public class SearchValueVisitor implements ContentVisitor {
     private String _searchTerm;
@@ -22,7 +21,7 @@ public class SearchValueVisitor implements ContentVisitor {
     public void visit(Cell cell) {
         Content content = cell.getContent();
         _cell = cell;
-        content.accept(this); // Visit the content to check for a match
+        content.accept(this);
     }
 
     @Override

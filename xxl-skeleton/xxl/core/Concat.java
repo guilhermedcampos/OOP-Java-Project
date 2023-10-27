@@ -2,11 +2,13 @@ package xxl.core;
 
 import xxl.core.exception.EvaluationException;
 
+/**
+ * Represents the average operation between a range of cells.
+ */
 public class Concat extends SequenceFunction {
 
-    public Concat(String rangeDescription){
+    public Concat(String rangeDescription) {
         super("CONCAT", rangeDescription);
-        
     }
 
     @Override
@@ -17,12 +19,11 @@ public class Concat extends SequenceFunction {
         for (Cell c : cells) {
             try {
                 total += c.getContent().asString();
-            } catch (EvaluationException e){
+            } catch (EvaluationException e) {
                 continue;
             }
         }
 
-
-    _value = new LiteralString(total.toString());
+        _value = new LiteralString(total);
     }
 }

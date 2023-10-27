@@ -28,7 +28,6 @@ public class Cell implements Serializable {
         for (Observer observer : _observers) {
             observer.update();
         }
-
     }
 
     protected void setContent(Content content) {

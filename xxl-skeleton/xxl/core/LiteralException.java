@@ -2,44 +2,28 @@ package xxl.core;
 
 import xxl.core.exception.EvaluationException;
 
+/*
+* Represents an exceptional literal value in the spreadsheet.
+*/
 public class LiteralException extends Literal {
 
-    /**
-     * Throws an exception when attempting to convert a Null literal to an integer.
-     *
-     * @return This method always throws an EvaluationException.
-     * @throws EvaluationException Always thrown when trying to convert a Null
-     *                             literal to an integer.
-     */
     @Override
     public int asInt() throws EvaluationException {
         throw new EvaluationException("Cannot convert Exception Literal to integer.");
     }
 
-    /**
-     * Returns an empty string.
-     *
-     * @return An empty string.
-     */
     @Override
     public String toString() {
         return "#VALUE";
     }
 
-    /**
-     * Throws an exception when attempting to convert a Null literal to a string.
-     *
-     * @return This method always throws an EvaluationException.
-     * @throws EvaluationException Always thrown when trying to convert a Null
-     *                             literal to a string.
-     */
     @Override
     public String asString() throws EvaluationException {
         throw new EvaluationException("Cannot convert Exception Literal to string.");
     }
 
     @Override
-    public void accept(ContentVisitor visitor){
+    public void accept(ContentVisitor visitor) {
         visitor.visit(this);
     }
 }

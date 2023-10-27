@@ -5,35 +5,24 @@ package xxl.core;
  */
 public class Reference extends Content {
 
-    /**
-     * The row position referred to by this reference.
-     */
     private int _row;
-
-    /**
-     * The column position referred to by this reference.
-     */
     private int _col;
-
     private Literal _value;
 
-    /**
-     * Initializes a new reference to a cell with the specified row and column.
-     *
-     * @param row the row of the referenced cell.
-     * @param col the column of the referenced cell.
-     */
     public Reference(int row, int col) {
         _row = row;
         _col = col;
-        getConnectedCell().addObserver(this);
-        setIsObserving(true);
-        ;
-        update();
+        startObserving();
     }
 
     public void accept(ContentVisitor visitor) {
         visitor.visit(this);
+    }
+
+    public void startObserving() {
+        getConnectedCell().addObserver(this);
+        setIsObserving(true);
+        update();
     }
 
     public void stopObserving() {
@@ -41,11 +30,6 @@ public class Reference extends Content {
         setIsObserving(false);
     }
 
-    /**
-     * Retrieves the value of the referenced cell.
-     *
-     * @return the value of the referenced cell as a `Literal`.
-     */
     @Override
     public void compute() {
         _value = Calculator.getCalculator().getSpreadsheet().getCell(_row, _col).getContent().value();
@@ -60,11 +44,6 @@ public class Reference extends Content {
         return Calculator.getCalculator().getSpreadsheet().getCell(_row, _col);
     }
 
-    /**
-     * Returns a string representation of the reference in the format "=row;col".
-     *
-     * @return a string representation of the reference.
-     */
     @Override
     public String toString() {
         if (value().toString().equals("")) {

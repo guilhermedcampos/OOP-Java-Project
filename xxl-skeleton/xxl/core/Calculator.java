@@ -146,7 +146,7 @@ public class Calculator {
     try (ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(fileName + ".ser"))) {
       Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
       spreadsheet.setChange(false);
-      Calculator.getCalculator().setSpreadsheet(spreadsheet);
+      setSpreadsheet(spreadsheet);
     } catch (FileNotFoundException | ClassNotFoundException e) {
       throw new UnavailableFileException(fileName);
     } catch (IOException e) {

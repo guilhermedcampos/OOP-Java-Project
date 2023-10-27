@@ -7,28 +7,16 @@ import xxl.core.exception.EvaluationException;
  */
 public class Add extends BinaryFunction {
 
-    /**
-     * Constructs an instance of the Add class with two content arguments.
-     *
-     * @param arg1 the first content argument.
-     * @param arg2 the second content argument.
-     */
     public Add(Content arg1, Content arg2) {
         super("ADD", arg1, arg2);
     }
 
-    /**
-     * Computes the result of the addition operation and returns it as a
-     * LiteralInteger.
-     *
-     * @return the result of the addition as a LiteralInteger.
-     */
     @Override
-    public void compute(){
+    public void compute() {
         try {
-        _value = new LiteralInteger(_arg1.value().asInt() + _arg2.value().asInt());
-        } catch (EvaluationException e){
-        _value = new LiteralException();
+            _value = new LiteralInteger(_arg1.value().asInt() + _arg2.value().asInt());
+        } catch (EvaluationException e) {
+            _value = new LiteralException();
         }
     }
 }

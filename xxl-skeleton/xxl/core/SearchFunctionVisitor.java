@@ -3,6 +3,9 @@ package xxl.core;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Represents a visitor for searching functions in the spreadsheet cells.
+ */
 public class SearchFunctionVisitor implements ContentVisitor {
     private String _searchTerm;
     private List<Cell> _matchingCells;
@@ -21,7 +24,7 @@ public class SearchFunctionVisitor implements ContentVisitor {
     public void visit(Cell cell) {
         Content content = cell.getContent();
         _cell = cell;
-        content.accept(this); // Visit the content to check for a match
+        content.accept(this);
     }
 
     @Override
@@ -49,13 +52,10 @@ public class SearchFunctionVisitor implements ContentVisitor {
         // Do nothing for references in the context of searching for functions
     }
 
-    
-
-
     @Override
     public void visit(Function content) {
-            if (content.getName().contains(_searchTerm)) {
-                _matchingCells.add(_cell);
-            }
+        if (content.getName().contains(_searchTerm)) {
+            _matchingCells.add(_cell);
+        }
     }
 }

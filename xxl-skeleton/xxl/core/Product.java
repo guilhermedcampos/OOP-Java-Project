@@ -2,26 +2,26 @@ package xxl.core;
 
 import xxl.core.exception.EvaluationException;
 
+/* 
+ * Represents the product operation between a range of cells.
+ */
 public class Product extends SequenceFunction {
 
-    public Product(String rangeDescription){
+    public Product(String rangeDescription) {
         super("PRODUCT", rangeDescription);
-        
     }
 
     @Override
     public void compute() {
-    int total = 1;
+        int total = 1;
         try {
+            Cell[] cells = getCellsFromRangeDescription(_rangeDescription);
 
-        Cell[] cells = getCellsFromRangeDescription(_rangeDescription);
-
-
-        for (Cell cell : cells) {
-            total *= cell.getContent().asInt();
-        }
-        _value = new LiteralInteger(total);
-        } catch (EvaluationException e){
+            for (Cell cell : cells) {
+                total *= cell.getContent().asInt();
+            }
+            _value = new LiteralInteger(total);
+        } catch (EvaluationException e) {
             _value = new LiteralException();
         }
     }

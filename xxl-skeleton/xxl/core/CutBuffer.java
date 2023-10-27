@@ -1,5 +1,8 @@
 package xxl.core;
 
+/*
+* Represents a cut buffer used for storing content to be pasted in a spreadsheet.
+*/
 public class CutBuffer {
     private Content[] _contents;
     private boolean _variesInColumns;
@@ -8,7 +11,6 @@ public class CutBuffer {
         _variesInColumns = false;
     }
 
-    // Constructor that specifies whether the cut buffer varies in columns or rows
     public void setVariesInColumns(boolean variesInColumns) {
         _variesInColumns = variesInColumns;
     }

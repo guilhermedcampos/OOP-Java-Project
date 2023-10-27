@@ -2,6 +2,10 @@ package xxl.core;
 
 import java.util.Comparator;
 
+/**
+ * A comparator for sorting cells containing functions based on their function
+ * name, row, and column.
+ */
 public class FunctionComparator implements Comparator<Cell> {
     @Override
     public int compare(Cell cell1, Cell cell2) {

@@ -2,6 +2,9 @@ package xxl.core;
 
 import xxl.core.exception.EvaluationException;
 
+/**
+ * Represents the coalesce operation between a range of cells.
+ */
 public class Coalesce extends SequenceFunction {
 
     public Coalesce(String rangeDescription){

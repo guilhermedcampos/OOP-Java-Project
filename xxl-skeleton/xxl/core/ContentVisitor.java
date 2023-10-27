@@ -1,5 +1,8 @@
 package xxl.core;
 
+/**
+ * Represents a visitor for content types in a spreadsheet cell.
+ */
 public interface ContentVisitor {
     void visit(LiteralString content);
 

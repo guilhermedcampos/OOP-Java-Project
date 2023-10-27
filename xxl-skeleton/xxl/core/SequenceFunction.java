@@ -1,5 +1,9 @@
 package xxl.core;
 
+/*
+ * Represents a sequence function in the spreadsheet. Sequence functions operate
+ * on a range of cells.
+ */
 public abstract class SequenceFunction extends Function {
 
     protected String _rangeDescription;
@@ -7,6 +11,10 @@ public abstract class SequenceFunction extends Function {
     public SequenceFunction(String name, String range) {
         super(name);
         _rangeDescription = range;
+        startObserving();
+    }
+
+    public void startObserving() {
         Cell[] rangeCells = getCellsFromRangeDescription(_rangeDescription);
         for (Cell cell : rangeCells) {
             cell.addObserver(this);
@@ -27,7 +35,6 @@ public abstract class SequenceFunction extends Function {
 
     public Cell[] getCellsFromRangeDescription(String rangeDescription) {
         return Range.buildRange(_rangeDescription).traverse();
-
     }
 
     protected Cell getFirstCell() {
@@ -45,5 +52,4 @@ public abstract class SequenceFunction extends Function {
                 + getLastCell().toString() + ")";
         return cleanStringAfterFirstEquals(result);
     }
-
 }
