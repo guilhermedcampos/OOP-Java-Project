@@ -1,7 +1,6 @@
 package xxl.core;
 
 import xxl.core.exception.OutOfBoundsException;
-
 import java.util.ArrayList;
 import java.util.List;
 

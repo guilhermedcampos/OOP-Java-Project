@@ -1,10 +1,9 @@
 package xxl.core;
 
+import xxl.core.exception.EvaluationException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-
-import xxl.core.exception.EvaluationException;
 
 /**
  * Represents a cell in a spreadsheet.

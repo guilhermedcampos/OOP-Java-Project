@@ -1,12 +1,12 @@
 package xxl.app.search;
 
 import pt.tecnico.uilib.menus.Command;
-import xxl.core.Spreadsheet;
 import pt.tecnico.uilib.forms.Form;
 import pt.tecnico.uilib.menus.CommandException;
+import xxl.core.exception.OutOfBoundsException;
 import xxl.core.Calculator;
 import xxl.core.Range;
-import xxl.core.exception.OutOfBoundsException;
+import xxl.core.Spreadsheet;
 import xxl.core.Cell;
 import xxl.core.SearchValueVisitor;
 import java.util.List;

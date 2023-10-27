@@ -2,7 +2,6 @@ package xxl.core;
 
 import java.io.Serial;
 import java.io.Serializable;
-
 import xxl.core.exception.OutOfBoundsException;
 
 /**

@@ -21,8 +21,7 @@ public class DoOpen extends Command<Calculator> {
   protected final void execute() throws CommandException {
     if (_receiver.getSpreadsheet() != null) {
       if (_receiver.getSpreadsheet().isChanged()) {
-        boolean bool = Form.confirm(Message.saveBeforeExit());
-        if (bool) {
+        if (Form.confirm(Message.saveBeforeExit())) {
           DoSave doSaveCommand = new DoSave(_receiver);
           doSaveCommand.performCommand();
         }

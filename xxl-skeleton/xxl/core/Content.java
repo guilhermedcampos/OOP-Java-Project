@@ -1,7 +1,6 @@
 package xxl.core;
 
 import java.io.Serializable;
-
 import xxl.core.exception.EvaluationException;
 
 /**

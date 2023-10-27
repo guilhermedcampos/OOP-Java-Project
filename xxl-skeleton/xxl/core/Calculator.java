@@ -4,16 +4,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import xxl.core.exception.ImportFileException;
 import xxl.core.exception.MissingFileAssociationException;
 import xxl.core.exception.OutOfBoundsException;
 import xxl.core.exception.UnavailableFileException;
 import xxl.core.exception.UnrecognizedEntryException;
-
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 

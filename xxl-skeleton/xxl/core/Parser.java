@@ -3,7 +3,6 @@ package xxl.core;
 import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
-
 import xxl.core.exception.UnrecognizedEntryException;
 import xxl.core.exception.OutOfBoundsException;
 
