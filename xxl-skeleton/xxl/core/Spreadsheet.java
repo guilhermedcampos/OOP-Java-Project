@@ -217,6 +217,7 @@ public void copy(String range) throws OutOfBoundsException {
   */
   public void insert(int row, int col, Content content) throws OutOfBoundsException {
     if (isValidCell(row, col)) {
+         //content.setConnectedCell(getCell(row, col));
         _dataStructure.setContent(row, col, content);
     } else {
         throw new OutOfBoundsException("Cell is out of bounds.");

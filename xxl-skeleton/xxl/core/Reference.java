@@ -48,6 +48,11 @@ public class Reference extends Content {
         return _value;
     }
 
+    @Override
+    public Cell getConnectedCell() {
+        return Calculator.getCalculator().getSpreadsheet().getCell(_row, _col);
+    }
+
     /**
      * Returns a string representation of the reference in the format "=row;col".
      *

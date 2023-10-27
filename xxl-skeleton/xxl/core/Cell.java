@@ -28,16 +28,22 @@ public class Cell implements Serializable, Observer {
         for (Observer observer : _observers) {
             observer.update();
         }
+
+        
     }
 
     protected void setContent(Content content) {
         _content = content;
-        _content.setConnectedCell(this);
+        content.setConnectedCell(this);
         notifyObservers();
     }
 
     public void update() {
         _content.update();
+        if (_content.getConnectedCell().getContent() != null) {
+            addObserver(_content.getConnectedCell().getContent());
+        }
+
     }
 
     public Cell(int row, int col) {
