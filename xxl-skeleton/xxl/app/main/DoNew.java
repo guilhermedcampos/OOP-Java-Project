@@ -31,7 +31,7 @@ class DoNew extends Command<Calculator> {
 
     int lines = integerField("lines");
     int columns = integerField("columns");
-    Spreadsheet newSpreadsheet = new Spreadsheet(lines, columns);
+    Spreadsheet newSpreadsheet = _receiver.createNewSpreadsheet(lines, columns);
     _receiver.setSpreadsheet(newSpreadsheet);
   }
 }

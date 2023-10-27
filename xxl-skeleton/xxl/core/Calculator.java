@@ -79,6 +79,17 @@ public class Calculator {
   }
 
   /**
+   * Creates and returns a new spreadsheet with the specified number of rows and columns.
+   *
+   * @param rows    The number of rows for the new spreadsheet.
+   * @param columns The number of columns for the new spreadsheet.
+   * @return A new spreadsheet with the specified dimensions.
+   */
+  public Spreadsheet createNewSpreadsheet(int rows, int columns) {
+    return new Spreadsheet(rows, columns);
+  }
+
+  /**
    * Get the cut buffer from the current spreadsheet.
    *
    * @return The cut buffer of the current spreadsheet.
