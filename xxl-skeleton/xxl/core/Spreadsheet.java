@@ -32,6 +32,7 @@ public class Spreadsheet implements Serializable {
     _numRows = rows;
     _numCols = cols;
     _isChanged = true;
+    _cutBuffer = new CutBuffer();
 
     _dataStructure = new MatrixDataStructure();
     _dataStructure.initialize(rows, cols);

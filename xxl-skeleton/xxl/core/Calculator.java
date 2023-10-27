@@ -47,6 +47,11 @@ public class Calculator {
     _users = new ArrayList<>();
   }
 
+  /**
+   * Get the current instance of the Calculator.
+   *
+   * @return The current instance of the Calculator.
+   */
   public static Calculator getCalculator() {
     if (_calculator == null) {
       _calculator = new Calculator();
@@ -69,10 +74,15 @@ public class Calculator {
    *
    * @param spreadsheet The spreadsheet to set as the current one.
    */
-  public static void setSpreadsheet(Spreadsheet spreadsheet) {
+  public void setSpreadsheet(Spreadsheet spreadsheet) {
     _currentSpreadsheet = spreadsheet;
   }
 
+  /**
+   * Get the cut buffer from the current spreadsheet.
+   *
+   * @return The cut buffer of the current spreadsheet.
+   */
   public CutBuffer getCutBuffer() {
     return _currentSpreadsheet.getCutBuffer();
   }
@@ -90,15 +100,15 @@ public class Calculator {
 
   /**
    * Saves the serialized application's state into the specified file. The current
-   * network is
-   * associated to this file.
+   * spreadsheet is associated with this file.
    *
    * @throws FileNotFoundException           if for some reason the file cannot be
    *                                         created or opened.
-   * @throws MissingFileAssociationException if the current network does not have
-   *                                         a file.
-   * @throws IOException                     if there is some error while
-   *                                         serializing the state of the network
+   * @throws MissingFileAssociationException if the current spreadsheet does not
+   *                                         have a file.
+   * @throws IOException                     if there is an error while
+   *                                         serializing the state of the
+   *                                         spreadsheet
    *                                         to disk.
    */
   public void save() throws FileNotFoundException, MissingFileAssociationException, IOException {
@@ -117,16 +127,16 @@ public class Calculator {
 
   /**
    * Saves the serialized application's state into the specified file. The current
-   * network is
-   * associated to this file.
+   * spreadsheet is associated with this file.
    *
    * @param fileName the name of the file.
    * @throws FileNotFoundException           if for some reason the file cannot be
    *                                         created or opened.
-   * @throws MissingFileAssociationException if the current network does not have
-   *                                         a file.
-   * @throws IOException                     if there is some error while
-   *                                         serializing the state of the network
+   * @throws MissingFileAssociationException if the current spreadsheet does not
+   *                                         have a file.
+   * @throws IOException                     if there is an error while
+   *                                         serializing the state of the
+   *                                         spreadsheet
    *                                         to disk.
    */
   public void saveAs(String fileName) throws FileNotFoundException, MissingFileAssociationException, IOException {
@@ -135,12 +145,14 @@ public class Calculator {
   }
 
   /**
+   * Load the serialized application's state from the specified file and set it as
+   * the current spreadsheet.
+   *
    * @param fileName name of the file containing the serialized application's
-   *                 state
-   *                 to load.
+   *                 state to load.
    * @throws UnavailableFileException if the specified file does not exist or
-   *                                  there is
-   *                                  an error while processing this file.
+   *                                  there
+   *                                  is an error while processing this file.
    */
   public void load(String fileName) throws UnavailableFileException {
     try (ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(fileName + ".ser"))) {

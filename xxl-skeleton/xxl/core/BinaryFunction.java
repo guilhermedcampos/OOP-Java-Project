@@ -13,28 +13,16 @@ public abstract class BinaryFunction extends Function {
         _arg2 = arg2;
         startObserving();
     }
-    
-    public void startObserving(){
-        if (_arg1.getConnectedCell() != null) {
-            _arg1.getConnectedCell().addObserver(this);
-            _arg1.setIsObserving(true);
-        }
-        if (_arg2.getConnectedCell() != null) {
-            _arg2.getConnectedCell().addObserver(this);
-            _arg2.setIsObserving(true);
-        }
+
+    public void startObserving() {
+        _arg1.setIsObserving(true, this);
+        _arg2.setIsObserving(true, this);
         update();
     }
 
     public void stopObserving() {
-        if (_arg1.getConnectedCell() != null) {
-            _arg1.getConnectedCell().removeObserver(this);
-            _arg1.setIsObserving(false);
-        }
-        if (_arg2.getConnectedCell() != null) {
-            _arg2.getConnectedCell().removeObserver(this);
-            _arg2.setIsObserving(false);
-        }
+        _arg1.setIsObserving(false, this);
+        _arg2.setIsObserving(false, this);
     }
 
     public abstract void compute();

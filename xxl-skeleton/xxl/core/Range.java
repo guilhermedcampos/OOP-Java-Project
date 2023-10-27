@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents a range of cells within a spreadsheet, defined by its starting and ending row and column coordinates.
+ * Represents a range of cells within a spreadsheet, defined by its starting and
+ * ending row and column coordinates.
  */
 public class Range {
     private int _startRow;

@@ -11,12 +11,15 @@ public abstract class Content implements Serializable, Observer {
     private Cell _connectedCell;
     private boolean _isObserving = false;
 
-    public boolean isObserving() {
-        return _isObserving;
-    }
-
-    public void setIsObserving(boolean isObserving) {
+    public void setIsObserving(boolean isObserving, Content content) {
         _isObserving = isObserving;
+        if (getConnectedCell() != null) {
+            if (_isObserving) {
+                getConnectedCell().addObserver(content);
+            } else {
+                getConnectedCell().removeObserver(content);
+            }
+        }
     }
 
     public Cell getConnectedCell() {

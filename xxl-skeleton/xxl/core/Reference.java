@@ -20,14 +20,12 @@ public class Reference extends Content {
     }
 
     public void startObserving() {
-        getConnectedCell().addObserver(this);
-        setIsObserving(true);
+        setIsObserving(true, this);
         update();
     }
 
     public void stopObserving() {
-        getConnectedCell().removeObserver(this);
-        setIsObserving(false);
+        setIsObserving(false, this);
     }
 
     @Override

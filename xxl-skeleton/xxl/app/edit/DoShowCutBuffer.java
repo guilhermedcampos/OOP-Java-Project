@@ -14,10 +14,15 @@ class DoShowCutBuffer extends Command<Spreadsheet> {
   DoShowCutBuffer(Spreadsheet receiver) {
     super(Label.SHOW_CUT_BUFFER, receiver);
   }
-  
-@Override
-protected final void execute() {
+
+  @Override
+  protected final void execute() {
     CutBuffer cutBuffer = _receiver.getCutBuffer();
+
+    if (cutBuffer.getContents() == null) {
+      return;
+    }
+
     boolean variesInColumns = cutBuffer.variesInColumns();
 
     int col = 1;
@@ -25,16 +30,15 @@ protected final void execute() {
     int maxCols = _receiver.getCols();
 
     for (int i = 0; i < cutBuffer.getContents().length; i++) {
-        _display.addLine(row + ";" + col + "|" + cutBuffer.getContent(i).toString());
+      _display.addLine(row + ";" + col + "|" + cutBuffer.getContent(i).toString());
 
-        if (variesInColumns) {
-            // Increment the row when varying in columns
-            col++;
-        } else {
-            // Increment the column when varying in rows
-            row++;
-        }
+      if (variesInColumns) {
+        // Increment the row when varying in columns
+        col++;
+      } else {
+        // Increment the column when varying in rows
+        row++;
+      }
     }
   }
 }
-

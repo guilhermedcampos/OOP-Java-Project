@@ -17,8 +17,7 @@ public abstract class SequenceFunction extends Function {
     public void startObserving() {
         Cell[] rangeCells = getCellsFromRangeDescription(_rangeDescription);
         for (Cell cell : rangeCells) {
-            cell.addObserver(this);
-            cell.getContent().setIsObserving(true);
+            cell.getContent().setIsObserving(true, this);
         }
         update();
     }
@@ -26,8 +25,7 @@ public abstract class SequenceFunction extends Function {
     public void stopObserving() {
         Cell[] rangeCells = getCellsFromRangeDescription(_rangeDescription);
         for (Cell cell : rangeCells) {
-            cell.removeObserver(this);
-            cell.getContent().setIsObserving(false);
+            cell.getContent().setIsObserving(false, this);
         }
     }
 

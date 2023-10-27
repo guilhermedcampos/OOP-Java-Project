@@ -1,9 +1,11 @@
 package xxl.core;
 
+import java.io.Serializable;
+
 /*
 * Represents a cut buffer used for storing content to be pasted in a spreadsheet.
 */
-public class CutBuffer {
+public class CutBuffer implements Serializable {
     private Content[] _contents;
     private boolean _variesInColumns;
 
