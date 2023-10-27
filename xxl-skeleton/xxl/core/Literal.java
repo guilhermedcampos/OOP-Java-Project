@@ -14,7 +14,7 @@ public abstract class Literal extends Content {
         return this;
     }
 
-    public void update() {
+    public void compute() {
 
     }
 

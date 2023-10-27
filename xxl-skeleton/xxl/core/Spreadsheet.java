@@ -77,7 +77,7 @@ public class Spreadsheet implements Serializable {
   public Spreadsheet getSpreadsheet() {
     return this;
   }
-  
+
   /**
    * Get the name of the spreadsheet.
    *
@@ -123,39 +123,37 @@ public class Spreadsheet implements Serializable {
     return _cutBuffer;
   }
 
-/**
- * Copy data from the specified range.
- *
- * @param range The range from which to copy data.
- */
-public void copy(String range) throws OutOfBoundsException {
+  /**
+   * Copy data from the specified range.
+   *
+   * @param range The range from which to copy data.
+   */
+  public void copy(String range) throws OutOfBoundsException {
     Range parsedRange = Range.buildRange(range);
     Cell[] cells = parsedRange.traverse();
     boolean variesInColumns = false;
 
     if (parsedRange.isRangeValid()) {
-        CutBuffer cutBuffer = new CutBuffer();
-        
-        if (cells.length > 1) {
-            if (cells[0].getCol() != cells[1].getCol()){
-             variesInColumns = true;
-            }
+      CutBuffer cutBuffer = new CutBuffer();
+
+      if (cells.length > 1) {
+        if (cells[0].getCol() != cells[1].getCol()) {
+          variesInColumns = true;
         }
+      }
 
-        cutBuffer.setContents(new Content[cells.length]);
-        for (int i = 0; i < cells.length; i++) {
-            Content originalContent = cells[i].getContent();
-            cutBuffer.getContents()[i] = originalContent;
-        }
+      cutBuffer.setContents(new Content[cells.length]);
+      for (int i = 0; i < cells.length; i++) {
+        Content originalContent = cells[i].getContent();
+        cutBuffer.getContents()[i] = originalContent;
+      }
 
-        _cutBuffer = cutBuffer;
+      _cutBuffer = cutBuffer;
 
-        // Set the flag indicating whether the range varies in columns
-        _cutBuffer.setVariesInColumns(variesInColumns);
+      // Set the flag indicating whether the range varies in columns
+      _cutBuffer.setVariesInColumns(variesInColumns);
     }
-}
-
-
+  }
 
   /**
    * Clear data in the specified range.
@@ -165,13 +163,13 @@ public void copy(String range) throws OutOfBoundsException {
   public void clear(String range) throws OutOfBoundsException {
     // Attempt to parse the given range string into a range object
     Range parsedRange = Range.buildRange(range);
-    
+
     if (parsedRange.isRangeValid()) {
-        // Traverse the cells within the range and display their content
-        Cell[] cells = parsedRange.traverse();
-        for (Cell cell : cells) {
-          insert(cell.getRow(),cell.getCol(), new Null());
-        }
+      // Traverse the cells within the range and display their content
+      Cell[] cells = parsedRange.traverse();
+      for (Cell cell : cells) {
+        insert(cell.getRow(), cell.getCol(), new Null());
+      }
     }
   }
 
@@ -204,23 +202,22 @@ public void copy(String range) throws OutOfBoundsException {
    * @throws OutOfBoundsException if the specified cell is out of bounds.
    */
   public Cell getCell(int row, int col) {
-        return _dataStructure.getCell(row, col);
+    return _dataStructure.getCell(row, col);
   }
-  
+
   /**
-  * Insert content into the cell at the specified row and column.
-  *
-  * @param row     The row of the cell to change.
-  * @param col     The column of the cell to change.
-  * @param content The content to put in the specified cell.
-  * @throws OutOfBoundsException if the specified cell is out of bounds.
-  */
+   * Insert content into the cell at the specified row and column.
+   *
+   * @param row     The row of the cell to change.
+   * @param col     The column of the cell to change.
+   * @param content The content to put in the specified cell.
+   * @throws OutOfBoundsException if the specified cell is out of bounds.
+   */
   public void insert(int row, int col, Content content) throws OutOfBoundsException {
     if (isValidCell(row, col)) {
-         //content.setConnectedCell(getCell(row, col));
-        _dataStructure.setContent(row, col, content);
+      _dataStructure.getCell(row, col).setContent(content);
     } else {
-        throw new OutOfBoundsException("Cell is out of bounds.");
+      throw new OutOfBoundsException("Cell is out of bounds.");
     }
     setChange(true);
   }
@@ -230,75 +227,73 @@ public void copy(String range) throws OutOfBoundsException {
     Cell[] cells = parsedRange.traverse();
 
     if (parsedRange.isRangeValid()) {
-        if (cells.length == 1) {
-            // If the range consists of a single cell, check how the cut buffer varies
-            boolean variesInColumns = _cutBuffer.variesInColumns();
+      if (cells.length == 1) {
+        // If the range consists of a single cell, check how the cut buffer varies
+        boolean variesInColumns = _cutBuffer.variesInColumns();
 
-            for (int i = 0; i < _cutBuffer.getContents().length; i++) {
-                if (variesInColumns) {
-                    // If the cut buffer varies in columns, paste along the line
-                    int newRow = cells[0].getRow();
-                    int newCol = cells[0].getCol() + i;
+        for (int i = 0; i < _cutBuffer.getContents().length; i++) {
+          if (variesInColumns) {
+            // If the cut buffer varies in columns, paste along the line
+            int newRow = cells[0].getRow();
+            int newCol = cells[0].getCol() + i;
 
-                    if (newRow <= _numRows && newCol <= _numCols) {
-                        insert(newRow, newCol, _cutBuffer.getContent(i));
-                    }
-                } else {
-                    // If the cut buffer varies in rows, paste along the column
-                    int newRow = cells[0].getRow() + i;
-                    int newCol = cells[0].getCol();
-
-                    if (newRow <= _numRows && newCol <= _numCols) {
-                        insert(newRow, newCol, _cutBuffer.getContent(i));
-                    }
-                }
+            if (newRow <= _numRows && newCol <= _numCols) {
+              insert(newRow, newCol, _cutBuffer.getContent(i));
             }
-        } else {
-            // If the range consists of multiple cells, paste along the provided range
-            for (int i = 0; i < cells.length && i < _cutBuffer.getContents().length; i++) {
-                int newRow = cells[i].getRow();
-                int newCol = cells[i].getCol();
+          } else {
+            // If the cut buffer varies in rows, paste along the column
+            int newRow = cells[0].getRow() + i;
+            int newCol = cells[0].getCol();
 
-                if (newRow <= _numRows && newCol <= _numCols) {
-                    insert(newRow, newCol, _cutBuffer.getContent(i));
-                }
+            if (newRow <= _numRows && newCol <= _numCols) {
+              insert(newRow, newCol, _cutBuffer.getContent(i));
             }
+          }
         }
+      } else {
+        // If the range consists of multiple cells, paste along the provided range
+        for (int i = 0; i < cells.length && i < _cutBuffer.getContents().length; i++) {
+          int newRow = cells[i].getRow();
+          int newCol = cells[i].getCol();
+
+          if (newRow <= _numRows && newCol <= _numCols) {
+            insert(newRow, newCol, _cutBuffer.getContent(i));
+          }
+        }
+      }
     }
-}
-
-
+  }
 
   /**
-  * Get the content at the specified row and column.
-  *
-  * @param row The row of the cell to change.
-  * @param col The column of the cell to change.
-  * @return The content in the specified cell.
-  */
+   * Get the content at the specified row and column.
+   *
+   * @param row The row of the cell to change.
+   * @param col The column of the cell to change.
+   * @return The content in the specified cell.
+   */
   public Content getContentAt(int row, int col) {
     return _dataStructure.getContent(row, col);
   }
 
   /**
-  * Check if the spreadsheet has been changed.
-  *
-  * @return True if the spreadsheet has been changed, false otherwise.
-  */
+   * Check if the spreadsheet has been changed.
+   *
+   * @return True if the spreadsheet has been changed, false otherwise.
+   */
   public boolean isChanged() {
     return _isChanged;
   }
 
   /**
-  * Set the change status of the spreadsheet.
-  *
-  * @param bool True if the spreadsheet has been changed, false otherwise.
-  */
+   * Set the change status of the spreadsheet.
+   *
+   * @param bool True if the spreadsheet has been changed, false otherwise.
+   */
   public void setChange(boolean bool) {
     _isChanged = bool;
   }
 
-  public Cell[][] getCells(){
+  public Cell[][] getCells() {
     return _dataStructure.getCells();
   }
 

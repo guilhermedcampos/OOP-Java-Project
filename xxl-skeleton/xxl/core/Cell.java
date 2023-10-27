@@ -9,7 +9,7 @@ import xxl.core.exception.EvaluationException;
 /**
  * Represents a cell in a spreadsheet.
  */
-public class Cell implements Serializable, Observer {
+public class Cell implements Serializable {
 
     private int _row;
     private int _col;
@@ -24,32 +24,23 @@ public class Cell implements Serializable, Observer {
         _observers.remove(observer);
     }
 
-    private void notifyObservers() {
+    public void notifyObservers() {
         for (Observer observer : _observers) {
             observer.update();
         }
 
-        
     }
 
     protected void setContent(Content content) {
         _content = content;
-        content.setConnectedCell(this);
+        _content.setConnectedCell(this);
         notifyObservers();
-    }
-
-    public void update() {
-        _content.update();
-        if (_content.getConnectedCell().getContent() != null) {
-            addObserver(_content.getConnectedCell().getContent());
-        }
-
     }
 
     public Cell(int row, int col) {
         _row = row;
         _col = col;
-        _content = new Null();
+        setContent(new Null());
     }
 
     public int getCol() {

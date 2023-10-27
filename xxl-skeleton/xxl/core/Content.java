@@ -19,7 +19,14 @@ public abstract class Content implements Serializable, Observer {
         _connectedCell = cell;
     }
 
-    public abstract void update();
+    public abstract void compute();
+
+    public void update() {
+        this.compute();
+        if (_connectedCell != null) {
+            _connectedCell.notifyObservers();
+        }
+    }
 
     /**
      * Returns a string representation of the content.
@@ -56,9 +63,5 @@ public abstract class Content implements Serializable, Observer {
      */
     public int asInt() throws EvaluationException {
         return value().asInt();
-    }
-
-    public boolean isReference() {
-        return false;
     }
 }

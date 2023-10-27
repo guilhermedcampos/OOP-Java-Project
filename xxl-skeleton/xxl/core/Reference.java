@@ -40,7 +40,7 @@ public class Reference extends Content {
      * @return the value of the referenced cell as a `Literal`.
      */
     @Override
-    public void update() {
+    public void compute() {
         _value = Calculator.getCalculator().getSpreadsheet().getCell(_row, _col).getContent().value();
     }
 
@@ -64,10 +64,5 @@ public class Reference extends Content {
             return "#VALUE" + "=" + _row + ";" + _col;
         }
         return value().toString() + "=" + _row + ";" + _col;
-    }
-
-    @Override
-    public boolean isReference() {
-        return true;
     }
 }

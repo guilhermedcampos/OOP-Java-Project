@@ -44,7 +44,7 @@ public abstract class BinaryFunction extends Function {
      *
      * @return the result of the binary function as a Literal.
      */
-    public abstract void update();
+    public abstract void compute();
 
     public String cleanArgument(String arg) {
         if (arg.contains("=")) {

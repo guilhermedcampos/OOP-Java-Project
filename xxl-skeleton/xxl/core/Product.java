@@ -10,7 +10,7 @@ public class Product extends SequenceFunction {
     }
 
     @Override
-    public void update() {
+    public void compute() {
     int total = 1;
         try {
 

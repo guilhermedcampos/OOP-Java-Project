@@ -14,7 +14,7 @@ public abstract class SequenceFunction extends Function {
         update();
     }
 
-    public abstract void update();
+    public abstract void compute();
 
     public Cell[] getCellsFromRangeDescription(String rangeDescription)  {
         return Range.buildRange(_rangeDescription).traverse();

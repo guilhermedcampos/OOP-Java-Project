@@ -10,7 +10,7 @@ public class Coalesce extends SequenceFunction {
     }
 
     @Override
-    public void update() {
+    public void compute() {
         Cell[] cells = getCellsFromRangeDescription(_rangeDescription);
         String result;
         for (Cell c : cells) {

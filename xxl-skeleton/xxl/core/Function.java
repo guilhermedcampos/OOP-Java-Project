@@ -41,7 +41,7 @@ public abstract class Function extends Content {
      *
      * @return the result of the function as a Literal.
      */
-    public abstract void update();
+    public abstract void compute();
 
     /**
      * Gets the result of the function as a string.

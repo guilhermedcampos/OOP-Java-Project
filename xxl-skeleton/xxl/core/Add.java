@@ -24,7 +24,7 @@ public class Add extends BinaryFunction {
      * @return the result of the addition as a LiteralInteger.
      */
     @Override
-    public void update(){
+    public void compute(){
         try {
         _value = new LiteralInteger(_arg1.value().asInt() + _arg2.value().asInt());
         } catch (EvaluationException e){

@@ -2,7 +2,6 @@ package xxl.core;
 
 import java.util.List;
 import java.util.ArrayList;
-import xxl.core.exception.EvaluationException;
 
 public class SearchFunctionVisitor implements ContentVisitor {
     private String _searchTerm;

@@ -130,21 +130,8 @@ public class Calculator {
    *                                         to disk.
    */
   public void saveAs(String fileName) throws FileNotFoundException, MissingFileAssociationException, IOException {
-    ObjectOutputStream objectOut = null;
-    try {
-
-      // Serialize and save the spreadsheet with the specified file name in the
-      // current directory
-      try (FileOutputStream fileOut = new FileOutputStream(fileName + ".ser")) {
-        _currentSpreadsheet.setName(fileName);
-        objectOut = new ObjectOutputStream(fileOut);
-        objectOut.writeObject(_currentSpreadsheet);
-      }
-    } finally {
-      if (objectOut != null) {
-        objectOut.close();
-      }
-    }
+    _currentSpreadsheet.setName(fileName);
+    save();
   }
 
   /**

@@ -10,7 +10,7 @@ public class Average extends SequenceFunction {
     }
 
     @Override
-    public void update() {
+    public void compute() {
         int total = 0;
         int numCells;
     
