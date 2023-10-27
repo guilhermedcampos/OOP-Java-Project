@@ -18,5 +18,9 @@ public abstract class Literal extends Content {
 
     }
 
+    public void stopObserving(){
+        
+    }
+    
     public abstract void accept(ContentVisitor visitor);
 }

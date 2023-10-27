@@ -43,6 +43,8 @@ public abstract class Function extends Content {
      */
     public abstract void compute();
 
+    public abstract void stopObserving();
+
     /**
      * Gets the result of the function as a string.
      *

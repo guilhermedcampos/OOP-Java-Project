@@ -10,6 +10,17 @@ import xxl.core.exception.EvaluationException;
 public abstract class Content implements Serializable, Observer {
 
     private Cell _connectedCell;
+    private boolean _isObserving = false;
+
+    public abstract void stopObserving();
+
+    public void setIsObserving(boolean bool) {
+        _isObserving = bool;
+    }
+
+    public boolean isObserving() {
+        return _isObserving;
+    }
 
     public Cell getConnectedCell() {
         return _connectedCell;

@@ -26,12 +26,19 @@ public class Reference extends Content {
     public Reference(int row, int col) {
         _row = row;
         _col = col;
-        Calculator.getCalculator().getSpreadsheet().getCell(row, col).addObserver(this);
+        getConnectedCell().addObserver(this);
+        setIsObserving(true);;
         update();
     }
 
     public void accept(ContentVisitor visitor) {
         visitor.visit(this);
+    }
+
+    public void stopObserving(){
+        System.out.println("removeu: " + this.toString());
+        getConnectedCell().removeObserver(this);
+        setIsObserving(false);
     }
 
     /**

@@ -8,15 +8,24 @@ public abstract class SequenceFunction extends Function {
         super(name);
         _rangeDescription = range;
         Cell[] rangeCells = getCellsFromRangeDescription(_rangeDescription);
-        for(Cell cell : rangeCells){
+        for (Cell cell : rangeCells) {
             cell.addObserver(this);
+            cell.getContent().setIsObserving(true);
         }
         update();
     }
 
+    public void stopObserving() {
+        Cell[] rangeCells = getCellsFromRangeDescription(_rangeDescription);
+        for (Cell cell : rangeCells) {
+            cell.removeObserver(this);
+            cell.getContent().setIsObserving(false);
+        }
+    }
+
     public abstract void compute();
 
-    public Cell[] getCellsFromRangeDescription(String rangeDescription)  {
+    public Cell[] getCellsFromRangeDescription(String rangeDescription) {
         return Range.buildRange(_rangeDescription).traverse();
 
     }
@@ -27,13 +36,14 @@ public abstract class SequenceFunction extends Function {
 
     protected Cell getLastCell() {
         Cell[] cells = getCellsFromRangeDescription(_rangeDescription);
-        return getCellsFromRangeDescription(_rangeDescription)[cells.length-1];
+        return getCellsFromRangeDescription(_rangeDescription)[cells.length - 1];
     }
 
     @Override
     public String toString() {
-            String result = value().toString() + "=" + getName() + "(" + getFirstCell().toString() + ":" + getLastCell().toString() + ")";
-            return cleanStringAfterFirstEquals(result);
+        String result = value().toString() + "=" + getName() + "(" + getFirstCell().toString() + ":"
+                + getLastCell().toString() + ")";
+        return cleanStringAfterFirstEquals(result);
     }
-    
+
 }

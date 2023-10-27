@@ -32,6 +32,12 @@ public class Cell implements Serializable {
     }
 
     protected void setContent(Content content) {
+        if (_content == null) {
+            System.out.println(this.toString());
+        }
+        if (_content != null && _content.isObserving()) {
+            _content.stopObserving();
+        }
         _content = content;
         _content.setConnectedCell(this);
         notifyObservers();
@@ -40,7 +46,8 @@ public class Cell implements Serializable {
     public Cell(int row, int col) {
         _row = row;
         _col = col;
-        setContent(new Null());
+        _content = new Null();
+        _content.setConnectedCell(this);
     }
 
     public int getCol() {
