@@ -2,8 +2,6 @@ package xxl.app.edit;
 
 import pt.tecnico.uilib.menus.Command;
 import xxl.core.Spreadsheet;
-
-import xxl.core.Cell;
 import xxl.core.CutBuffer;
 
 /**
@@ -19,7 +17,6 @@ class DoShowCutBuffer extends Command<Spreadsheet> {
   protected final void execute() {
     CutBuffer cutBuffer = _receiver.getCutBuffer();
 
-
     if (cutBuffer.getContents() == null) {
       return;
     }
@@ -34,10 +31,8 @@ class DoShowCutBuffer extends Command<Spreadsheet> {
       _display.addLine(row + ";" + col + "|" + cutBuffer.getContent(i).toString());
 
       if (variesInColumns) {
-        // Increment the row when varying in columns
         col++;
       } else {
-        // Increment the column when varying in rows
         row++;
       }
     }
