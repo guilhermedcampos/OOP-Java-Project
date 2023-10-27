@@ -1,23 +1,27 @@
 package xxl.core;
 
-import java.util.Set;
-import java.util.HashSet;
-import java.util.Objects;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Represents a user in the system with a unique username and a collection of
  * spreadsheets.
  */
-public class User {
-    private String _name;
-    private Set<Spreadsheet> _spreadsheets;
+public class User implements java.io.Serializable {
+    private final String _name;
+    private List<Spreadsheet> _spreadsheets;
 
     public User(String name) {
         _name = name;
-        _spreadsheets = new HashSet<>();
+        _spreadsheets = new ArrayList<>();
     }
 
     public String getUsername() {
+        return _name;
+    }
+
+    public final String getName() {
         return _name;
     }
 
@@ -25,18 +29,7 @@ public class User {
         _spreadsheets.add(spreadsheet);
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        User user = (User) o;
-        return Objects.equals(_name, user._name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(_name);
+    public List<Spreadsheet> getSpreadsheets() {
+        return Collections.unmodifiableList(_spreadsheets);
     }
 }
