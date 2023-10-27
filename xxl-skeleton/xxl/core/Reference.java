@@ -27,7 +27,8 @@ public class Reference extends Content {
         _row = row;
         _col = col;
         getConnectedCell().addObserver(this);
-        setIsObserving(true);;
+        setIsObserving(true);
+        ;
         update();
     }
 
@@ -35,8 +36,7 @@ public class Reference extends Content {
         visitor.visit(this);
     }
 
-    public void stopObserving(){
-        System.out.println("removeu: " + this.toString());
+    public void stopObserving() {
         getConnectedCell().removeObserver(this);
         setIsObserving(false);
     }

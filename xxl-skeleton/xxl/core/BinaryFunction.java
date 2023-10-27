@@ -43,12 +43,10 @@ public abstract class BinaryFunction extends Function {
     public void stopObserving() {
         if (_arg1.getConnectedCell() != null) {
             _arg1.getConnectedCell().removeObserver(this);
-            System.out.println("removeu arg1: " + _arg1.toString());
             _arg1.setIsObserving(false);
         }
         if (_arg2.getConnectedCell() != null) {
             _arg2.getConnectedCell().removeObserver(this);
-            System.out.println("removeu arg2: " + _arg2.toString());
             _arg2.setIsObserving(false);
         }
     }
