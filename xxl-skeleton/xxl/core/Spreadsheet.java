@@ -128,8 +128,8 @@ public class Spreadsheet implements Serializable {
             }
           }
         }
-      } else {
-        for (int i = 0; i < cells.length && i < _cutBuffer.getContents().length; i++) {
+      } else if (_cutBuffer.getContents().length == cells.length ){
+        for (int i = 0; i < cells.length; i++) {
           int newRow = cells[i].getRow();
           int newCol = cells[i].getCol();
 
