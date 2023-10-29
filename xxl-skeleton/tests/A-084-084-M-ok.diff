@@ -1,0 +1,21 @@
+*** tests/A-084-084-M-ok.out	2023-10-18 10:32:00.000000000 +0100
+--- tests/A-084-084-M-ok.outhyp	2023-10-29 08:34:08.209492125 +0000
+***************
+*** 43,50 ****
+  6 - Colar
+  7 - Mostrar 'cut buffer'
+  0 - Sair
+! Escolha uma opção: Especifique a gama (startline;startcol:endline;endcol): 5;1|
+! 5;2|
+  5;3|
+  Menu de Edição
+  1 - Visualizar
+--- 43,50 ----
+  6 - Colar
+  7 - Mostrar 'cut buffer'
+  0 - Sair
+! Escolha uma opção: Especifique a gama (startline;startcol:endline;endcol): 5;1|15
+! 5;2|49
+  5;3|
+  Menu de Edição
+  1 - Visualizar
