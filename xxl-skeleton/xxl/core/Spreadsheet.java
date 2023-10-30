@@ -2,7 +2,11 @@ package xxl.core;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import xxl.core.exception.OutOfBoundsException;
+import xxl.core.User;
 
 /**
  * Class representing a spreadsheet.
@@ -24,7 +28,11 @@ public class Spreadsheet implements Serializable {
 
   private boolean _isChanged;
 
-  public Spreadsheet(int rows, int cols) {
+  private List<User> _users = new ArrayList<>();
+
+  public Spreadsheet(
+      int rows,
+      int cols) {
     if (rows <= 0 || cols <= 0) {
       throw new IllegalArgumentException("Rows and columns must be greater than zero.");
     }
@@ -128,7 +136,7 @@ public class Spreadsheet implements Serializable {
             }
           }
         }
-      } else if (_cutBuffer.getContents().length == cells.length ){
+      } else if (_cutBuffer.getContents().length == cells.length) {
         for (int i = 0; i < cells.length; i++) {
           int newRow = cells[i].getRow();
           int newCol = cells[i].getCol();

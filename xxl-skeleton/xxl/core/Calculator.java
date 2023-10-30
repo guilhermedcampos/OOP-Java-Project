@@ -32,7 +32,7 @@ public class Calculator {
   /**
    * A list of users who have access to the application.
    */
-  private List<User> _users;
+  private List<User> _users = new ArrayList<>();;
 
   private static Calculator _calculator;
 
@@ -41,7 +41,6 @@ public class Calculator {
    * Initializes the list of users as an empty ArrayList.
    */
   private Calculator() {
-    _users = new ArrayList<>();
   }
 
   /**
@@ -76,7 +75,8 @@ public class Calculator {
   }
 
   /**
-   * Creates and returns a new spreadsheet with the specified number of rows and columns.
+   * Creates and returns a new spreadsheet with the specified number of rows and
+   * columns.
    *
    * @param rows    The number of rows for the new spreadsheet.
    * @param columns The number of columns for the new spreadsheet.
@@ -166,11 +166,11 @@ public class Calculator {
   public void load(String fileName) throws UnavailableFileException {
     try (ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(fileName + ".ser"))) {
       Spreadsheet spreadsheet = (Spreadsheet) objectIn.readObject();
-      //CutBuffer cutbuffer = (CutBuffer)objectIn.readObject();
-      //spreadsheet.setCutBuffer(cutbuffer);
+      // CutBuffer cutbuffer = (CutBuffer)objectIn.readObject();
+      // spreadsheet.setCutBuffer(cutbuffer);
       spreadsheet.setChange(false);
       setSpreadsheet(spreadsheet);
-      
+
     } catch (FileNotFoundException | ClassNotFoundException e) {
       throw new UnavailableFileException(fileName);
     } catch (IOException e) {
