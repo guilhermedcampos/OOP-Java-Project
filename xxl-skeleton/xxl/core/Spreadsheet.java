@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xxl.core.exception.OutOfBoundsException;
-import xxl.core.User;
 
 /**
  * Class representing a spreadsheet.
