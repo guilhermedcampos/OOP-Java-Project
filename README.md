@@ -30,7 +30,7 @@ The project repository contains the following structure:
 
   javac -cp path/to/po-uilib.jar:. `find xxl -name "*.java"`
 
-#### Run the application:
+### Run the application:
 
   java -cp path/to/po-uilib.jar:. xxl.app.App
 
@@ -38,11 +38,11 @@ The project repository contains the following structure:
 
 Spreadsheets are serialized and saved with a `.ser` extension. Serialization allows for the preservation of spreadsheet data between application sessions.
 
-## User-Related Features
+### User-Related Features
 
 The user-related part of the project is not fully finished. This aspect was deemed irrelevant for the core functionality of the application and may be extended in future developments.
 
-#### Run the tests:
+### Run the tests:
 
   chmod +x runtests.sh
   ./runtests.sh
