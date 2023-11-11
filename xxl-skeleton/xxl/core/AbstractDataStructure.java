@@ -39,5 +39,10 @@ public interface AbstractDataStructure {
      */
     Content getContent(int row, int col);
 
+    /**
+     * Gets a bidimensdional array of all the cells in the spreadsheet.
+     *
+     * @return the bidimensional Cell array.
+     */
     Cell[][] getCells();
 }

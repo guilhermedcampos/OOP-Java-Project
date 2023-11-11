@@ -7,10 +7,19 @@ import xxl.core.exception.EvaluationException;
  */
 public class Product extends SequenceFunction {
 
+    /**
+     * Constructs a new product operation with the specified range description.
+     *
+     * @param rangeDescription the description of the range for the product operation.
+     */
     public Product(String rangeDescription) {
         super("PRODUCT", rangeDescription);
     }
 
+    /**
+     * Computes the product of the values within the specified range of cells and sets the result.
+     * If any evaluation exception occurs during computation, the result is set to a LiteralException.
+     */
     @Override
     public void compute() {
         int total = 1;

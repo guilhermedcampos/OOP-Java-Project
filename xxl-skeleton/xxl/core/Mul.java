@@ -7,10 +7,20 @@ import xxl.core.exception.EvaluationException;
  */
 public class Mul extends BinaryFunction {
 
+    /**
+     * Constructs a multiplication with the specified content arguments.
+     *
+     * @param arg1 the first content object to be multiplied.
+     * @param arg2 the second content object to be multiplied.
+     */
     public Mul(Content arg1, Content arg2) {
         super("MUL", arg1, arg2);
     }
 
+    /**
+     * Computes the multiplication of the two content objects and sets the result.
+     * If an evaluation exception occurs during computation, sets the result to a LiteralException.
+     */
     @Override
     public void compute() {
         try {

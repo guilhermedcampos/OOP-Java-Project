@@ -34,6 +34,9 @@ public class Calculator {
    */
   private List<User> _users = new ArrayList<>();;
 
+  /**
+   * The current calculator object in use.
+   */
   private static Calculator _calculator;
 
   /**

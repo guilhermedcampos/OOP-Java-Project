@@ -7,10 +7,19 @@ import xxl.core.exception.EvaluationException;
  */
 public class Average extends SequenceFunction {
 
+    /**
+     * Constructs an average with the specified range description.
+     *
+     * @param rangeDescription a description of the range of cells for which the average is calculated.
+     */
     public Average(String rangeDescription) {
         super("AVERAGE", rangeDescription);
     }
 
+    /**
+     * Computes the average of the values in the specified range of cells and sets the result.
+     * If an evaluation exception occurs during computation, sets the result to a LiteralException.
+     */
     @Override
     public void compute() {
         int total = 0;

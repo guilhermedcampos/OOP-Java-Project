@@ -12,11 +12,21 @@ import xxl.app.exception.InvalidCellRangeException;
  */
 class DoCut extends Command<Spreadsheet> {
 
+  /**
+   * Constructs a new Cut command with the specified receiver (spreadsheet).
+   *
+   * @param receiver the spreadsheet on which the command operates.
+   */
   DoCut(Spreadsheet receiver) {
     super(Label.CUT, receiver);
     addStringField("range", Message.address());
   }
-
+  
+  /**
+   * Executes the Cut command, cutting the content within the specified range.
+   *
+   * @throws CommandException if an error occurs during command execution.
+   */
   @Override
   protected final void execute() throws CommandException {
     String range = stringField("range");

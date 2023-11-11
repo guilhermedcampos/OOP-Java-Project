@@ -15,12 +15,20 @@ import java.util.List;
  * Command for searching content values.
  */
 class DoShowValues extends Command<Spreadsheet> {
-
+  
+  /**
+   * Constructs a new command for showing cells with specified content values.
+   *
+   * @param receiver The spreadsheet to perform the search on.
+   */
   DoShowValues(Spreadsheet receiver) {
     super(Label.SEARCH_VALUES, receiver);
     addStringField("value", Message.searchValue());
   }
 
+  /**
+   * Executes the command by searching for cells with specified content values in the spreadsheet.
+   */
   @Override
   protected final void execute() {
     String searchTerm = stringField("value");

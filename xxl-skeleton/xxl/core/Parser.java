@@ -11,6 +11,7 @@ import xxl.core.exception.OutOfBoundsException;
  */
 public class Parser {
 
+    /** The spreadsheet to parse data into. */
     private Spreadsheet _spreadsheet;
 
     /**
@@ -100,7 +101,15 @@ public class Parser {
             throw new UnrecognizedEntryException("Wrong format in line: " + line);
     }
 
-    // parse the beginning of an expression
+    /**
+     * Parses the content of a cell based on the provided content specification.
+     * Determines whether it is a literal value or a content expression, then delegates
+     * to the appropriate parsing method.
+     *
+     * @param contentSpecification the content specification to parse.
+     * @return the parsed content for the cell.
+     * @throws UnrecognizedEntryException if there is an unrecognized entry.
+     */
     public Content parseContent(String contentSpecification)
             throws UnrecognizedEntryException {
         char c = contentSpecification.charAt(0);
@@ -133,7 +142,13 @@ public class Parser {
         }
     }
 
-    // contentSpecification is what comes after '='
+    /**
+     * Parses a content expression from the input, distinguishing between a function and a reference.
+     *
+     * @param contentSpecification the content specification to parse.
+     * @return the parsed content expression.
+     * @throws UnrecognizedEntryException if there is an unrecognized entry.
+     */
     private Content parseContentExpression(String contentSpecification)
             throws UnrecognizedEntryException {
         if (contentSpecification.contains("("))

@@ -17,11 +17,19 @@ import java.util.List;
  */
 class DoShowFunctions extends Command<Spreadsheet> {
 
+  /**
+   * Constructs a new command for showing functions in the spreadsheet.
+   *
+   * @param receiver The spreadsheet to perform the search on.
+   */
   DoShowFunctions(Spreadsheet receiver) {
     super(Label.SEARCH_FUNCTIONS, receiver);
     addStringField("function", Message.searchFunction());
   }
 
+  /**
+   * Executes the command by searching for function names in the spreadsheet.
+   */
   @Override
   protected final void execute() {
     String functionToSearch = stringField("function");
@@ -39,7 +47,7 @@ class DoShowFunctions extends Command<Spreadsheet> {
     // Get the matching cells from the visitor
     List<Cell> matchingFunctionCells = functionVisitor.getMatchingCells();
 
-    // sort matching functions
+    // Sort matching functions
     matchingFunctionCells.sort(new FunctionComparator());
 
     // Process and display the matching cells

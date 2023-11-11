@@ -7,6 +7,9 @@ import pt.tecnico.uilib.menus.CommandException;
  */
 public class InvalidCellRangeException extends CommandException {
     
+    /**
+     * The invalid cell range that caused the exception.
+     */
     private final String _range;
   
     /**

@@ -17,12 +17,22 @@ import xxl.app.exception.InvalidCellRangeException;
  */
 class DoInsert extends Command<Spreadsheet> {
 
+  /**
+   * Constructs a new Insert command with the specified receiver (spreadsheet).
+   *
+   * @param receiver the spreadsheet on which the command operates.
+   */
   DoInsert(Spreadsheet receiver) {
     super(Label.INSERT, receiver);
     addStringField("range", Message.address());
     addStringField("content", Message.contents());
   }
 
+  /**
+   * Executes the Insert command, inserting the specified content into the specified range.
+   *
+   * @throws CommandException if an error occurs during command execution.
+   */
   @Override
   protected final void execute() throws CommandException {
     String range = stringField("range");

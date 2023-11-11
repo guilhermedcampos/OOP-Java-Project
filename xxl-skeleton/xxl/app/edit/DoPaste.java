@@ -12,11 +12,22 @@ import xxl.core.exception.OutOfBoundsException;
  */
 class DoPaste extends Command<Spreadsheet> {
 
+  /**
+   * Constructs a new instance of the Paste command.
+   *
+   * @param receiver The spreadsheet on which the Paste command operates.
+   */
   DoPaste(Spreadsheet receiver) {
     super(Label.PASTE, receiver);
     addStringField("range", Message.address());
   }
 
+
+  /**
+   * Executes the Paste command, inserting the content from the clipboard into the specified range.
+   *
+   * @throws CommandException if an error occurs during the execution of the Paste command.
+   */
   @Override
   protected final void execute() throws CommandException {
     String range = stringField("range");

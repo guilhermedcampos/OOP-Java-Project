@@ -9,10 +9,19 @@ import xxl.core.CutBuffer;
  */
 class DoShowCutBuffer extends Command<Spreadsheet> {
 
+  /**
+   * Constructs a new instance of the Show Cut Buffer command.
+   *
+   * @param receiver The spreadsheet on which the Show Cut Buffer command operates.
+   */
   DoShowCutBuffer(Spreadsheet receiver) {
     super(Label.SHOW_CUT_BUFFER, receiver);
   }
 
+  /**
+   * Executes the Show Cut Buffer command, displaying the contents of the cut buffer.
+   * The displayed content includes cell addresses and their corresponding content.
+   */
   @Override
   protected final void execute() {
     CutBuffer cutBuffer = _receiver.getCutBuffer();

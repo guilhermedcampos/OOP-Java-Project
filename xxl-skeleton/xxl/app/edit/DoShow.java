@@ -13,11 +13,21 @@ import xxl.core.Cell;
  */
 class DoShow extends Command<Spreadsheet> {
 
+    /**
+     * Constructs a new instance of the Show command.
+     *
+     * @param receiver The spreadsheet on which the Show command operates.
+     */
     DoShow(Spreadsheet receiver) {
         super(Label.SHOW, receiver);
         addStringField("range", Message.address());
     }
 
+    /**
+     * Executes the Show command, displaying the content of cells within the specified range.
+     *
+     * @throws CommandException if an error occurs during the execution of the Show command.
+     */
     @Override
     protected final void execute() throws CommandException {
         String range = stringField("range");

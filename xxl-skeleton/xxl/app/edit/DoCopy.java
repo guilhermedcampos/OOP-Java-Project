@@ -12,11 +12,21 @@ import xxl.core.exception.OutOfBoundsException;
  */
 class DoCopy extends Command<Spreadsheet> {
 
+  /**
+   * Constructs a new Copy command with the specified receiver (spreadsheet).
+   *
+   * @param receiver the spreadsheet on which the command operates.
+   */
   DoCopy(Spreadsheet receiver) {
     super(Label.COPY, receiver);
     addStringField("range", Message.address());
   }
 
+  /**
+   * Executes the Copy command, copying the content within the specified range.
+   *
+   * @throws CommandException if an error occurs during command execution.
+   */
   @Override
   protected final void execute() throws CommandException {
     String range = stringField("range");
