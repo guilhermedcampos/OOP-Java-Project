@@ -14,10 +14,9 @@ Features:
         Composite
         State
 
-### Prerequisites
+### Dependencies
 
-    Java version 17 or higher
-    po-uilib.jar (October 3rd 2023)
+The project uses the `po-uilib.jar` framework for user interaction (updated as of October 3rd). Additionally, Ensure that you have the correct version compiled for Java 17 or higher.
 
 ### Project Structure
 
@@ -34,6 +33,14 @@ The project repository contains the following structure:
 #### Run the application:
 
   java -cp path/to/po-uilib.jar:. xxl.app.App
+
+### Serialization
+
+Spreadsheets are serialized and saved with a `.ser` extension. Serialization allows for the preservation of spreadsheet data between application sessions.
+
+## User-Related Features
+
+The user-related part of the project is not fully finished. This aspect was deemed irrelevant for the core functionality of the application and may be extended in future developments.
 
 #### Run the tests:
 
