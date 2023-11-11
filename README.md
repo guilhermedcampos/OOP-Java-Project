@@ -3,7 +3,7 @@
 ## Object Oriented Programming Project
 
 This project is an application that serves as a calculator and spreadsheet manager. It employs various Object-Oriented Programming (OOP) design patterns, including visitor, singleton, observer, composite, and state. The codebase adheres to the principles of open-closed design, allowing for easy extension while maintaining validation of the open-closed principle.
-Features
+Features:
 
     Calculator functionality
     Spreadsheet management with various operations
