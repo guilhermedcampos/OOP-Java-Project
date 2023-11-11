@@ -28,11 +28,11 @@ The project repository contains the following structure:
 
 ### Compile the project:
 
-  javac -cp path/to/po-uilib.jar:. `find xxl -name "*.java"`
+    javac -cp path/to/po-uilib.jar:. `find xxl -name "*.java"`
 
 ### Run the application:
 
-  java -cp path/to/po-uilib.jar:. xxl.app.App
+    java -cp path/to/po-uilib.jar:. xxl.app.App
 
 ### Serialization
 
@@ -44,6 +44,6 @@ The user-related part of the project is not fully finished. This aspect was deem
 
 ### Run the tests:
 
-  chmod +x runtests.sh
+    chmod +x runtests.sh
   
-  ./runtests.sh
+    ./runtests.sh
